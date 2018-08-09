@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-if (process.env.NODE_ENV !== 'production') require('../secrets')
+if (process.env.NODE_ENV !== 'production') require('../../secrets')
 
 router.use('/users', require('./users'))
 
