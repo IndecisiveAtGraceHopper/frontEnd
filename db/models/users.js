@@ -8,7 +8,7 @@ const User = db.define('user', {
         allowNull: false
     },
     email: {
-        type: Sequelze.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
         validate: {
             isEmail: true
@@ -32,3 +32,5 @@ const User = db.define('user', {
         type: Sequelize.STRING
     }
 })
+
+module.exports = User
