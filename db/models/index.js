@@ -15,5 +15,5 @@ Group.hasOne(Event)
 Group.hasOne(Board)
 
 module.exports = {
-  User, Event, Group, Note, Poll
+  User, Event, Group, Board, Poll
 }

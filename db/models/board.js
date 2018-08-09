@@ -3,8 +3,7 @@ const db = require('../db')
 
 const Board = db.define('board', {
   notes: {
-    type: Sequelize.TEXT,
-    defaultValue: false
+    type: Sequelize.TEXT
   }
 })
 
