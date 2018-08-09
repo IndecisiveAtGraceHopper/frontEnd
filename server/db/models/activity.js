@@ -1,7 +1,7 @@
 const db = require('../db')
 const Sequelize = require('sequelize')
 
-const Event = db.define('event', {
+const Activity = db.define('activity', {
   date: {
     type: Sequelize.DATE
   },
@@ -22,4 +22,4 @@ const Event = db.define('event', {
 })
 
 
-module.exports = Event
+module.exports = Activity
