@@ -1,11 +1,11 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Note = db.define('note', {
+const Board = db.define('board', {
   notes: {
     type: Sequelize.TEXT,
     defaultValue: false
   }
 })
 
-module.exports = Note
+module.exports = Board
