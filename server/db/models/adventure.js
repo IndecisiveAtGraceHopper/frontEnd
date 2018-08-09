@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Group = db.define('group', {
+const Adventure = db.define('adventure', {
   name: {
     type: Sequelize.STRING
   },
@@ -13,4 +13,4 @@ const Group = db.define('group', {
   },
 })
 
-module.exports = Group
+module.exports = Adventure
