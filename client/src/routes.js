@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Route, Switch, BrowserRouter as Router} from 'react-router-dom';
-import App from './components/App';
-import Poll from './components/Poll';
+import {App, Poll, Login, UserHome} from './components';
  /**
  * COMPONENT
  */
@@ -11,7 +10,9 @@ class Routes extends Component {
     	<Router>
     	  <Switch>
           <Route exact path="/users/poll" component={Poll} />
-          <Route path="/" component={App} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/userhome" component={UserHome} />
+          <Route exact path="/" component={App} />
         </Switch>
     	</Router>
     );
