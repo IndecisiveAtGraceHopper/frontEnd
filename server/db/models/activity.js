@@ -22,7 +22,6 @@ const Activity = db.define('activity', {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   }
-})
-
+});
 
 module.exports = Activity
