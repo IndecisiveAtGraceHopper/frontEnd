@@ -9,4 +9,8 @@ router.get('/', function(req, res, next) {
   ])
 });
 
+router.get('/poll', function(req, res, next) {
+  res.send('hello')
+})
+
 module.exports = router;
