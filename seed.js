@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('./server/db')
-const {User, Pod, Adventure, Activity, Board, Poll} = require('./server/db/models')
+const {User, Pod, Adventure, Activity, Note, Poll} = require('./server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -14,16 +14,16 @@ async function seed() {
     const hawa = await User.create({firstName: 'Hawa', email: 'hawa@indecisive.com', password: '123'})
 
     const adventure1 = await Adventure.create({name: 'Rock Climbing', date: Date.now()})
-    await Pod.bulkCreate([{userId: 1, adventureId: 1}, {userId: 2, adventureId: 1}, {userId: 3, adventureId: 1}, {userId: 4, adventureId: 1}])
+    // await Pod.bulkCreate([{userId: 1, adventureId: 1}, {userId: 2, adventureId: 1}, {userId: 3, adventureId: 1}, {userId: 4, adventureId: 1}])
 
     const activity1 = await Activity.create({date: Date.now(), address: 'NY, NY', selected: true, adventureId: 1})
 
-  const board1 = await Board.create({notes: "can't wait to go rock climbing!", adventureId: 1})
+  const board1 = await Note.create({notes: "can't wait to go rock climbing!", adventureId: 1})
 
-  const poll1 = await Poll.create({location: 'New York, NY', priceRange: 4, activityLevel: 4, artsyLevel: 1, hungerLevel: 2, drinkLevel: 2, userId: 1})
-  const poll2 = await Poll.create({location: 'New York, NY', priceRange: 4, activityLevel: 4, artsyLevel: 1, hungerLevel: 2, drinkLevel: 2, userId: 2})
-  const poll3 = await Poll.create({location: 'Newtown, CT', priceRange: 4, activityLevel: 4, artsyLevel: 1, hungerLevel: 2, drinkLevel: 2, userId: 3})
-  const poll4 = await Poll.create({location: 'New York, NY', priceRange: 4, activityLevel: 4, artsyLevel: 1, hungerLevel: 2, drinkLevel: 2, userId: 4})
+  const poll1 = await Poll.create({priceRange: 4, activityLevel: 4, artsyLevel: 1, hungerLevel: 2, drinkLevel: 2, userId: 1})
+  const poll2 = await Poll.create({priceRange: 4, activityLevel: 4, artsyLevel: 1, hungerLevel: 2, drinkLevel: 2, userId: 2})
+  const poll3 = await Poll.create({priceRange: 4, activityLevel: 4, artsyLevel: 1, hungerLevel: 2, drinkLevel: 2, userId: 3})
+  const poll4 = await Poll.create({priceRange: 4, activityLevel: 4, artsyLevel: 1, hungerLevel: 2, drinkLevel: 2, userId: 4})
 
   console.log(`seeded successfully`)
 }

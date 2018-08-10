@@ -1,10 +1,10 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+const Sequelize = require("sequelize");
+const db = require("../db");
 
-const Pod = db.define('pods', {
+const Pod = db.define("pods", {
   name: {
     type: Sequelize.STRING
   }
-})
+});
 
-module.exports = Pod
+module.exports = Pod;

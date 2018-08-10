@@ -1,16 +1,16 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+const Sequelize = require("sequelize");
+const db = require("../db");
 
-const Adventure = db.define('adventure', {
+const Adventure = db.define("adventure", {
   name: {
     type: Sequelize.STRING
   },
   date: {
-    type: Sequelize.DATE,
+    type: Sequelize.DATE
   },
   location: {
     type: Sequelize.ARRAY(Sequelize.FLOAT)
-  },
-})
+  }
+});
 
-module.exports = Adventure
+module.exports = Adventure;
