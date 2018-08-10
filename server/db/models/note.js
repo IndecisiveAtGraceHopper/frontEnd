@@ -1,10 +1,10 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Board = db.define('board', {
+const Note = db.define('notes', {
   notes: {
     type: Sequelize.TEXT
   }
-})
+});
 
-module.exports = Board
+module.exports = Note;

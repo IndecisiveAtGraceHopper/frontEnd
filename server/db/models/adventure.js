@@ -6,11 +6,11 @@ const Adventure = db.define('adventure', {
     type: Sequelize.STRING
   },
   date: {
-    type: Sequelize.DATE,
+    type: Sequelize.DATE
   },
   location: {
     type: Sequelize.ARRAY(Sequelize.FLOAT)
-  },
-})
+  }
+});
 
 module.exports = Adventure
