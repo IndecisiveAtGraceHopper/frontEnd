@@ -8,8 +8,8 @@ const Pod = require('./pod')
 Adventure.belongsTo(User, { as: 'coordinator' })
 User.hasMany(Adventure)
 
-Adventure.hasOne(Pod)
-Pod.belongsToMany(Adventure, {through: 'podAdventure'})
+Pod.hasMany(Adventure)
+Adventure.belongsTo(Pod)
 
 User.belongsToMany(Pod, { through: 'user_pods' })
 Pod.belongsToMany(User, { through: 'user_pods' })
