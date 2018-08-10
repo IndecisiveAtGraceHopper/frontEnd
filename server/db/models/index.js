@@ -1,8 +1,9 @@
-const User = require('./user')
+const User = require('./users')
 const Activity = require('./activity')
 const Adventure = require('./adventure')
 const Board = require('./board')
 const Poll = require('./polls')
+const Pod = require('./pod')
 
 //Group is now Adventure.  Event is now Activity.
 User.belongsToMany(Adventure, {through: 'pods'})
@@ -18,5 +19,5 @@ Adventure.hasOne(Board)
 Board.belongsTo(Adventure)
 
 module.exports = {
-  User, Activity, Adventure, Board, Poll
+  User, Activity, Adventure, Board, Poll, Pod
 }
