@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import {connect} from 'react-redux'
+import {submitPollThunk} from '../store/poll'
 
 class Poll extends Component {
   state = { users: [] }
