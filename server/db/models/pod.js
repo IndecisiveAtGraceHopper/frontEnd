@@ -5,6 +5,6 @@ const Pod = db.define('pods', {
   name: {
     type: Sequelize.STRING
   }
-})
+});
 
-module.exports = Pod
+module.exports = Pod;
