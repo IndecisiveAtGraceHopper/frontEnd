@@ -3,3 +3,13 @@
 secrets.js
 .secrets
 secrets
+
+/node_modules
+
+public/bundle.js
+public/bundle.js.map
+
+
+.DS_Store
+npm-debug.log
+yarn-error.log
