@@ -1,30 +1,33 @@
-const User = require("./user");
-const Activity = require("./activity");
-const Adventure = require("./adventure");
-const Note = require("./note");
-const Poll = require("./poll");
-const Pod = require("./pod");
+const User = require('./user')
+const Activity = require('./activity')
+const Adventure = require('./adventure')
+const Note = require('./note')
+const Poll = require('./poll')
+const Pod = require('./pod')
 
-Adventure.belongsTo(User, { as: "coordinator" });
+Adventure.belongsTo(User, { as: 'coordinator' })
+User.hasMany(Adventure)
 
-Adventure.belongsToMany(Pod, { through: "pod_adventures" });
-Pod.belongsToMany(Adventure, { through: "pod_adventures" });
+Adventure.hasOne(Pod)
+Pod.belongsToMany(Adventure)
 
-User.belongsToMany(Pod, { through: "user_pods" });
-Pod.belongsToMany(User, { through: "user_pods" });
+User.belongsToMany(Pod, { through: 'user_pods' })
+Pod.belongsToMany(User, { through: 'user_pods' })
 
-User.hasMany(Poll);
-Poll.belongsTo(User);
+User.hasMany(Poll)
+Poll.belongsTo(User)
 
-Poll.belongsTo(Adventure);
+Poll.belongsTo(Adventure)
+Adventure.hasMany(Poll)
 
-Adventure.hasMany(Activity);
-Activity.belongsTo(Adventure);
+Adventure.hasMany(Activity)
+Activity.belongsTo(Adventure)
 
-Adventure.hasOne(Note);
-Note.belongsTo(Adventure);
+Adventure.hasOne(Note)
+Note.belongsTo(Adventure)
 
-Note.belongsTo(User);
+Note.belongsTo(User)
+User.hasMany(Note)
 
 module.exports = {
   User,

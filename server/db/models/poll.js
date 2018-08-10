@@ -1,7 +1,7 @@
-const Sequelize = require("sequelize");
-const db = require("../db");
+const Sequelize = require('sequelize')
+const db = require('../db')
 
-const Poll = db.define("poll", {
+const Poll = db.define('poll', {
   location: {
     type: Sequelize.ARRAY(Sequelize.FLOAT)
   },
@@ -42,4 +42,4 @@ const Poll = db.define("poll", {
   }
 });
 
-module.exports = Poll;
+module.exports = Poll
