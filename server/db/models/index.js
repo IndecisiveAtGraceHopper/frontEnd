@@ -5,7 +5,7 @@ const Note = require("./note");
 const Poll = require("./poll");
 const Pod = require("./pod");
 
-User.belongsTo(Adventure, { as: "coordinator" });
+Adventure.belongsTo(User, { as: "coordinator" });
 
 Adventure.belongsToMany(Pod, { through: "pod_adventures" });
 Pod.belongsToMany(Adventure, { through: "pod_adventures" });
