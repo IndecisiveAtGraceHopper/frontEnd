@@ -3,6 +3,15 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const compression = require('compression')
+const session = require('express-session')
+const passport = require('passport')
+const SequelizeStore = require('connect-session-sequelize')(session.Store)
+const db = require('./db')
+const sessionStore = new SequelizeStore({db})
+const PORT = process.env.PORT || 3000
+const socketio = require('socket.io')
+
 
 var indexRouter = require('./api/index');
 var usersRouter = require('./api/users');

@@ -32,6 +32,21 @@ export const me = () => async dispatch => {
   }
 }
 
+export const auth = (email, password, method) => async dispatch => {
+  let res
+  try {
+    res = await axios.post(`/auth/${method}`, {email, password})
+  } catch(authError) {
+    return dispatch(getUser({error: authError}))
+  }
+  try {
+    dispatch(getUser(res.data))
+    history.push('/home')
+  } catch(dispatchOrHistoryErr) {
+    console.error(dispatchOrHistoryErr)
+  }
+}
+
 export const logout = () => async dispatch => {
   try {
     await axios.post('/auth/logout')
@@ -41,20 +56,6 @@ export const logout = () => async dispatch => {
     console.error(err)
   }
 }
-
-export const getLoggedInUser = () => async dispatch => {
-  try {
-    let myData = await axios.get('/auth/me')
-    const moreData = await axios.get(`api/users/${myData.data.id}/me`)
-    myData.data.name = moreData.data.display_name
-    myData.data.spotifyUrl = moreData.data.external_urls.spotify
-    const updatedUser = await axios.put(`/api/users/${myData.data.id}/me`, myData.data)
-    dispatch(getUser(updatedUser.data))
-  } catch(err) {
-    console.error(err)
-  } 
-}
-
 
 
 /**
