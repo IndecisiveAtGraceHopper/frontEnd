@@ -13,6 +13,9 @@ const PORT = process.env.PORT || 3001
 const socketio = require('socket.io')
 const app = express()
 
+if (process.env.NODE_ENV === 'test') {
+  after('close the session store', () => sessionStore.stopExpiringSessions())
+}
 if (process.env.NODE_ENV !== 'production') require('../secrets')
 
 passport.serializeUser((user, done) => done(null, user.id))
@@ -45,7 +48,7 @@ const createApp = () => {
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
 
-  app.use(express.static(path.join(__dirname, '../client/public')))
+  app.use(express.static(path.join(__dirname, '..', 'client/public')))
 
   app.use((req, res, next) => {
     if (path.extname(req.path).length) {
@@ -59,7 +62,7 @@ const createApp = () => {
 }
 
 app.use('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/public/index.html'))
+  res.sendFile(path.join(__dirname, '..', 'client/public'))
 })
 
 app.use((err, req, res, next) => {
