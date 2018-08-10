@@ -3,37 +3,61 @@ import {connect} from 'react-redux'
 import {submitPollThunk} from '../store/poll'
 
 class Poll extends Component {
-  state = { users: [] }
+  constructor(){
+     super()
+     this.state = { poll: [] }
+  }
 
-  // componentDidMount() {
-  // }
+
+  handleChange = (evt) => {
+   this.setState({
+      [evt.target.name]: evt.target.value
+    })
+  }
+
+  handleSubmit = (evt) => {
+    console.log("WHAT IS GOING ON HS")
+    evt.preventDefault()
+    const {location, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel} = this.state
+
+    this.state.submitPollThunk({location, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel})
+  }
 
   render() {
     return (
       <div className="container">
         <h1>This is the Poll</h1>
-        <form>
+        <form onSubmit={console.log("HERE FOR ")}>
           <div className="form-group form-check">
             <div>
-              <label htmlFor="formControlRange">cost</label>
-              <input type="range" className="form-control-range" id="formControlRange"/>
+              <label htmlFor="name" />
+              <input type="text" name="location"  onChange={this.handleChange}
+              className="form-control" id="nameInput" aria-describedby="name" placeholder="Enter location" />
+              <small id="location" className="form-text text-muted" />
             </div>
             <div>
-              <label htmlFor="formControlRange">interactivity</label>
-              <input type="range" className="form-control-range" id="formControlRange"/>
+              <label htmlFor="priceRange">cost</label>
+              <input  onChange={this.state.handleChange} type="range" className="form-control-range" id="formControlRange"/>
             </div>
             <div>
-              <label htmlFor="formControlRange">artsy</label>
-              <input type="range" className="form-control-range" id="formControlRange"/>
+              <label htmlFor="activityLevel">interactivity</label>
+              <input  onChange={this.state.handleChange} type="range" className="form-control-range" id="formControlRange"/>
             </div>
             <div>
-              <label htmlFor="formControlRange">food</label>
-              <input type="range" className="form-control-range" id="formControlRange"/>
+              <label htmlFor="artsyLevel">artsy</label>
+              <input  onChange={this.state.handleChange} type="range" className="form-control-range" id="formControlRange"/>
             </div>
             <div>
-              <label htmlFor="formControlRange">drinks</label>
-              <input type="range" className="form-control-range" id="formControlRange"/>
+              <label htmlFor="hungerLevel">food</label>
+              <input  onChange={this.state.handleChange} type="range" className="form-control-range" id="formControlRange"/>
+            </div>
+            <div>
+              <label htmlFor="drinkLevel">drinks</label>
+              <input  onChange={this.state.handleChange} type="range" className="form-control-range" id="formControlRange"/>
           </div>
+           <span>
+              <button type='submit'>Submit</button>
+           </span>
          </div>
         </form>
       </div>
@@ -41,4 +65,11 @@ class Poll extends Component {
   }
 }
 
-export default Poll;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    submitPollThunk: poll => dispatch(submitPollThunk(poll))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Poll)
+
