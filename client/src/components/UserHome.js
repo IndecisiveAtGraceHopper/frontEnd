@@ -5,8 +5,8 @@ import React from 'react'
  */
 export const UserHome = () => {
   return (
-    <div id='login'>
-      <a href="/auth/google"><button className='btn btn-dark'>Login with Spotify</button></a>
+    <div id='userhome'>
+      <p>User Home</p>
     </div>
   )
 }
