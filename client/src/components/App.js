@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import '../App.css'
+import '../public/App.css'
+import {Navbar} from './index'
 
 class App extends Component {
   state = { users: [] }
@@ -13,6 +14,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Navbar />
         <h1>Users</h1>
         <ul>
             {this.state.users.map(user =>
