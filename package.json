@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "seed": "node seed.js",
-    "concurrently": "concurrently \"PORT=3001 npm start\" \"cd client && npm start\""
+    "concurrently": "concurrently \"npm start\" \"cd client && npm start\""
   },
   "dependencies": {
     "@google/maps": "^0.5.5",

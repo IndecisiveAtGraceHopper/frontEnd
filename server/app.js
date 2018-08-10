@@ -9,13 +9,13 @@ const passport = require('passport')
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const db = require('./db')
 const sessionStore = new SequelizeStore({db})
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3001
 const socketio = require('socket.io')
 const app = express()
 
-if (process.env.NODE_ENV !== 'production') require ('../secrets')
+if (process.env.NODE_ENV !== 'production') require('../secrets')
 
-passport.serializeUser((usersRouter, done) => done(null, user.id))
+passport.serializeUser((user, done) => done(null, user.id))
 passport.deserializeUser(async (id, done) => {
   try {
     const user = await db.models.user.findById(id)
@@ -45,7 +45,7 @@ const createApp = () => {
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
 
-  app.use(express.static(path.join(__dirname, '../../client', 'public')))
+  app.use(express.static(path.join(__dirname, '../client/public')))
 
   app.use((req, res, next) => {
     if (path.extname(req.path).length) {
@@ -59,7 +59,7 @@ const createApp = () => {
 }
 
 app.use('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client', 'public/index.html'))
+  res.sendFile(path.join(__dirname, '../client/public/index.html'))
 })
 
 app.use((err, req, res, next) => {
@@ -71,9 +71,9 @@ app.use((err, req, res, next) => {
 const startListening = () => {
   const server = app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
-  }) 
+  })
   const io = socketio(server)
-  require('./socket')(io) 
+  require('./socket')(io)
 }
 
 const syncDb = () => db.sync()
