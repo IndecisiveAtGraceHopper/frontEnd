@@ -6,7 +6,7 @@ import React from 'react'
 export const Login = () => {
   return (
     <div id='login'>
-      <a href="/auth/google"><button className='btn btn-dark'>Login with Google</button></a>
+      <a href="http://localhost:3001/auth/google"><button className='btn btn-dark'>Login with Google</button></a>
     </div>
   )
 }

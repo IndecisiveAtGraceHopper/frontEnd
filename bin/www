@@ -3,8 +3,8 @@
 /**
  * Module dependencies.
  */
-
-var app = require('../server/app');
+//NOT USING THIS FILE ANYMORE (8/11/18)
+//var app = require('../server/app');
 var debug = require('debug')('indecisive-backend:server');
 var http = require('http');
 

@@ -36,8 +36,8 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
   router.get(
     '/callback',
     passport.authenticate('google', {
-      successRedirect: '/home',
-      failureRedirect: '/login'
+      successRedirect: 'http://localhost:3000',
+      failureRedirect: 'http://localhost:3000/login'
     })
   )
 }
