@@ -11,7 +11,7 @@ class Routes extends Component {
     	<Router>
     	  <Switch>
           <Route exact path="/users/poll" component={Poll} />
-          <Route path="/" component={App} />
+          <Route exact path="/" component={App} />
         </Switch>
     	</Router>
     );
