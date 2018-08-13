@@ -21,7 +21,8 @@ yarn-debug.log*
 yarn-error.log*
 
 #secrets
-/secrets
+/src/components/secrets.js
+/src/secrets.js
 secrets.js
 .secrets
 secrets
