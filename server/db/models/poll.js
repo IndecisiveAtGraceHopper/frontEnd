@@ -49,8 +49,8 @@ const Poll = db.define('poll', {
 }, {
   hooks: {
     afterCreate: async (poll) => {
-    let adventure = await Adventure.findById(poll.adventureId)
-    adventure.update({counter: counter++})
+    Adventure.increment('counter', {where: {id:poll.adventureId}})
+    adventure = await Adventure.findById(poll.adventureId)
     }
   }
 });
