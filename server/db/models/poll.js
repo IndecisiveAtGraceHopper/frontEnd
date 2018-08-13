@@ -40,6 +40,15 @@ const Poll = db.define('poll', {
       max: 4
     }
   }
+}, {
+  hooks: {
+    afterUpdate: (poll) => {
+      let groupPolls = Poll.findAll({where: {
+        adventureId: poll.adventureId
+      }})
+      console.log('poll length', groupPolls.length)
+    }
+  }
 });
 
 module.exports = Poll;
