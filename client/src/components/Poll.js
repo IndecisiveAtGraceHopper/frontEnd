@@ -12,7 +12,6 @@ class Poll extends Component {
 
 
   handleChange = (evt) => {
-   //const value = evt.target.name === 'location' ? JSON.parse(evt.target.value) : evt.target.value;
    this.setState({
       [evt.target.name]: evt.target.value
     })
@@ -22,18 +21,17 @@ class Poll extends Component {
     console.log('KEY',process.env.GOOGLE_MAPS_KEY)
     const location= evt.split().join("+")
     const {data} = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${key}`)
-    console.log("DATA", data)
-    const geocodedLat = data.results[0].geometry.location.lat
-    const geocodedLng = data.results[0].geometry.location.lng
-    console.log ('GEOCODED',geocodedLat, geocodedLng)
-    return geocodedLat, geocodedLng
+    const latitude = data.results[0].geometry.location.lat
+    const longitude = data.results[0].geometry.location.lng
+      return {latitude, longitude}
   }
 
-  handleSubmit = (evt) => {
+  handleSubmit = async (evt) => {
     evt.preventDefault()
-    const {location, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel} = this.state
-    this.props.submitPollThunk({geocodedLocation, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel})
-    const geocodedLocation= this.getGeocode(this.state.location)
+    const {priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel} = this.state
+    const {latitude, longitude} = await this.getGeocode(this.state.location)
+    this.props.submitPollThunk({latitude,longitude, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel})
+    console.log('LATLNG', latitude, longitude)
 
   }
 

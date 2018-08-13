@@ -18,7 +18,7 @@ router.get('/poll', function(req, res, next) {
 router.post('/poll', async (req, res, next) => {
   console.log("HERE", req.body)
   const newPoll = await Poll.create(req.body)
-  res.status(201).send("Your poll has been submitted!")
+  res.status(201).send(newPoll)
 
 })
 
