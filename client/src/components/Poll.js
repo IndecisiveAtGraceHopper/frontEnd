@@ -1,6 +1,8 @@
 import {connect} from 'react-redux'
 import React, { Component } from 'react';
 import {submitPollThunk} from '../store/poll'
+import axios from 'axios'
+import key from './secrets'
 
 class Poll extends Component {
   constructor(){
@@ -10,18 +12,27 @@ class Poll extends Component {
 
 
   handleChange = (evt) => {
-   const value = evt.target.name === 'location' ? JSON.parse(evt.target.value) : evt.target.value;
    this.setState({
-      [evt.target.name]: value
+      [evt.target.name]: evt.target.value
     })
   }
 
-  handleSubmit = (evt) => {
-    console.log("WHAT IS GOING ON HS")
-    evt.preventDefault()
-    const {location, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel} = this.state
+  getGeocode = async(evt) => {
+    console.log('KEY',process.env.GOOGLE_MAPS_KEY)
+    const location= evt.split().join("+")
+    const {data} = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${key}`)
+    const latitude = data.results[0].geometry.location.lat
+    const longitude = data.results[0].geometry.location.lng
+      return {latitude, longitude}
+  }
 
-    this.props.submitPollThunk({location, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel})
+  handleSubmit = async (evt) => {
+    evt.preventDefault()
+    const {priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel} = this.state
+    const {latitude, longitude} = await this.getGeocode(this.state.location)
+    this.props.submitPollThunk({latitude,longitude, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel})
+    console.log('LATLNG', latitude, longitude)
+
   }
 
   render() {
