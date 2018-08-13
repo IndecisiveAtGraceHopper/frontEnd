@@ -37,24 +37,34 @@ class Poll extends Component {
               <small id="location" className="form-text text-muted" />
             </div>
             <div>
-              <label htmlFor="priceRange">cost</label>
-              <input  onChange={this.state.handleChange} type="range" className="form-control-range" id="formControlRange"/>
+              <label htmlFor="priceRange">priceRange</label>
+              <input type="text" name="priceRange"  onChange={this.handleChange}
+              type="range" min="1" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
+              <small id="priceRange" className="form-text text-muted" />
             </div>
             <div>
-              <label htmlFor="activityLevel">interactivity</label>
-              <input  onChange={this.state.handleChange} type="range" className="form-control-range" id="formControlRange"/>
+              <label htmlFor="activityLevel">activityLevel</label>
+              <input type="text" name="activityLevel"  onChange={this.handleChange}
+              type="range" min="1" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
+              <small id="activityLevel" className="form-text text-muted" />
             </div>
             <div>
-              <label htmlFor="artsyLevel">artsy</label>
-              <input  onChange={this.state.handleChange} type="range" className="form-control-range" id="formControlRange"/>
+              <label htmlFor="artsyLevel">artsyLevel</label>
+              <input type="text" name="artsyLevel"  onChange={this.handleChange}
+              type="range" min="1" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
+              <small id="artsyLevel" className="form-text text-muted" />
             </div>
             <div>
-              <label htmlFor="hungerLevel">food</label>
-              <input  onChange={this.state.handleChange} type="range" className="form-control-range" id="formControlRange"/>
+              <label htmlFor="hungerLevel">hungerLevel</label>
+              <input type="text" name="hungerLevel"  onChange={this.handleChange}
+              type="range" min="1" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
+              <small id="hungerLevel" className="form-text text-muted" />
             </div>
             <div>
-              <label htmlFor="drinkLevel">drinks</label>
-              <input  onChange={this.state.handleChange} type="range" className="form-control-range" id="formControlRange"/>
+              <label htmlFor="drinkLevel">drinkLevel</label>
+              <input type="text" name="drinkLevel"  onChange={this.handleChange}
+              type="range" min="1" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
+              <small id="drinkLevel" className="form-text text-muted" />
           </div>
            <span>
               <button type='submit'>Submit</button>
