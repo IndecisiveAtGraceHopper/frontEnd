@@ -46,7 +46,12 @@ const Poll = db.define('poll', {
       let groupPolls = await Poll.findAll({where: {
         adventureId: poll.adventureId
       }})
-      return groupPolls
+      for (let i = 0; i < groupPolls.length; i++) {
+        if (groupPolls[i].hungerLevel === null) {
+          return false
+        }
+      }
+
     }
   }
 });
