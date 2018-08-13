@@ -26,7 +26,6 @@ export const submitPoll = poll => ({type: SUBMIT_POLL, poll})
 export const submitPollThunk = (poll) => {
     return async (dispatch) => {
       try {
-        console.log("HERE FOR THUNK")
         const {data} = await axios.post('/api/users/poll', poll)
         const action = submitPoll(data)
         dispatch(action)
