@@ -5,11 +5,13 @@
   "scripts": {
     "start": "nodemon ./server/app.js",
     "seed": "node seed.js",
-    "concurrently": "concurrently \"npm start\" \"cd client && npm start\""
+    "concurrently": "concurrently \"npm start\" \"cd client && npm start\"",
+    "test": "NODE_ENV='test' mocha \"./server/**/*.spec.js\" --require @babel/polyfill --require @babel/register"
   },
   "dependencies": {
     "@google/maps": "^0.5.5",
     "axios": "^0.18.0",
+    "chai": "^4.1.2",
     "compression": "^1.7.3",
     "concurrently": "^3.6.1",
     "connect-session-sequelize": "^5.2.2",
@@ -20,6 +22,7 @@
     "express-session": "^1.15.6",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
+    "mocha": "^5.2.0",
     "morgan": "~1.9.0",
     "passport": "^0.4.0",
     "passport-google-oauth": "^1.0.0",
