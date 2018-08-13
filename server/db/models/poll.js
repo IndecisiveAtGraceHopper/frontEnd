@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
+const Adventure = require('./adventure')
 
 const Poll = db.define('poll', {
   latitude: {
@@ -47,16 +48,9 @@ const Poll = db.define('poll', {
   }
 }, {
   hooks: {
-    afterUpdate: async (poll) => {
-      let groupPolls = await Poll.findAll({where: {
-        adventureId: poll.adventureId
-      }})
-      for (let i = 0; i < groupPolls.length; i++) {
-        if (groupPolls[i].hungerLevel === null) {
-          return false
-        }
-      }
-
+    afterCreate: async (poll) => {
+    let adventure = await Adventure.findById(poll.adventureId)
+    adventure.update({counter: counter++})
     }
   }
 });
