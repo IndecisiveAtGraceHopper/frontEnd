@@ -58,9 +58,10 @@ export const logout = () => async dispatch => {
   }
 }
 
-export const createProfile = (profileInfo) => async dispatch => {
+export const createProfile = (userId, profileInfo) => async dispatch => {
   try {
-    const res = await axios.put('/auth/profile', profileInfo)
+    const res = await axios.put(`/auth/profile/${userId}`, profileInfo)
+    console.log("THUNK", res.data)
     dispatch(getUser(res.data))
   }catch (err) {
     console.error(err)

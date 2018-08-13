@@ -51,10 +51,11 @@ router.post('/signup', async (req, res, next) => {
   }
 })
 
-router.put('/profile', async(req, res, next) => {
+router.put('/profile/:id', async(req, res, next) => {
   try {
-    const updateProfile = await User.update(req.body)
-    res.status(201).send(updateProfile)
+    const profile = await User.update(req.params.id)
+    const updatedProfile = await profile.update(req.body)
+    res.status(202).send(updatedProfile)
   }
   catch (error){
     next(error)
