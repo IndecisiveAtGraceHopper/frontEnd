@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Route, Switch, BrowserRouter as Router} from 'react-router-dom';
-import {App, Poll, GoogleLogin, UserHome, UserProfile, Signup, Logout} from './components';
+import {App, Poll, GoogleLogin, UserHome, UserProfile, Signup, Logout, Login} from './components';
  /**
  * COMPONENT
  */
@@ -14,7 +14,7 @@ class Routes extends Component {
           <Route exact path="/googlelogin" component={GoogleLogin} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/logout" component={Logout} />
-
+          <Route exact path="/login" component={Login} />
           <Route exact path="/userhome" component={UserHome} />
           <Route exact path="/" component={App} />
         </Switch>
