@@ -32,11 +32,27 @@ export const me = () => async dispatch => {
   }
 }
 
-export const auth = (email, password, method) => async dispatch => {
+export const auth = (userInfo) => async dispatch => {
   let res
   try {
 
-    res = await axios.post(`/auth/${method}`, {email, password})
+    res = await axios.post('/auth/signup', userInfo)
+  } catch(authError) {
+    return dispatch(getUser({error: authError}))
+  }
+  try {
+    dispatch(getUser(res.data))
+    history.push('/home')
+  } catch(dispatchOrHistoryErr) {
+    console.error(dispatchOrHistoryErr)
+  }
+}
+
+export const authLogin = (userInfo) => async dispatch => {
+  let res
+  try {
+
+    res = await axios.post('/auth/login', userInfo)
   } catch(authError) {
     return dispatch(getUser({error: authError}))
   }
@@ -58,9 +74,10 @@ export const logout = () => async dispatch => {
   }
 }
 
-export const createProfile = (profileInfo) => async dispatch => {
+export const createProfile = (userId, profileInfo) => async dispatch => {
   try {
-    const res = await axios.put('/auth/profile', profileInfo)
+    const res = await axios.put(`/auth/profile/${userId}`, profileInfo)
+    console.log("THUNK", res.data)
     dispatch(getUser(res.data))
   }catch (err) {
     console.error(err)
