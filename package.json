@@ -6,7 +6,7 @@
     "start": "nodemon ./server/app.js",
     "seed": "node seed.js",
     "concurrently": "concurrently \"npm start\" \"cd client && npm start\"",
-    "test": "NODE_ENV='test' mocha \"./server/**/*.spec.js\" --require @babel/polyfill --require @babel/register"
+    "test": "NODE_ENV='test' mocha \"./server/db/models/poll.spec.js\" "
   },
   "dependencies": {
     "@google/maps": "^0.5.5",

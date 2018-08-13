@@ -42,11 +42,11 @@ const Poll = db.define('poll', {
   }
 }, {
   hooks: {
-    afterUpdate: (poll) => {
-      let groupPolls = Poll.findAll({where: {
+    afterUpdate: async (poll) => {
+      let groupPolls = await Poll.findAll({where: {
         adventureId: poll.adventureId
       }})
-      console.log('poll length', groupPolls.length)
+      return groupPolls
     }
   }
 });
