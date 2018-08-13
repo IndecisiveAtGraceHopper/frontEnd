@@ -10,6 +10,13 @@ const Adventure = db.define('adventure', {
   },
   location: {
     type: Sequelize.ARRAY(Sequelize.FLOAT)
+  },
+  totalCount: {
+    type: Sequelize.INTEGER
+  },
+  counter: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   }
 });
 
