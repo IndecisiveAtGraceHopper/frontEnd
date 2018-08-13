@@ -6,4 +6,8 @@ describe('Poll Model', () => {
   beforeEach(()=> {
     return db.sync({force: true })
   })
+
+  describe ('hook', ()=> {
+    let poll =
+  })
 })

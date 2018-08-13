@@ -34,6 +34,7 @@ const createApp = () => {
   app.use(express.urlencoded({extended: true}))
   app.use(require('body-parser').text())
   app.use(compression())
+  app.use(cookieParser())
   app.use(
     session({
       secret: process.env.SESSION_SECRET || 'default secret',
@@ -75,8 +76,8 @@ const startListening = () => {
   const server = app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
   })
-  const io = socketio(server)
-  require('./socket')(io)
+  // const io = socketio(server)
+  // require('../client/socket')(io)
 }
 
 const syncDb = () => db.sync()
@@ -93,3 +94,6 @@ if (require.main === module) {
 } else {
   createApp()
 }
+
+module.exports = app
+
