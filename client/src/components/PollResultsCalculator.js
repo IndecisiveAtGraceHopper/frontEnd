@@ -43,7 +43,13 @@ const data = [
 ]
 
 function tallyPoll = adventureId) => {
-	for (let i = 0, i< )
+	let groupPriceRange = 0;
+  const groupAvg;
+  for (let i = 0, i<data.length; i++){
+    groupPriceRange += data.priceRange;
+  }
+  groupAvg = groupPriceRange/data.length
+
 
 
 	}
