@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var {Poll} = require('../db/models')
+var {Poll, User} = require('../db/models')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -21,6 +21,8 @@ router.post('/poll', async (req, res, next) => {
   res.status(201).send("Your poll has been submitted!")
 
 })
+
+
 
 module.exports = router;
 
