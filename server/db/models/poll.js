@@ -2,8 +2,13 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Poll = db.define('poll', {
-  location: {
-    type: Sequelize.ARRAY(Sequelize.FLOAT)
+  latitude: {
+    type: Sequelize.INTEGER,
+    validate: { min: -90, max: 90 }
+  },
+  longitude: {
+    type: Sequelize.INTEGER,
+    validate: { min: -180, max: 180 }
   },
   priceRange: {
     type: Sequelize.INTEGER,
