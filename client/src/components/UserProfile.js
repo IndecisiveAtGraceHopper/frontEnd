@@ -9,7 +9,7 @@ class UserProfile extends Component {
     this.state = {
       user: {
         firstName: '',
-        phoneNumber: ''        
+        phoneNumber: ''
       }
     }
     this.handleChange = this.handleChange.bind(this)
@@ -27,7 +27,9 @@ class UserProfile extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
+    //grab user id from url
     this.props.updateProfile({firstName: this.state.firstName, phone: this.state.phoneNumber, userId: this.props.user.id})
+    console.log("UPDATING PROFILE -  handle submit")
     history.push('/userhome')
   }
 

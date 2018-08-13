@@ -1,20 +1,16 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {authLogin} from '../store'
-import { Redirect } from 'react-router-dom'
+import {auth} from '../store'
 
 
 
-
-class Login extends React.Component {
+class Signup extends React.Component {
   constructor(){
     super()
     this.state={
       email: '',
       password: ''
     }
-    this.setRedirect = this.setRedirect.bind(this)
-    this.renderRedirect = this.renderRedirect.bind(this)
   }
   handleChange = (evt) => {
     this.setState({
@@ -22,30 +18,16 @@ class Login extends React.Component {
      })
    }
 
-
- setRedirect() {
-   this.setState({
-     redirect: true
-   })
- }
- renderRedirect() {
-   if (this.state.redirect) {
-     return <Redirect to='/userhome' />
-   }
- }
-
   handleSubmit = (evt) => {
     evt.preventDefault()
     //sign up user with email and password
-this.props.logInUser({email: this.state.email, password: this.state.password})
-this.setRedirect()
+this.props.createUser({email: this.state.email, password: this.state.password})
   }
 
   render(){
-console.log("SIGNUP", this.props)
+console.log("SIGNUP", this.state)
   return (
     <div className="landingPage" id="authForm">
-    {this.renderRedirect()}
       <form onSubmit={this.handleSubmit}>
         <div>
           <label htmlFor="email">
@@ -60,7 +42,7 @@ console.log("SIGNUP", this.props)
           <div><input name="password" type="password" onChange={this.handleChange} /></div>
         </div>
         <div>
-          <button type="submit">Log In</button>
+          <button type="submit">Sign Up</button>
         </div>
 
       </form>
@@ -73,8 +55,8 @@ console.log("SIGNUP", this.props)
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    logInUser: (userData) => dispatch(authLogin(userData))
+    createUser: (userData) => dispatch(auth(userData))
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(null, mapDispatchToProps)(Signup)
