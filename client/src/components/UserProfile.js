@@ -1,72 +1,53 @@
 import React, { Component } from 'react'
 import {createProfile, me} from '../store'
 import {connect} from 'react-redux'
+import history from '../history'
 
 class UserProfile extends Component {
   constructor(){
     super()
     this.state = {
-      firstName: '',
-      phoneNumber: ''
+      user: {
+        firstName: '',
+        phoneNumber: ''        
+      }
     }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
-  componentDidMount(){
-    this.props.getUser()
+
+  async componentDidMount(){
+    await this.props.getUser()
+  }
+
+  handleChange(evt) {
+    evt.preventDefault()
+    this.setState({user: {...this.state.user, [evt.target.name]: evt.target.value}})
   }
 
   handleSubmit(evt) {
     evt.preventDefault()
-    const {firstName, phoneNumber} = this.state
-
-    //create profile (call thunk to put info in db)
-    //then redirect to where?
+    this.props.updateProfile({firstName: this.state.firstName, phone: this.state.phoneNumber, userId: this.props.user.id})
+    history.push('/userhome')
   }
 
   render() {
-    console.log("USERPROFILE", this.props)
     return (
       <div>
-
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="title" />
-            <input
-              type="text"
-              name="name"
-              className="form-control"
-              onChange={this.handleChange}
-              value={this.state.firstName}
-              placeholder="Enter Your First Name"
-            />
-
-            <label htmlFor="phoneNumber" />
-            <input
-              type="text"
-              name="phoneNumber"
-              className="form-control"
-              onChange={this.handleChange}
-              value={this.state.phoneNumber}
-              placeholder="Enter Your Phone Number"
-            />
-
-
-            <button
-            disabled={
-              !this.state.firstName ||
-              !this.state.phoneNumber
-
-            }
-              className="btn btn-secondary col md-4 center-blocks"
-              type="submit"
-              onClick={this.handleSubmit}
-            >
-              Submit
-            </button>
+        <h3>Welcome, {this.props.user.email}</h3>
+        <form id='userProfile' onSubmit={this.handleSubmit}>
+          <div>
+            <label htmlFor='firstName'>First Name</label>
+            <input name='firstName' type='string' onChange={this.handleChange} value={this.state.user.firstName} />
+          </div>
+          <div>
+            <label htmlFor='phoneNumber'>Phone Number</label>
+            <input name='phoneNumber' type='string' onChange={this.handleChange} value={this.state.user.phoneNumber} />
+          </div>
+          <div>
+            <button type='submit'>Submit</button>
           </div>
         </form>
-
-
-
       </div>
     )
   }
@@ -80,7 +61,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createProfile: (profileInfo) => dispatch(createProfile(profileInfo)),
+    updateProfile: (profileInfo) => dispatch(createProfile(profileInfo)),
     getUser: () => dispatch(me())
   }
 }
