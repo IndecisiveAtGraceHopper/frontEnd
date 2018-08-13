@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 import {connect} from 'react-redux'
+import React, { Component } from 'react';
 import {submitPollThunk} from '../store/poll'
 
 class Poll extends Component {
@@ -10,8 +10,9 @@ class Poll extends Component {
 
 
   handleChange = (evt) => {
+   const value = evt.target.name === 'location' ? JSON.parse(evt.target.value) : evt.target.value;
    this.setState({
-      [evt.target.name]: evt.target.value
+      [evt.target.name]: value
     })
   }
 
@@ -20,14 +21,14 @@ class Poll extends Component {
     evt.preventDefault()
     const {location, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel} = this.state
 
-    this.state.submitPollThunk({location, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel})
+    this.props.submitPollThunk({location, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel})
   }
 
   render() {
     return (
       <div className="container">
         <h1>This is the Poll</h1>
-        <form onSubmit={console.log("HERE FOR ")}>
+        <form onSubmit={this.handleSubmit}>
           <div className="form-group form-check">
             <div>
               <label htmlFor="name" />

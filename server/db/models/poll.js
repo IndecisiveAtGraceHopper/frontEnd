@@ -1,4 +1,4 @@
-{const Sequelize = require('sequelize')
+const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Poll = db.define('poll', {
@@ -42,4 +42,4 @@ const Poll = db.define('poll', {
   }
 });
 
-module.exports = Poll
+module.exports = Poll;
