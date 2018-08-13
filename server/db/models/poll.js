@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
+const Adventure = require('./adventure')
 
 const Poll = db.define('poll', {
   latitude: {
@@ -43,6 +44,13 @@ const Poll = db.define('poll', {
     validate: {
       min: 1,
       max: 4
+    }
+  }
+}, {
+  hooks: {
+    afterCreate: async (poll) => {
+    Adventure.increment('counter', {where: {id:poll.adventureId}})
+    adventure = await Adventure.findById(poll.adventureId)
     }
   }
 });
