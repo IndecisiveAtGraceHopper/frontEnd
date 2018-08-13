@@ -25,6 +25,7 @@
     "passport-google-oauth": "^1.0.0",
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
+    "prop-types": "^15.6.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",
