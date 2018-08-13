@@ -42,4 +42,4 @@ const Poll = db.define('poll', {
   }
 });
 
-module.exports = Poll
+module.exports = Poll;
