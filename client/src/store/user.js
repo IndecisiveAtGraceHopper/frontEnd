@@ -10,9 +10,7 @@ const REMOVE_USER = 'REMOVE_USER'
 /**
  * INITIAL STATE
  */
-const initialState = {
-  loggedInUser: {}
-}
+const initialState = {}
 
 /**
  * ACTION CREATORS
@@ -89,9 +87,9 @@ export const createProfile = (profileInfo) => async dispatch => {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_USER:
-      return {...state, loggedInUser: action.user}
+      return {...action.user}
     case REMOVE_USER:
-      return {...state, loggedInUser: {}}
+      return {}
     default:
       return state
   }
