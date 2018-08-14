@@ -1,11 +1,7 @@
 const Poll = require('./db/models/poll')
 
+async function tallyPoll(data){
 
-
-function tallyPoll(adventureId){
-  //eventually find by id
-let {data} = Poll.findAll({where: {adventureId: id}})
-	let pollResults = []
 
   let groupPriceRange = 0
   let groupActivity = 0
@@ -52,16 +48,15 @@ let {data} = Poll.findAll({where: {adventureId: id}})
     latitudeAvg =  (maxLat + minLat)/2
     longitudeAvg = (maxLng + minLng)/2
 
-    pollResults.push({
+    pollResults={
       priceRange: priceAvg,
       activityLevel:activityAvg,
       artsyLevel:artsyAvg,
       hungerLevel:hungerAvg,
       drinkLevel:drinkAvg,
       location: [latitudeAvg, longitudeAvg]
-    })
+    }
 
-    console.log(pollResults)
     return pollResults;
   }
 

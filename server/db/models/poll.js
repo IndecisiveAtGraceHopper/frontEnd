@@ -52,12 +52,17 @@ const Poll = db.define('poll', {
 }, {
   hooks: {
     afterCreate: async (poll) => {
-      Adventure.increment('counter', {where: {id:poll.adventureId}})
-      const adventure = await Adventure.findById(poll.adventureId)
-       if (adventure.totalCount === adventure.counter){
-         let results = await tally(adventure.id)
-         let cats = categories(results)
-         apiCalls(cats, results.location, results.priceRange)
+      try{
+          Adventure.increment('counter', {where: {id:poll.adventureId}})
+          const adventure = await Adventure.findById(poll.adventureId)
+          if (adventure.totalCount < adventure.counter){
+            const data = await Poll.findAll({where: {adventureId: poll.adventureId}})
+            let results = await tally(data)
+            let cats = categories(results)
+            apiCalls(cats, results.location, results.priceRange)
+          }
+       } catch(err) {
+        console.log("DANGER DANGER WILL ROBINSON DANGER", err)
        }
     }
   }
