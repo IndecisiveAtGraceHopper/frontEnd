@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const {User, Order, Review, LineItem, Product} = require('../db/models')
 module.exports = router
-const {userAuth} =require('../api/auth')
+const {userAuth} = require('../api/auth')
 
 router.post('/login', async (req, res, next) => {
   try {
