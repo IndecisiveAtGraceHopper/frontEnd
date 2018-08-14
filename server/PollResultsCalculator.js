@@ -1,9 +1,11 @@
+
 const Poll = require('./db/models/poll')
 
-async function tallyPoll(id){
 
+
+export default function tallyPoll(adventureId){
+  //eventually find by id
 let {data} = Poll.findAll({where: {adventureId: id}})
-
 	let pollResults = []
 
   let groupPriceRange = 0
