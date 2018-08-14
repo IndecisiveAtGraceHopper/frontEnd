@@ -9,7 +9,7 @@ router.post('/login', async (req, res, next) => {
        email: req.body.email
      }
     })
-    res.status(201).send(user)
+
     if (!user) {
       console.log('No such user found:', req.body.email)
       res.status(401).send('Wrong username and/or password')
