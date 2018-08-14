@@ -5,7 +5,7 @@ const {userAuth} = require('../api/auth')
 
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+router.get('/', userAuth, async (req, res, next) => {
     try {
         const polls = await Poll.findAll()
         res.json(polls)        
@@ -23,7 +23,7 @@ router.get('/:pollId', userAuth, async (req, res, next) => {
     }
 }) 
   
-router.post('/poll', async (req, res, next) => {
+router.post('/poll', userAuth, async (req, res, next) => {
     try {
         const newPoll = await Poll.create(req.body)
         res.status(201).send(newPoll)

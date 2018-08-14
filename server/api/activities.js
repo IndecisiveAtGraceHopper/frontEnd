@@ -7,7 +7,7 @@ module.exports = router
 
 router.get('/', userAuth, async (req, res, next) => {
     try {
-        const activities = await Pod.findAll()
+        const activities = await Activity.findAll()
         res.json(activities)
     } catch (err) {
         next(err)
@@ -16,8 +16,17 @@ router.get('/', userAuth, async (req, res, next) => {
 
 router.get('/:podId', userAuth, async (req, res, next) => {
     try {
-        const activity = await Pod.findById(req.params.podId)
+        const activity = await Activity.findById(req.params.podId)
         res.json(activity)
+    } catch (err) {
+        next(err)
+    }
+})
+
+router.post('/', userAuth, async (req, res, next) => {
+    try {
+        const newActivity = await Activity.create(req.body)
+        res.json(newActivity)
     } catch (err) {
         next(err)
     }

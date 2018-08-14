@@ -7,7 +7,7 @@ module.exports = router
 
 router.get('/', userAuth, async (req, res, next) => {
     try {
-        const notes = await Pod.findAll()
+        const notes = await Note.findAll()
         res.json(notes)
     } catch (err) {
         next(err)
@@ -16,8 +16,17 @@ router.get('/', userAuth, async (req, res, next) => {
 
 router.get('/:podId', userAuth, async (req, res, next) => {
     try {
-        const note = await Pod.findById(req.params.podId)
+        const note = await Note.findById(req.params.podId)
         res.json(note)
+    } catch (err) {
+        next(err)
+    }
+})
+
+router.post('/', userAuth, async (req, res, next) => {
+    try {
+        const newNote = await Note.create(req.body)
+        res.json(newNote)
     } catch (err) {
         next(err)
     }

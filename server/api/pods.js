@@ -22,3 +22,12 @@ router.get('/:podId', userAuth, async (req, res, next) => {
         next(err)
     }
 })
+
+router.post('/', userAuth, async (req, res, next) => {
+    try {
+        const newPod = await Pod.create(req.body)
+        res.json(newPod)
+    } catch (err) {
+        next(err)
+    }
+})
