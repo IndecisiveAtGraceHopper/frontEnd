@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {submitPollThunk} from '../store/poll'
 import axios from 'axios'
 import key from './secrets'
+import results from './PollResultsCalculator'
 
 class Poll extends Component {
   constructor(){
@@ -36,6 +37,7 @@ class Poll extends Component {
   }
 
   render() {
+    console.log('RESULTS', results())
     return (
       <div className="container">
         <h1>This is the Poll</h1>
@@ -94,4 +96,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(null, mapDispatchToProps)(Poll)
-
