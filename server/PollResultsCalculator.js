@@ -1,7 +1,7 @@
-
 const Poll = require('./db/models/poll')
 
 async function tallyPoll(data){
+
 
   let groupPriceRange = 0
   let groupActivity = 0

@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const {User, Order, Review, LineItem, Product} = require('../db/models')
 module.exports = router
-const {userAuth} =require('../api/auth')
+const {userAuth} = require('../api/auth')
 
 router.post('/login', async (req, res, next) => {
   try {
@@ -38,7 +38,7 @@ router.post('/signup', async (req, res, next) => {
   }
 })
 
-router.put('/profile/:id', userAuth, async(req, res, next) => {
+router.put('/profile/:id', async(req, res, next) => {
   try {
     const profile = await User.findById(req.params.id)
     const updatedProfile = await profile.update({firstName: req.body.firstName, phone: req.body.phone})
