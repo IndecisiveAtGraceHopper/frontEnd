@@ -32,12 +32,9 @@ class Poll extends Component {
     const {priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel} = this.state
     const {latitude, longitude} = await this.getGeocode(this.state.location)
     this.props.submitPollThunk({latitude,longitude, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel})
-    console.log('LATLNG', latitude, longitude)
-
   }
 
   render() {
-    console.log('RESULTS', results())
     return (
       <div className="container">
         <h1>This is the Poll</h1>
