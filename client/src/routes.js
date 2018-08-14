@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, Switch, BrowserRouter as Router} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import {Poll, UserHome, UserProfile, Signup, Logout, Login, Home, Adventure, Activity, Pod} from './components';
  /**
  * COMPONENT
