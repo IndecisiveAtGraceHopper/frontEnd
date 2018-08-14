@@ -5,7 +5,7 @@ const {userAuth} = require('../api/auth')
 
 module.exports = router
 
-router.get('/', userAuth, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
         const activities = await Activity.findAll()
         res.json(activities)
@@ -14,16 +14,16 @@ router.get('/', userAuth, async (req, res, next) => {
     }
 })
 
-router.get('/:podId', userAuth, async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
     try {
-        const activity = await Activity.findById(req.params.podId)
+        const activity = await Activity.findById(req.params.id)
         res.json(activity)
     } catch (err) {
         next(err)
     }
 })
 
-router.post('/', userAuth, async (req, res, next) => {
+router.post('/', async (req, res, next) => {
     try {
         const newActivity = await Activity.create(req.body)
         res.json(newActivity)
@@ -32,9 +32,9 @@ router.post('/', userAuth, async (req, res, next) => {
     }
 })
 
-router.put('/:activityId', userAuth, async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
     try {
-        const activity = await Activity.findById(req.params.activityId)
+        const activity = await Activity.findById(req.params.id)
         const updatedActivity = await activity.update(req.body)
         res.json(updatedActivity)
     } catch (err) {
@@ -42,9 +42,9 @@ router.put('/:activityId', userAuth, async (req, res, next) => {
     }
 })
 
-router.delete('/:activityId', userAuth, async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
     try {
-        const activity = await Activity.findById(req.params.activityId)
+        const activity = await Activity.findById(req.params.id)
         activity.destroy()
         res.sendStatus(204)
     } catch (err) {

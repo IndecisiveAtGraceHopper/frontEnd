@@ -5,7 +5,7 @@ const {userAuth} = require('../api/auth')
 
 module.exports = router
 
-router.get('/', userAuth, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
         const adventures = await Adventure.findAll()
         res.json(adventures)
@@ -14,16 +14,16 @@ router.get('/', userAuth, async (req, res, next) => {
     }
 })
 
-router.get('/:podId', userAuth, async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
     try {
-        const adventure = await Adventure.findById(req.params.podId)
+        const adventure = await Adventure.findById(req.params.id)
         res.json(adventure)
     } catch (err) {
         next(err)
     }
 })
 
-router.post('/', userAuth, async (req, res, next) => {
+router.post('/', async (req, res, next) => {
     try {
         const newAdventure = await Adventure.create(req.body)
         res.json(newAdventure)
@@ -32,9 +32,9 @@ router.post('/', userAuth, async (req, res, next) => {
     }
 })
 
-router.put('/:adventureId', userAuth, async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
     try {
-        const adventure = await Adventure.findById(req.params.adventureId)
+        const adventure = await Adventure.findById(req.params.id)
         const updatedAdventure = await adventure.update(req.body)
         res.json(updatedAdventure)
     } catch (err) {
@@ -42,9 +42,9 @@ router.put('/:adventureId', userAuth, async (req, res, next) => {
     }
 })
 
-router.delete('/:adventureId', userAuth, async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
     try {
-        const adventure = await Adventure.findById(req.params.adventureId)
+        const adventure = await Adventure.findById(req.params.id)
         adventure.destroy()
         res.sendStatus(204)
     } catch (err) {

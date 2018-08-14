@@ -5,7 +5,7 @@ const {userAuth} = require('../api/auth')
 
 module.exports = router
 
-router.get('/', userAuth, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
         const notes = await Note.findAll()
         res.json(notes)
@@ -14,16 +14,16 @@ router.get('/', userAuth, async (req, res, next) => {
     }
 })
 
-router.get('/:podId', userAuth, async (req, res, next) => {
+router.get('/:podId', async (req, res, next) => {
     try {
-        const note = await Note.findById(req.params.podId)
+        const note = await Note.findById(req.params.id)
         res.json(note)
     } catch (err) {
         next(err)
     }
 })
 
-router.post('/', userAuth, async (req, res, next) => {
+router.post('/', async (req, res, next) => {
     try {
         const newNote = await Note.create(req.body)
         res.json(newNote)
@@ -32,9 +32,9 @@ router.post('/', userAuth, async (req, res, next) => {
     }
 })
 
-router.put('/:noteId', userAuth, async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
     try {
-        const note = await Note.findById(req.params.noteId)
+        const note = await Note.findById(req.params.id)
         const updatedNote = await note.update(req.body)
         res.json(updatedNote)
     } catch (err) {
@@ -42,9 +42,9 @@ router.put('/:noteId', userAuth, async (req, res, next) => {
     }
 })
 
-router.delete('/:noteId', userAuth, async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
     try {
-        const note = await Note.findById(req.params.noteId)
+        const note = await Note.findById(req.params.id)
         note.destroy()
         res.sendStatus(204)
     } catch (err) {
