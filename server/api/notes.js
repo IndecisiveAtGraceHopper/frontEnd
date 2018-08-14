@@ -1,3 +1,4 @@
+
 const express = require('express')
 const router = express.Router()
 const Note = require('../db/models/note')
@@ -51,3 +52,4 @@ router.delete('/:id', async (req, res, next) => {
         next(err)
     }
 })
+

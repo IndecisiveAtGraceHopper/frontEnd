@@ -47,14 +47,9 @@ function categories (pollResults) {
     categories.add('zoo')
     categories.add('aquarium')
   }
+  console.log('categories', categories)
   return [...categories]
 }
 
+module.exports= categories
 
-function keywords (pollResults) {
-  let keywords = []
-  if (pollResults.hungerLevel > 2 && pollResults.drinkLevel > 2) {
-    keywords.push('food')
-    keywords.push('drinks')
-  }
-}
