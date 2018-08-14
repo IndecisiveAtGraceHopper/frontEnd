@@ -37,9 +37,9 @@ router.post('/signup', async (req, res, next) => {
   }
 })
 
-router.put('/profile/:id', async(req, res, next) => {
+router.put('/profile', async(req, res, next) => {
   try {
-    const profile = await User.update(req.params.id)
+    const profile = await User.findById(req.body.id)
     const updatedProfile = await profile.update(req.body)
     res.status(202).send(updatedProfile)
   }
