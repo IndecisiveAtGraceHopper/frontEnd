@@ -4,4 +4,4 @@ function userAuthorize (req, res, next) {
   else
     res.sendStatus(401)
 }
-module.exports ={ authorize}
+module.exports = userAuthorize

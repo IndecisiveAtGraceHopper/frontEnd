@@ -1,6 +1,7 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 const {Poll, User} = require('../db/models')
+const {userAuth} = require('../api/auth')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -10,7 +11,7 @@ router.get('/', function(req, res, next) {
   } catch (err) {
     next(err)
   }
-});
+})
 
 
 //poll routes should be moved to polls.js
