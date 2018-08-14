@@ -32,12 +32,11 @@ export const me = () => async dispatch => {
   }
 }
 
-export const auth = (userInfo) => async dispatch => {
+export const authSignUp = (userInfo) => async dispatch => {
   let res
   try {
-
     res = await axios.post('/auth/signup', userInfo)
-  } catch(authError) {
+  } catch (authError) {
     return dispatch(getUser({error: authError}))
   }
   try {
@@ -51,15 +50,14 @@ export const auth = (userInfo) => async dispatch => {
 export const authLogin = (userInfo) => async dispatch => {
   let res
   try {
-
     res = await axios.post('/auth/login', userInfo)
-  } catch(authError) {
+  } catch (authError) {
     return dispatch(getUser({error: authError}))
   }
   try {
     dispatch(getUser(res.data))
-    history.push('/home')
-  } catch(dispatchOrHistoryErr) {
+    history.push('/userhome')
+  } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }
 }
