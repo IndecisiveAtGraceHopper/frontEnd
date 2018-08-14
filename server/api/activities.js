@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {Activity} = require('../db/models')
+const Activity = require('../db/models/activity')
 const {userAuth} = require('../api/auth')
 
 module.exports = router

@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const {Pods} = require('../db/models')
+const Pod = require('../db/models/pod')
 const {userAuth} = require('../api/auth')
 
-module.exports = pods
+module.exports = router
 
-router.get('/', userAuth, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
         const pods = await Pod.findAll()
         res.json(pods)
@@ -14,7 +14,7 @@ router.get('/', userAuth, async (req, res, next) => {
     }
 })
 
-router.get('/:podId', userAuth, async (req, res, next) => {
+router.get('/:podId', async (req, res, next) => {
     try {
         const pod = await Pod.findById(req.params.podId)
         res.json(pod)
@@ -23,7 +23,7 @@ router.get('/:podId', userAuth, async (req, res, next) => {
     }
 })
 
-router.post('/', userAuth, async (req, res, next) => {
+router.post('/', async (req, res, next) => {
     try {
         const newPod = await Pod.create(req.body)
         res.json(newPod)
@@ -32,9 +32,9 @@ router.post('/', userAuth, async (req, res, next) => {
     }
 })
 
-router.put('/:podId', userAuth, async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
     try {
-        const pod = await Pod.findById(req.params.podId)
+        const pod = await Pod.findById(req.params.id)
         const updatedPod = await pod.update(req.body)
         res.json(updatedPod)
     } catch (err) {
@@ -42,9 +42,9 @@ router.put('/:podId', userAuth, async (req, res, next) => {
     }
 })
 
-router.delete('/:podId', userAuth, async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
     try {
-        const pod = await Pod.findById(req.params.podId)
+        const pod = await Pod.findById(req.params.id)
         pod.destroy()
         res.sendStatus(204)
     } catch (err) {

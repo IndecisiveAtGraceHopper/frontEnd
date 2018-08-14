@@ -38,7 +38,7 @@ router.post('/signup', async (req, res, next) => {
   }
 })
 
-router.put('/profile/:id', userAuth, async(req, res, next) => {
+router.put('/profile/:id', async(req, res, next) => {
   try {
     const profile = await User.findById(req.params.id)
     const updatedProfile = await profile.update({firstName: req.body.firstName, phone: req.body.phone})
