@@ -1,6 +1,9 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 const Adventure = require('./adventure')
+const tally = require('../../PollResultsCalculator')
+const categories = require('../../categories')
+const apiCalls = require('../../call')
 
 const Poll = db.define('poll', {
   latitude: {
@@ -49,8 +52,13 @@ const Poll = db.define('poll', {
 }, {
   hooks: {
     afterCreate: async (poll) => {
-    Adventure.increment('counter', {where: {id:poll.adventureId}})
-    adventure = await Adventure.findById(poll.adventureId)
+      Adventure.increment('counter', {where: {id:poll.adventureId}})
+      const adventure = await Adventure.findById(poll.adventureId)
+       if (adventure.totalCount === adventure.counter){
+         let results = await tally(adventure.id)
+         let cats = categories(results)
+         apiCalls(cats, results.location, results.priceRange)
+       }
     }
   }
 });
