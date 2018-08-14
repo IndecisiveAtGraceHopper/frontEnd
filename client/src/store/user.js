@@ -74,7 +74,7 @@ export const logout = () => async dispatch => {
 
 export const createProfile = (profileInfo) => async dispatch => {
   try {
-    const res = await axios.put(`/auth/profile`, profileInfo)
+    const res = await axios.put('/auth/profile', profileInfo)
     dispatch(getUser(res.data))
     history.push('/userhome')
   }catch (err) {

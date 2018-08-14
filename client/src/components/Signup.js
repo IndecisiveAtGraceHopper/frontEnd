@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {authSignUp} from '../store'
+import GoogleLogin from './GoogleLogin'
 
 class Signup extends React.Component {
   constructor(){
@@ -26,6 +27,7 @@ class Signup extends React.Component {
   render() {
     return (
       <div className="landingPage" id="authForm">
+        <GoogleLogin />
         <form onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor="email">
