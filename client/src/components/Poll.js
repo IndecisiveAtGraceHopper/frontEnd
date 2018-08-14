@@ -3,12 +3,17 @@ import React, { Component } from 'react';
 import {submitPollThunk} from '../store/poll'
 import axios from 'axios'
 import key from './secrets'
-import results from './PollResultsCalculator'
 
 class Poll extends Component {
   constructor(){
      super()
-     this.state = { poll: [] }
+     this.state = {
+      priceRange: 2,
+      activityLevel: 2,
+      artsyLevel: 2,
+      hungerLevel: 2,
+      drinkLevel: 2
+    }
   }
 
 
@@ -19,7 +24,6 @@ class Poll extends Component {
   }
 
   getGeocode = async(evt) => {
-    console.log('KEY',process.env.GOOGLE_MAPS_KEY)
     const location= evt.split().join("+")
     const {data} = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${key}`)
     const latitude = data.results[0].geometry.location.lat

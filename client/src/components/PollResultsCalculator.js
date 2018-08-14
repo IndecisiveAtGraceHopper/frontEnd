@@ -1,8 +1,3 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-
-
 const data = [
   {id: 1,
   latitude: 40.80,
