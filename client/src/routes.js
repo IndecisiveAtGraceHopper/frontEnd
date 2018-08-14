@@ -9,6 +9,9 @@ class Routes extends Component {
     return (
     	<Router>
     	  <Switch>
+          <Route exact path="/pod/adventure/:adventureId/activty/activityId" component={Activity} />
+          <Route exact path="/pod/adventure/:adventureId" component={Adventure} />
+          <Route exact path="/pod/:podId" component={Pod} />
           <Route exact path="/users/poll" component={Poll} />
           <Route exact path="/users/profile" component={UserProfile} />
           <Route exact path="/signup" component={Signup} />
