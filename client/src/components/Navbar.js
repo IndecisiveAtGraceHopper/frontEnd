@@ -21,7 +21,7 @@ const Navbar = (props) => {
             </ul>
           ) : (
             <ul id='nav-items' className='nav navbar-nav'>
-              <li><Link to='/googlelogin'>Log In</Link></li>
+              <li><Link to='/login'>Log In</Link></li>
               <li><Link to='/signup'>Sign Up</Link></li>
             </ul>
           )
