@@ -22,3 +22,5 @@ const PinBoard = (props) => {
 }
 
 export default PinBoard
+
+//to render the PinBoard component, pass it an array of notes in its props
