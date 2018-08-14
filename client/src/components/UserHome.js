@@ -1,16 +1,18 @@
-import React from 'react'
+import React, {Component} from 'react'
 import Logout from './Logout'
 
 /**
  * COMPONENT
  */
-export const UserHome = () => {
-  return (
-    <div id='userhome'>
-      <p>User Home</p>
-      <Logout />
-    </div>
-  )
+class UserHome extends Component {
+  render() {
+    return (
+      <div id='userhome'>
+        <p>User Home</p>
+        <Logout />
+      </div>
+    )    
+  }
 }
 
 export default UserHome
