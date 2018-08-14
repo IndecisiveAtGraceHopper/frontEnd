@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {auth} from '../store'
-import {Redirect} from 'react-router-dom'
+import {authSignUp} from '../store'
 
 class Signup extends React.Component {
   constructor(){
@@ -24,8 +23,7 @@ class Signup extends React.Component {
     this.props.createUser({email: this.state.email, password: this.state.password})
   }
 
-  render(){
-    console.log("SIGNUP", this.state)
+  render() {
     return (
       <div className="landingPage" id="authForm">
         <form onSubmit={this.handleSubmit}>
@@ -53,7 +51,7 @@ class Signup extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createUser: (userData) => dispatch(auth(userData))
+    createUser: (userData) => dispatch(authSignUp(userData))
   }
 }
 

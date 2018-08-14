@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {authLogin} from '../store'
-import { Redirect } from 'react-router-dom'
 
 class Login extends React.Component {
   constructor(){
@@ -20,12 +19,11 @@ class Login extends React.Component {
 
   handleSubmit = (evt) => {
     evt.preventDefault()
-    //sign up user with email and password
+    //log in user with email and password
     this.props.logInUser({email: this.state.email, password: this.state.password})
   }
 
   render() {
-    console.log("SIGNUP", this.props)
     return (
       <div className="landingPage" id="authForm">
         <form onSubmit={this.handleSubmit}>
