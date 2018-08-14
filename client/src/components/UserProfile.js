@@ -27,11 +27,10 @@ class UserProfile extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
-    this.props.updateProfile({id: this.props.user.id, firstName: this.state.firstName, phone: this.state.phone})
+    this.props.updateProfile({id: this.props.user.id, firstName: this.state.user.firstName, phone: this.state.user.phone})
     }
 
   render() {
-    console.log("THISPROPS", this.props)
     return (
       <div>
         <h3>Welcome, {this.props.user.email}</h3>
