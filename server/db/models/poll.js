@@ -7,11 +7,11 @@ const apiCalls = require('../../call')
 
 const Poll = db.define('poll', {
   latitude: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.FLOAT,
     validate: { min: -90, max: 90 }
   },
   longitude: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.FLOAT,
     validate: { min: -180, max: 180 }
   },
   priceRange: {
