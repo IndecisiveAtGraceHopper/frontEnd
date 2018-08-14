@@ -31,7 +31,7 @@ class Poll extends Component {
     evt.preventDefault()
     const {priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel} = this.state
     const {latitude, longitude} = await this.getGeocode(this.state.location)
-    this.props.submitPollThunk({latitude,longitude, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel, adventureId: 2})
+    this.props.submitPollThunk({latitude,longitude, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel})
     console.log('LATLNG', latitude, longitude)
 
   }
