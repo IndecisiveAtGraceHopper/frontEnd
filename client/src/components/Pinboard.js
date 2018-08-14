@@ -2,7 +2,7 @@ import React from 'react'
 
 const PinBoard = (props) => {
     const notes = this.props
-    render (
+    return (
         <div id='pinBoard'>
             {
                 notes.map(note => {
