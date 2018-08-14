@@ -62,7 +62,7 @@ export const authLogin = (userInfo) => async dispatch => {
   }
 }
 
-export const logout = () => async dispatch => {
+export const logOut = () => async dispatch => {
   try {
     await axios.post('/auth/logout')
     dispatch(removeUser())
