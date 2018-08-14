@@ -31,6 +31,7 @@ class UserProfile extends Component {
     }
 
   render() {
+    console.log("THISPROPS", this.props)
     return (
       <div>
         <h3>Welcome, {this.props.user.email}</h3>
