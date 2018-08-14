@@ -1,46 +1,8 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+const Poll = require('./db/models/poll')
 
+async function tallyPoll(id){
 
-const data = [
-  {id: 1,
-  latitude: 40.80,
-  longitude: -73.92,
-  priceRange: 1,
-  activityLevel: 1,
-  artsyLevel:2,
-  hungerLevel: 3,
-  drinkLevel: 2,
-  userId: 1,
-  adventureId: 3
-  },
-  {id: 2,
-  latitude: 50.02,
-  longitude: -73.25,
-  priceRange: 1,
-  activityLevel: 1,
-  artsyLevel:2,
-  hungerLevel: 3,
-  drinkLevel: 2,
-  userId: 1,
-  adventureId: 3
-  },
-  {id: 1,
-  latitude: 48.00,
-  longitude: -74.00,
-  priceRange: 3,
-  activityLevel: 1,
-  artsyLevel: 2,
-  hungerLevel: 3,
-  drinkLevel: 2,
-  userId: 1,
-  adventureId: 3
-  },
-]
-
-export default function tallyPoll(adventureId){
-  //eventually find by id
+  let {data} = Poll.findAll({where: {adventureId: id}})
 	let pollResults = []
 
   let groupPriceRange = 0
@@ -87,7 +49,6 @@ export default function tallyPoll(adventureId){
     drinkAvg = groupDrink/data.length
     latitudeAvg =  (maxLat + minLat)/2
     longitudeAvg = (maxLng + minLng)/2
-    console.log(latitudeAvg, longitudeAvg)
 
     pollResults.push({
       priceRange: priceAvg,
@@ -102,6 +63,7 @@ export default function tallyPoll(adventureId){
     return pollResults;
   }
 
+module.exports = tallyPoll
 
 
 
