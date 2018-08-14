@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {Note} = require('../db/note')
+const Note = require('../db/models/note')
 const {userAuth} = require('../api/auth')
 
 module.exports = router

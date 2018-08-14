@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {Polls} = require('../db/polls')
+const Poll = require('../db/models/poll')
 const {userAuth} = require('../api/auth')
 
 module.exports = router
