@@ -31,3 +31,23 @@ router.post('/', userAuth, async (req, res, next) => {
         next(err)
     }
 })
+
+router.put('/:adventureId', userAuth, async (req, res, next) => {
+    try {
+        const adventure = await Adventure.findById(req.params.adventureId)
+        const updatedAdventure = await adventure.update(req.body)
+        res.json(updatedAdventure)
+    } catch (err) {
+        next(err)
+    }
+})
+
+router.delete('/:adventureId', userAuth, async (req, res, next) => {
+    try {
+        const adventure = await Adventure.findById(req.params.adventureId)
+        adventure.destroy()
+        res.sendStatus(204)
+    } catch (err) {
+        next(err)
+    }
+})

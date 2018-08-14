@@ -31,3 +31,23 @@ router.post('/', userAuth, async (req, res, next) => {
         next(err)
     }
 })
+
+router.put('/:activityId', userAuth, async (req, res, next) => {
+    try {
+        const activity = await Activity.findById(req.params.activityId)
+        const updatedActivity = await activity.update(req.body)
+        res.json(updatedActivity)
+    } catch (err) {
+        next(err)
+    }
+})
+
+router.delete('/:activityId', userAuth, async (req, res, next) => {
+    try {
+        const activity = await Activity.findById(req.params.activityId)
+        activity.destroy()
+        res.sendStatus(204)
+    } catch (err) {
+        next(err)
+    }
+})

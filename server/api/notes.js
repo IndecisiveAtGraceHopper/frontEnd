@@ -31,3 +31,23 @@ router.post('/', userAuth, async (req, res, next) => {
         next(err)
     }
 })
+
+router.put('/:noteId', userAuth, async (req, res, next) => {
+    try {
+        const note = await Note.findById(req.params.noteId)
+        const updatedNote = await note.update(req.body)
+        res.json(updatedNote)
+    } catch (err) {
+        next(err)
+    }
+})
+
+router.delete('/:noteId', userAuth, async (req, res, next) => {
+    try {
+        const note = await Note.findById(req.params.noteId)
+        note.destroy()
+        res.sendStatus(204)
+    } catch (err) {
+        next(err)
+    }
+})

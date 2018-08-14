@@ -31,3 +31,23 @@ router.post('/', userAuth, async (req, res, next) => {
         next(err)
     }
 })
+
+router.put('/:podId', userAuth, async (req, res, next) => {
+    try {
+        const pod = await Pod.findById(req.params.podId)
+        const updatedPod = await pod.update(req.body)
+        res.json(updatedPod)
+    } catch (err) {
+        next(err)
+    }
+})
+
+router.delete('/:podId', userAuth, async (req, res, next) => {
+    try {
+        const pod = await Pod.findById(req.params.podId)
+        pod.destroy()
+        res.sendStatus(204)
+    } catch (err) {
+        next(err)
+    }
+})
