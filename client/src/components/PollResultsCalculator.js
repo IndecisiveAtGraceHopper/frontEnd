@@ -89,12 +89,14 @@ export default function tallyPoll(adventureId){
     longitudeAvg = (maxLng + minLng)/2
     console.log(latitudeAvg, longitudeAvg)
 
-    pollResults.push({priceRange: priceAvg},
-      {activityLevel:activityAvg},
-      {artsyLevel:artsyAvg},
-      {hungerLevel:hungerAvg},
-      {drinkLevel:drinkAvg},
-      {location: [latitudeAvg, longitudeAvg]})
+    pollResults.push({
+      priceRange: priceAvg,
+      activityLevel:activityAvg,
+      artsyLevel:artsyAvg,
+      hungerLevel:hungerAvg,
+      drinkLevel:drinkAvg,
+      location: [latitudeAvg, longitudeAvg]
+    })
 
     console.log(pollResults)
     return pollResults;
