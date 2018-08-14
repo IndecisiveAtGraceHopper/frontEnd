@@ -9,7 +9,7 @@ class UserProfile extends Component {
     this.state = {
       user: {
         firstName: '',
-        phoneNumber: ''
+        phone: ''
       }
     }
     this.handleChange = this.handleChange.bind(this)
@@ -27,13 +27,12 @@ class UserProfile extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
-    //grab user id from url
-    this.props.updateProfile({firstName: this.state.firstName, phone: this.state.phoneNumber, userId: this.props.user.id})
-    console.log("UPDATING PROFILE -  handle submit")
-    history.push('/userhome')
-  }
+    this.props.updateProfile({id: this.props.user.id, firstName: this.state.firstName, phone: this.state.phone})
+    }
 
   render() {
+    console.log("STATE", this.state)
+    console.log("PROPS", this.props)
     return (
       <div>
         <h3>Welcome, {this.props.user.email}</h3>
@@ -43,8 +42,8 @@ class UserProfile extends Component {
             <input name='firstName' type='string' onChange={this.handleChange} value={this.state.user.firstName} />
           </div>
           <div>
-            <label htmlFor='phoneNumber'>Phone Number</label>
-            <input name='phoneNumber' type='string' onChange={this.handleChange} value={this.state.user.phoneNumber} />
+            <label htmlFor='phone'>Phone Number</label>
+            <input name='phone' type='string' onChange={this.handleChange} value={this.state.user.phone} />
           </div>
           <div>
             <button type='submit'>Submit</button>
