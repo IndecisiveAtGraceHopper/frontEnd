@@ -1,9 +1,8 @@
-
 const Poll = require('./db/models/poll')
 
 
 
-export default function tallyPoll(adventureId){
+function tallyPoll(adventureId){
   //eventually find by id
 let {data} = Poll.findAll({where: {adventureId: id}})
 	let pollResults = []
