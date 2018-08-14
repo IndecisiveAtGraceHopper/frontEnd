@@ -80,6 +80,22 @@ export const createProfile = (profileInfo) => async dispatch => {
   }
 }
 
+export const getUserPods = userId => async dispatch => {
+  try {
+    const pods = await axios.get(`/api/user/pods/${userId}`)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const getUserAdventures = userId => async dispatch => {
+  try {
+    const adventures = await axios.get(`/api/user/adventures/${userId}`)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 
 /**
  * REDUCER

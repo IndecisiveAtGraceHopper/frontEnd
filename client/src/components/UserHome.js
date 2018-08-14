@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Logout from './Logout'
 import {connect} from 'react-redux'
+import {getUserAdventures, getUserPods} from '../store'
 
 /**
  * COMPONENT
@@ -9,8 +10,8 @@ class UserHome extends Component {
   render() {
     const user = this.props.user
     //what is the best way to filter adventures into upcoming and recent?
-    const upcomingAdventures = user.adventures.filter()
-    const recentAdventures = user.adventures.filter()
+    const upcomingAdventures = user.adventures && user.adventures.filter()
+    const recentAdventures = user.adventures && user.adventures.filter()
     return (
       <div id='userhome'>
         <h3>Welcome, {user.email}</h3>
@@ -47,7 +48,7 @@ class UserHome extends Component {
 
 const mapState = state => {
   return ({
-    user: state.user.loggedInUser,
+    user: state.user,
     adventures: state.user.adventures,
     pods: state.user.pods
   })
@@ -55,8 +56,8 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return ({
-    fetchPods: dispatch(getUserPods(this.props.user.id)),
-    fetchAdventures: dispatch(getUserAdventures(this.props.user.id))
+    fetchPods: (userId) => dispatch(getUserPods(userId)),
+    fetchAdventures: (userId) => dispatch(getUserAdventures(userId))
   })
 }
 
