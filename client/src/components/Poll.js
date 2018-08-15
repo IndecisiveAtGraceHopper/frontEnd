@@ -1,12 +1,12 @@
 import {connect} from 'react-redux'
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {submitPollThunk} from '../store/poll'
 import axios from 'axios'
 import key from './secrets'
 import {PollMap} from './index'
 
 class Poll extends Component {
-  constructor(){
+  constructor() {
      super()
      this.state = {
       priceRange: 2,
@@ -15,9 +15,14 @@ class Poll extends Component {
       hungerLevel: 2,
       drinkLevel: 2,
       showMap: false,
-      location: ''
+      location: 'enter a location'
     }
     this.renderMap = this.renderMap.bind(this)
+  }
+
+  componentDidMount() {
+    console.log('props:', this.props)
+    this.setState({location: this.props.address})
   }
 
 
@@ -55,7 +60,7 @@ class Poll extends Component {
           <div className="form-group form-check">
             <div>
               <label htmlFor="location" />
-              <input type="text" name="location" onChange={this.handleChange} className="form-control" id="nameInput" aria-describedby="name" placeholder={this.state.location || 'Enter a location'} />
+              <input type="text" name="location" onChange={this.handleChange} className="form-control" id="nameInput" aria-describedby="name" value={this.state.address} />
               <small id="location" className="form-text text-muted" />
             </div>
             {this.state.showMap ? (
@@ -105,10 +110,17 @@ class Poll extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  console.log('store state', state)
+  return {
+    address: state.user.address
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     submitPollThunk: poll => dispatch(submitPollThunk(poll))
   }
 }
 
-export default connect(null, mapDispatchToProps)(Poll)
+export default connect(mapStateToProps, mapDispatchToProps)(Poll)

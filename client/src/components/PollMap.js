@@ -54,6 +54,12 @@ const mapState = state => {
         address: state.user.address
     }
 }
+
+// const mapDispatch = dispatch => {
+//     return {
+//         setUserLocation: (location) => dispatch(setLocation(location))
+//     }
+// }
   
 
 export default connect(mapState, null)(PollMap)
