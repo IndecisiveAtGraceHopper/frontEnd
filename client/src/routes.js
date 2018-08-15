@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
-import {Poll, UserHome, UserProfile, Signup, Logout, Login, Home, Adventure, Activity, Pod} from './components';
+import {Poll, UserHome, UserProfile, Signup, Logout, Login, Home, Adventure, Activity, Pod, Search} from './components';
  /**
  * COMPONENT
  */
@@ -17,6 +17,7 @@ class Routes extends Component {
         <Route exact path="/logout" component={Logout} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/userhome" component={UserHome} />
+        <Route exact path="/search" component={Search} />
         <Route exact path="/" component={Home} />
       </Switch>
     );
