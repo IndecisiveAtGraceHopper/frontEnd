@@ -36,6 +36,19 @@ const Activity = db.define('activity', {
       min: 0
     }
   }
+}, {
+  hooks: {
+    afterUpdate: async (instance)=> {
+      if (instance.selected === true){
+        try{
+          const activities = await Activity.findAll({where: {adventureId: instance.adventureId}})
+          activities.map(activity=> activity.id !== instance.id && activity.destroy() )
+        } catch(err){
+          console.log('error in activity hook', err)
+        }
+      }
+    }
+  }
 });
 
 module.exports = Activity

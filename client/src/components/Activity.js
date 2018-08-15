@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { updateVote} from '../store/activity'
+import { updateVote, removeActivities} from '../store/activity'
 
 class Activity extends Component {
   handleUpVote = (evt)=> {
@@ -11,10 +11,13 @@ class Activity extends Component {
   }
   handleSelect =(evt)=> {
     this.props.change({id: this.props.activity.id, selected: true})
+    this.props.remove(this.props.activity.id)
+
   }
   render() {
     if(this.props){
         const {activity} = this.props
+        console.log('activity', activity)
         return (
           <div>
             <h3>{activity.name}</h3>
@@ -37,7 +40,8 @@ class Activity extends Component {
 
 function mapDispatch(dispatch){
   return {
-    change: (activity)=>dispatch(updateVote(activity))
+    change: (activity)=>dispatch(updateVote(activity)),
+    remove:(activityId)=> dispatch(removeActivities(activityId))
   }
 }
 

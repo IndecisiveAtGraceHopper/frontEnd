@@ -5,6 +5,7 @@ import axios from 'axios'
  */
 const LOAD_ACTIVITIES = 'LOAD_ACTIVITIES'
 const CHANGE_VOTE ='CHANGE_VOTE'
+const REMOVE_ACTIVITIES ='REMOVE_ACTIVITIES'
 
 
 /**
@@ -19,6 +20,7 @@ const initialState = []
 
 export const loadActivities = activities => ({type: LOAD_ACTIVITIES, activities})
 export const changeVote = activity => ({type: CHANGE_VOTE, activity})
+export const removeActivities = activityId => ({type: REMOVE_ACTIVITIES, activityId})
 
 
 /**
@@ -63,6 +65,8 @@ export default function(state = initialState, action) {
       return [...action.activities]
     case CHANGE_VOTE:
       return state.map((activity)=> activity.id === action.activity.id ? action.activity: activity)
+    case REMOVE_ACTIVITIES:
+      return state.filter((activity)=> activity.id === action.activityId)
     default:
       return state
   }
