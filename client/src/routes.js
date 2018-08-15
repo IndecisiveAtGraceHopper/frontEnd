@@ -31,7 +31,7 @@ class Routes extends Component {
             {isProfileComplete && (
               <Switch>
                 <Route exact path="/pod/adventure/:adventureId/activity/activityId" component={Activity} />
-                <Route exact path="/pod/adventure/:adventureId" component={Adventure} />
+                <Route exact path="/pod/adventure/" component={Adventure} />
                 <Route exact path="/pods/:id" component={Pod} />
                 <Route exact path="/users/poll" component={Poll} />
                 <Route exact path="/userhome" component={UserHome} />

@@ -9,8 +9,10 @@ class Activity extends Component {
   handleDownVote = (evt) => {
     this.props.change({id: this.props.activity.id, downVotes: this.props.activity.downVotes+1})
   }
+  handleSelect =(evt)=> {
+    this.props.change({id: this.props.activity.id, selected: true})
+  }
   render() {
-    console.log('activity', this.props.activity)
     if(this.props){
         const {activity} = this.props
         return (
@@ -20,8 +22,13 @@ class Activity extends Component {
             <h4>{activity.upVotes}</h4>
             <h4>-</h4>
             <h4>{activity.downVotes}</h4>
-            <button onClick ={this.handleUpVote}>👍</button>
-            <button onClick = {this.handleDownVote}>👎</button>
+            {!activity.selected && (
+              <div>
+                <button onClick ={this.handleUpVote}>👍</button>
+                <button onClick = {this.handleDownVote}>👎</button>
+                {this.props.isCoord && <button onClick = {this.handleSelect}>Select</button>}
+              </div>)
+            }
           </div>
         );
       }
@@ -33,5 +40,6 @@ function mapDispatch(dispatch){
     change: (activity)=>dispatch(updateVote(activity))
   }
 }
+
 
 export default connect(null, mapDispatch)(Activity);
