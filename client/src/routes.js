@@ -47,7 +47,7 @@ class Routes extends Component {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    isProfileComplete: !!state.user.phone && !!state.user.firstName
+    isProfileComplete: !!state.user.phone && !!state.user.firstName && !!state.user.lastName
   }
 }
 

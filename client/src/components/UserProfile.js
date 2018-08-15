@@ -8,6 +8,7 @@ class UserProfile extends Component {
     this.state = {
       user: {
         firstName: '',
+        lastName: '',
         phone: ''
       }
     }
@@ -26,8 +27,8 @@ class UserProfile extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
-    this.props.updateProfile({firstName: this.state.user.firstName, phone: this.state.user.phone}, this.props.user.id)
-    }
+    console.log(this.state)
+    this.props.updateProfile({firstName: this.state.user.firstName, lastName: this.state.user.lastName, phone: this.state.user.phone}, this.props.user.id)}
 
   render() {
     return (
@@ -37,6 +38,10 @@ class UserProfile extends Component {
           <div>
             <label htmlFor='firstName'>First Name</label>
             <input name='firstName' type='string' onChange={this.handleChange} value={this.state.user.firstName} />
+          </div>
+          <div>
+            <label htmlFor='lastName'>Last Name</label>
+            <input name='lastName' type='string' onChange={this.handleChange} value={this.state.user.lastName} />
           </div>
           <div>
             <label htmlFor='phone'>Phone Number</label>
