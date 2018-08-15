@@ -1,24 +1,32 @@
 import {connect} from 'react-redux'
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {submitPollThunk} from '../store/poll'
 import axios from 'axios'
 import key from './secrets'
+import {PollMap} from './index'
+import { me } from '../store';
 
 class Poll extends Component {
-  constructor(){
+  constructor() {
      super()
      this.state = {
       priceRange: 2,
       activityLevel: 2,
       artsyLevel: 2,
       hungerLevel: 2,
-      drinkLevel: 2
+      drinkLevel: 2,
+      showMap: false,
+      location: 'enter a location'
     }
+    this.renderMap = this.renderMap.bind(this)
   }
 
+  componentDidMount() {
+    this.setState({location: this.props.address})
+  }
 
   handleChange = (evt) => {
-   this.setState({
+    this.setState({
       [evt.target.name]: evt.target.value
     })
   }
@@ -28,7 +36,7 @@ class Poll extends Component {
     const {data} = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${key}`)
     const latitude = data.results[0].geometry.location.lat
     const longitude = data.results[0].geometry.location.lng
-      return {latitude, longitude}
+    return {latitude, longitude}
   }
 
   handleSubmit = async (evt) => {
@@ -38,40 +46,57 @@ class Poll extends Component {
     this.props.submitPollThunk({latitude,longitude, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel, adventureId:2})
   }
 
+  renderMap(evt) {
+    evt.preventDefault()
+    this.setState({showMap: !this.state.showMap})
+  }
+
   render() {
     return (
-      <div className="container">
+      <div className="container" id='poll-page'>
         <h1>This is the Poll</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group form-check">
             <div>
-              <label htmlFor="name" />
-              <input type="text" name="location" onChange={this.handleChange} className="form-control" id="nameInput" aria-describedby="name" placeholder="Enter location" />
+              <label htmlFor="location" />
+              <input type="text" name="location" onChange={this.handleChange} className="form-control" id="nameInput" aria-describedby="name" value={this.state.location} />
               <small id="location" className="form-text text-muted" />
             </div>
+            {this.state.showMap ? (
+              <div id='map-outer'>
+                <button onClick={this.renderMap}>Hide Map</button>
+                <div id='map-container'>
+                  <PollMap />
+                </div>
+              </div>
+              ) : (
+              <div>
+                <button onClick={this.renderMap}>Show Map</button>
+              </div>
+            )}
             <div>
               <label htmlFor="priceRange">priceRange</label>
-              <input type="text" name="priceRange" onChange={this.handleChange} type="range" min="1" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
+              <input type="range" name="priceRange" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
               <small id="priceRange" className="form-text text-muted" />
             </div>
             <div>
               <label htmlFor="activityLevel">activityLevel</label>
-              <input type="text" name="activityLevel" onChange={this.handleChange} type="range" min="1" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
+              <input type="range" name="activityLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
               <small id="activityLevel" className="form-text text-muted" />
             </div>
             <div>
               <label htmlFor="artsyLevel">artsyLevel</label>
-              <input type="text" name="artsyLevel" onChange={this.handleChange} type="range" min="1" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
+              <input type="range" name="artsyLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
               <small id="artsyLevel" className="form-text text-muted" />
             </div>
             <div>
               <label htmlFor="hungerLevel">hungerLevel</label>
-              <input type="text" name="hungerLevel" onChange={this.handleChange} type="range" min="1" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
+              <input type="range" name="hungerLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
               <small id="hungerLevel" className="form-text text-muted" />
             </div>
             <div>
               <label htmlFor="drinkLevel">drinkLevel</label>
-              <input type="text" name="drinkLevel" onChange={this.handleChange} type="range" min="1" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
+              <input type="range" name="drinkLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
               <small id="drinkLevel" className="form-text text-muted" />
           </div>
            <span>
@@ -84,10 +109,18 @@ class Poll extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = state => {
   return {
-    submitPollThunk: poll => dispatch(submitPollThunk(poll))
+    address: state.user.address,
+    location: state.poll.location
   }
 }
 
-export default connect(null, mapDispatchToProps)(Poll)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    submitPollThunk: poll => dispatch(submitPollThunk(poll)),
+    getCurrentUser: () => dispatch(me())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Poll)

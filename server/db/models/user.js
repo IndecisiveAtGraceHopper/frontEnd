@@ -28,6 +28,9 @@ const User = db.define('user', {
       isEmail: true
     }
   },
+  address: {
+    type: Sequelize.STRING
+  },
   password: {
     type: Sequelize.STRING,
     get() {

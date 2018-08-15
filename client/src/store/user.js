@@ -10,7 +10,13 @@ const REMOVE_USER = 'REMOVE_USER'
 /**
  * INITIAL STATE
  */
-const initialState = {}
+const initialState = {
+  firstName: '',
+  lastName: '',
+  phone: '',
+  email: '',
+  address: ''
+}
 
 /**
  * ACTION CREATORS
