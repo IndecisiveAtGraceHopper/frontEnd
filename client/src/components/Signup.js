@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {authSignUp} from '../store'
 import GoogleLogin from './GoogleLogin'
+import {Link} from 'react-router-dom'
 
 class Signup extends React.Component {
   constructor(){
@@ -26,9 +27,9 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <div className="landingPage" id="authForm">
-        <GoogleLogin />
-        <form onSubmit={this.handleSubmit}>
+      <div className="authForm" id="signupPage">
+        <GoogleLogin className='authElement' />
+        <form onSubmit={this.handleSubmit} className='authElement'>
           <div>
             <label htmlFor="email">
               <div><h3>Email</h3></div>
@@ -41,8 +42,11 @@ class Signup extends React.Component {
             </label>
             <div><input name="password" type="password" onChange={this.handleChange} /></div>
           </div>
-          <div>
+          <div className='authElement'>
             <button type="submit">Sign Up</button>
+          </div>
+          <div className='authElement'>
+            <button><Link to='/login'>Log In</Link></button>
           </div>
         </form>
       </div>

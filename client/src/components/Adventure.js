@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
 import Activity from './Activity'
-
-const dummy = {
-  name: 'lets see',
-  upVotes:8,
-  downVotes:2
-}
+import {fetchActivities} from '../store/activity'
+import {connect} from 'react-redux'
 
 class Adventure extends Component {
   constructor() {
@@ -20,14 +16,32 @@ class Adventure extends Component {
       userId: ''
     }
   }
+  componentDidMount() {
+    console.log('hey')
+    this.props.fetch(1)
+  }
   render() {
+    console.log('activities', this.props.activities)
     return (
       <div>
         Adventure
-        <Activity activity={dummy} />
+
+        {this.props.activities.length &&<Activity activity={this.props.activities[0]} />}
       </div>
     );
   }
 }
 
-export default Adventure;
+const mapState= (state)=> {
+  return {
+    activities: state.activity
+  }
+}
+
+const mapDispatch = (dispatch) => {
+  return {
+    fetch: (id) => dispatch(fetchActivities(id))
+  }
+}
+
+export default connect(mapState, mapDispatch)(Adventure);

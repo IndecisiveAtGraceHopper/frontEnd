@@ -4,9 +4,10 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import poll from './poll'
+import activity from './activity'
 
 
-const reducer = combineReducers({user, poll})
+const reducer = combineReducers({user, poll, activity})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

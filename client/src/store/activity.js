@@ -1,0 +1,69 @@
+import axios from 'axios'
+
+/**
+ * ACTION TYPES
+ */
+const LOAD_ACTIVITIES = 'LOAD_ACTIVITIES'
+const CHANGE_VOTE ='CHANGE_VOTE'
+
+
+/**
+ * INITIAL STATE
+ */
+
+const initialState = []
+
+/**
+ * ACTION CREATORS
+ */
+
+export const loadActivities = activities => ({type: LOAD_ACTIVITIES, activities})
+export const changeVote = activity => ({type: CHANGE_VOTE, activity})
+
+
+/**
+ * THUNK CREATORS
+ */
+
+export const fetchActivities = (adventureId) => {
+    return async (dispatch) => {
+      try {
+        console.log('i am in the thunk')
+        const {data} = await axios.get(`/api/adventures/${adventureId}/activities`)
+        const action = loadActivities(data)
+        dispatch(action)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+}
+
+export const updateVote = (activity)=> {
+  return async (dispatch) => {
+    try{
+      console.log('updateThunk', activity)
+      const {data} = await axios.put(`/api/activities/${activity.id}`, activity)
+      const action = changeVote(data)
+      dispatch(action)
+
+    } catch(err) {
+      console.log('error in update thunk', err)
+    }
+  }
+}
+
+
+
+/**
+ * REDUCER
+ */
+export default function(state = initialState, action) {
+  switch (action.type) {
+    case LOAD_ACTIVITIES:
+      return [...action.activities]
+    case CHANGE_VOTE:
+      return state.map((activity)=> activity.id === action.activity.id ? action.activity: activity)
+    default:
+      return state
+  }
+}
