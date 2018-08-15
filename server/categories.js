@@ -2,7 +2,7 @@
 
 function categories (pollResults) {
   let categories = new Set()
-  if (pollResults.hungerLevel >= 2 || pollResults.hungerLevel < 3) {
+  if (pollResults.hungerLevel >= 2 && pollResults.hungerLevel < 3) {
     categories.add('bakery')
     categories.add('cafe')
   }

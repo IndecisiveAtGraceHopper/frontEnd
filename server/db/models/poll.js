@@ -7,11 +7,11 @@ const apiCalls = require('../../call')
 
 const Poll = db.define('poll', {
   latitude: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.FLOAT,
     validate: { min: -90, max: 90 }
   },
   longitude: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.FLOAT,
     validate: { min: -180, max: 180 }
   },
   priceRange: {
@@ -55,7 +55,7 @@ const Poll = db.define('poll', {
       try{
           Adventure.increment('counter', {where: {id:poll.adventureId}})
           const adventure = await Adventure.findById(poll.adventureId)
-          if (adventure.totalCount < adventure.counter){
+          if (adventure.totalCount = adventure.counter){
             const data = await Poll.findAll({where: {adventureId: poll.adventureId}})
             let results = await tally(data)
             let cats = categories(results)
