@@ -16,7 +16,6 @@ class Routes extends Component {
     const {isLoggedIn, isProfileComplete} = this.props
     return (
       <Switch>
-
         {/*components visible to all*/}
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
