@@ -46,8 +46,6 @@ class UserHome extends Component {
           </span>
       </form>
     </div>
-
-
     )
   }
 }
