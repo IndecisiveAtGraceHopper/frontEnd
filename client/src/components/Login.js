@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {authLogin} from '../store'
 import GoogleLogin from './GoogleLogin'
+import {Link} from 'react-router-dom'
 
 class Login extends React.Component {
   constructor(){
@@ -43,6 +44,9 @@ class Login extends React.Component {
           </div>
           <div>
             <button type="submit">Log In</button>
+          </div>
+          <div>
+            <Link to='/signup'>Sign Up</Link>
           </div>
         </form>
       </div>

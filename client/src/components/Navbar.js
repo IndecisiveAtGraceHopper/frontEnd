@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import logout from '../store'
+import {logOut} from '../store'
 
 const Navbar = (props) => {
-  const {isLoggedIn, handleClick} = props
+  const {isLoggedIn, handleLogout} = props
   return (
     <nav id='navbar' className='navbar navbar-inverse'>
       <div className='container-fluid'>
@@ -17,7 +17,7 @@ const Navbar = (props) => {
             <ul id='nav-items' className='nav navbar-nav'>
               <li><Link to='/userhome'>Your Account</Link></li>
               <li><Link to='/t'>Plan an Adventure!</Link></li>
-              <li><a href='#' onClick={handleClick}>Log Out</a></li>
+              <li><a href='#' onClick={handleLogout}>Log Out</a></li>
             </ul>
           ) : (
             <ul id='nav-items' className='nav navbar-nav'>
@@ -42,9 +42,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    handleClick() {
-      dispatch(logout())
-    }
+    handleLogout: () => dispatch(logOut())
   }
 }
 
