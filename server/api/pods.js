@@ -15,9 +15,9 @@ router.get('/', async (req, res, next) => {
     }
 })
 
-router.get('/:podId', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
     try {
-        const pod = await Pod.findById(req.params.podId)
+        const pod = await Pod.findById(req.params.id)
         res.json(pod)
     } catch (err) {
         next(err)

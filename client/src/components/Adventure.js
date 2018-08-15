@@ -1,4 +1,11 @@
 import React, { Component } from 'react'
+import Activity from './Activity'
+
+const dummy = {
+  name: 'lets see',
+  upVotes:8,
+  downVotes:2
+}
 
 class Adventure extends Component {
   constructor() {
@@ -17,6 +24,7 @@ class Adventure extends Component {
     return (
       <div>
         Adventure
+        <Activity activity={dummy} />
       </div>
     );
   }
