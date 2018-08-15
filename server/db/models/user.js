@@ -15,6 +15,9 @@ const User = db.define('user', {
       return `${this.firstName} ${this.lastName}`;
     }
   },
+  image: {
+    type: Sequelize.STRING
+  },
   phone: {
     type: Sequelize.STRING
   },

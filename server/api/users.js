@@ -7,7 +7,7 @@ const {userAuth} = require('../api/auth')
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
-      attributes: ['firstName', 'lastName', 'fullName', 'email']
+      attributes: ['id', 'firstName', 'lastName', 'fullName', 'email']
     })
     res.status(200).json(users)
   } catch (err) {

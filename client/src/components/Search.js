@@ -10,10 +10,13 @@ class Search extends React.Component {
       userToSearch: '',
       usersFound: [],
       noUserFound: false,
-      userFound: false
+      userFound: false,
+      userId: null,
+      podId: null
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
 
   componentDidMount(){
@@ -24,8 +27,11 @@ class Search extends React.Component {
     this.setState({userToSearch: event.target.value})
 
   }
-
-
+handleClick(event){
+  event.preventDefault()
+  this.setState({userId: event.target.value})
+  //call the thunk to add userId + podId to the user_pods table
+}
   handleSubmit(event) {
     event.preventDefault()
     const searchUser  = this.props.users.filter(
@@ -59,8 +65,10 @@ class Search extends React.Component {
           <h4>No user found by that name</h4>
         ) : null}
         {this.state.userFound ? (
-          <h4>Here are the users with that name or email:{
-            <ul><li>this.state.usersFound[0].fullName</li></ul>
+          <h4>Here are the users with that name:{
+            <ul>{
+              this.state.usersFound.map((user,index) => <li key={index}>{user.image}{user.fullName}<button value={user.id} onClick={this.handleClick}>Add to Pod</button></li>)
+            }</ul>
           }</h4>
         ) : null}
       </div>
@@ -70,7 +78,7 @@ class Search extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    users: state.user.allUsers
+    users: state.searchUsers.allUsers
   }
 }
 
