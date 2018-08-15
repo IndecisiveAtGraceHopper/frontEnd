@@ -8,7 +8,9 @@ class PollMap extends Component {
     componentDidMount() {
         this.map = new mapboxgl.Map({
             container: this.mapContainer,
-            style: 'mapbox://styles/mapbox/streets-v9'
+            style: 'mapbox://styles/almondmilk96/cjkvhicus23172snx1zadgqvj',
+            center: [-73.863428, 40.753128],
+            zoom: 10.46
         })
     }
   
