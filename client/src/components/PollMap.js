@@ -14,12 +14,14 @@ class PollMap extends Component {
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        const address = await this.getGeocode(this.props.address)
+        const coords = [address.longitude, address.latitude]
         this.map = new mapboxgl.Map({
             container: this.mapContainer,
             style: 'mapbox://styles/almondmilk96/cjkvhicus23172snx1zadgqvj',
-            center: [-73.863428, 40.753128],
-            zoom: 10.46
+            center: coords,
+            zoom: 14
         })
     }
 
@@ -36,7 +38,6 @@ class PollMap extends Component {
     }
 
     render() {
-        console.log('location', this.props.location)
         const style = {
             position: 'absolute',
             top: 0,
