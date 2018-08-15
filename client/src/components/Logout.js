@@ -8,8 +8,7 @@ class Logout extends Component {
   }
   handleLogout = (evt) => {
     evt.preventDefault()
-   this.props.logout()
-   console.log("YOU ARE LOGGED OUT", this.props.user)
+    this.props.logout()
   }
   render() {
     return (
