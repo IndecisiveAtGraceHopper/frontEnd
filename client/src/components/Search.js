@@ -50,8 +50,8 @@ handleClick(event){
   }
 
   render() {
-    console.log("SEARCHPROPS", this.props)
-    console.log("SEARCHSTATE", this.state)
+    // console.log("SEARCHPROPS", this.props)
+    // console.log("SEARCHSTATE", this.state)
     return (
       <div>
 
