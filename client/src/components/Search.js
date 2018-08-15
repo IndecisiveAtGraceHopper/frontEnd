@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {getUsersThunk} from '../store'
+import axios from 'axios'
 
 class Search extends React.Component {
   constructor() {
@@ -26,12 +27,17 @@ class Search extends React.Component {
     this.setState({userToSearch: event.target.value})
 
   }
-handleClick(event){
-  event.preventDefault()
-  this.setState({userId: event.target.value})
-  //call the thunk to add userId + podId to the user_pods table
-}
-  handleSubmit(event) {
+
+  async handleClick(event){
+
+    event.preventDefault()
+    // this.setState({userId: event.target.value})
+    console.log('EVENT********', event.target.value)
+    await axios.post('/api/pods/userPod', ({podId: this.props.podId, userId: event.target.value}))
+
+  }
+
+  handleSubmit (event) {
     event.preventDefault()
     const searchUser  = this.props.users.filter(
       elem => elem.fullName.toLowerCase().includes(this.state.userToSearch.toLowerCase())
@@ -45,13 +51,15 @@ handleClick(event){
       this.setState({usersFound: searchUser, userFound: true})
 
 
+
     }
   }
 
   render() {
-    // console.log("SEARCHPROPS", this.props)
-    // console.log("SEARCHSTATE", this.state)
+    console.log("SEARCHPROPS", this.props)
+    console.log("SEARCHSTATE", this.state)
     return (
+
       <div>
 
         <form onSubmit={this.handleSubmit} className="form-inline">

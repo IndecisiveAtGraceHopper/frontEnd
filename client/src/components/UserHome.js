@@ -16,7 +16,8 @@ class UserHome extends Component {
 
   handleSubmit = async (evt) => {
     evt.preventDefault()
-    this.props.createNewPod({name:this.state.name})
+    this.props.createNewPod({name:this.state.name}).then(createdPod =>
+      window.location = `/pods/${createdPod.id}`)
   }
 
   handleChange = (evt) => {
