@@ -11,7 +11,6 @@ const ADD_POD = 'ADD_POD'
 
 const initialState = {}
 
-
 /**
  * ACTION CREATORS
  */
@@ -25,9 +24,9 @@ export const addPod = pod => ({type: ADD_POD, pod:pod})
 export const createPodThunk = (podName) => {
     return async (dispatch) => {
       try {
-        const {data} = await axios.post('/api/pods', podName)
-        const action = addPod(data)
-        dispatch(action)
+        const response = await axios.post('/api/pods', podName)
+        const newPod= response.data
+        return Promise.resolve(newPod);
       } catch (err) {
         console.log(err)
       }
