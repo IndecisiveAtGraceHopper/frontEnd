@@ -97,6 +97,22 @@ export const createProfile = (profileInfo) => async dispatch => {
   }
 }
 
+export const getUserPods = userId => async dispatch => {
+  try {
+    const pods = await axios.get(`/api/user/pods/${userId}`)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const getUserAdventures = userId => async dispatch => {
+  try {
+    const adventures = await axios.get(`/api/user/adventures/${userId}`)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 
 /**
  * REDUCER
@@ -104,7 +120,7 @@ export const createProfile = (profileInfo) => async dispatch => {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_USER:
-      return {...state, loggedInUser: action.user}
+      return {...action.user}
     case REMOVE_USER:
       return {...state, loggedInUser: {}}
     case GET_ALL_USERS:
