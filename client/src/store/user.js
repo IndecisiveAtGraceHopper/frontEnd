@@ -39,7 +39,7 @@ export const authSignUp = (userInfo) => async dispatch => {
   }
   try {
     dispatch(getUser(res.data))
-    history.push('/userhome')
+    history.push('/users/profile')
   } catch(dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }
@@ -70,9 +70,9 @@ export const logOut = () => async dispatch => {
   }
 }
 
-export const createProfile = (profileInfo) => async dispatch => {
+export const createProfile = (profileInfo, userId) => async dispatch => {
   try {
-    const res = await axios.put('/auth/profile', profileInfo)
+    const res = await axios.put(`/auth/profile/${userId}`, profileInfo)
     dispatch(getUser(res.data))
     history.push('/userhome')
   }catch (err) {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {createProfile, me} from '../store'
 import {connect} from 'react-redux'
-import history from '../history'
 
 class UserProfile extends Component {
   constructor(){
@@ -27,7 +26,7 @@ class UserProfile extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
-    this.props.updateProfile({id: this.props.user.id, firstName: this.state.user.firstName, phone: this.state.user.phone})
+    this.props.updateProfile({firstName: this.state.user.firstName, phone: this.state.user.phone}, this.props.user.id)
     }
 
   render() {
@@ -54,13 +53,13 @@ class UserProfile extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user.loggedInUser
+    user: state.user
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateProfile: (profileInfo) => dispatch(createProfile(profileInfo)),
+    updateProfile: (profileInfo, userId) => dispatch(createProfile(profileInfo, userId)),
     getUser: () => dispatch(me())
   }
 }
