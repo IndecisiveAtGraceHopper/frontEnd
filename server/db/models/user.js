@@ -9,6 +9,15 @@ const User = db.define('user', {
   lastName: {
     type: Sequelize.STRING
   },
+  fullName: {
+    type: Sequelize.VIRTUAL,
+    get() {
+      return `${this.firstName} ${this.lastName}`;
+    }
+  },
+  image: {
+    type: Sequelize.STRING
+  },
   phone: {
     type: Sequelize.STRING
   },
@@ -35,7 +44,19 @@ const User = db.define('user', {
   googleId: {
     type: Sequelize.STRING
   }
-});
+},
+{
+  hooks: {
+    beforeUpdate: user => {
+      user.firstName = `${user.firstName[0].toUpperCase()}${user.firstName.slice(
+        1
+      )}`
+      user.lastName = `${user.lastName[0].toUpperCase()}${user.lastName.slice(
+        1
+      )}`
+    }
+  }
+})
 
 User.prototype.correctPassword = function(candidatePwd) {
   return User.encryptPassword(candidatePwd, this.salt()) === this.password()

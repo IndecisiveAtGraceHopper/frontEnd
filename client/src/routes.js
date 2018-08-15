@@ -18,13 +18,13 @@ class Routes extends Component {
       <Switch>
         {/*components visible to all*/}
         <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />   
-        <Route exact path="/signup" component={Signup} />        
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={Signup} />
         {/*components visible to logged in users*/}
         {isLoggedIn && (
           <Switch>
-            <Route exact path="/users/profile" component={UserProfile} />        
-            <Route exact path="/logout" component={Logout} />            
+            <Route exact path="/users/profile" component={UserProfile} />
+            <Route exact path="/logout" component={Logout} />
             {/*components visible to logged in users with complete profiles*/}
             {isProfileComplete && (
               <Switch>
