@@ -21,6 +21,20 @@ const Activity = db.define('activity', {
   selected: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
+  },
+  upVotes: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    validate:{
+      min: 0
+    }
+  },
+  downVotes: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    validate: {
+      min: 0
+    }
   }
 });
 

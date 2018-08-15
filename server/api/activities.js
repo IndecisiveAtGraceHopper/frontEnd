@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const Activity = require('../db/models/activity')
-const {userAuth} = require('../api/auth')
 
 module.exports = router
 
@@ -14,13 +13,26 @@ router.get('/', async (req, res, next) => {
     }
 })
 
-router.get('/:id', async (req, res, next) => {
+router.use('/:id', async(req, res, next) => {
     try {
-        const activity = await Activity.findById(req.params.id)
-        res.json(activity)
-    } catch (err) {
+      const activity = await Activity.findById(req.params.id)
+      if(activity){
+        req.activity = activity
+        next()
+      }
+      else {
+        const err = new Error ('No Activity Found')
+        err.status = 404
         next(err)
+      }
     }
+    catch(err) {
+      next(err)
+    }
+})
+
+router.get('/:id', async (req, res, next) => {
+    res.json(req.activity)
 })
 
 router.post('/', async (req, res, next) => {
@@ -34,8 +46,7 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
     try {
-        const activity = await Activity.findById(req.params.id)
-        const updatedActivity = await activity.update(req.body)
+        const updatedActivity = await req.activity.update(req.body)
         res.json(updatedActivity)
     } catch (err) {
         next(err)
@@ -44,8 +55,7 @@ router.put('/:id', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
     try {
-        const activity = await Activity.findById(req.params.id)
-        activity.destroy()
+        req.activity.destroy()
         res.sendStatus(204)
     } catch (err) {
         next(err)
