@@ -8,10 +8,10 @@ async function seed() {
   console.log('db synced!')
 
 
-    const karaH = await User.create({firstName: 'Kara', email: 'karah@indecisive.com', password: '123'})
-    const karaF = await User.create({firstName: 'Kara', email: 'karaf@indecisive.com', password: '123'})
-    const sarah = await User.create({firstName: 'Sarah', email: 'sarah@indecisive.com', password: '123'})
-    const hawa = await User.create({firstName: 'Hawa', email: 'hawa@indecisive.com', password: '123'})
+    const karaH = await User.create({firstName: 'Kara', lastName: 'Hirschman', email: 'karah@indecisive.com', password: '123'})
+    const karaF = await User.create({firstName: 'Kara', lastName: 'Ferrari', email: 'karaf@indecisive.com', password: '123'})
+    const sarah = await User.create({firstName: 'Sarah', lastName: 'Lynch', email: 'sarah@indecisive.com', password: '123'})
+    const hawa = await User.create({firstName: 'Hawa', lastName: 'Sako', email: 'hawa@indecisive.com', password: '123'})
 
     const adventure1 = await Adventure.create({name: 'Rock Climbing', date: Date.now()})
     // await Pod.bulkCreate([{userId: 1, adventureId: 1}, {userId: 2, adventureId: 1}, {userId: 3, adventureId: 1}, {userId: 4, adventureId: 1}])
