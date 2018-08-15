@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {submitPollThunk} from '../store/poll'
 import axios from 'axios'
 import key from './secrets'
+import {PollMap} from './index'
 
 class Poll extends Component {
   constructor(){
@@ -60,7 +61,7 @@ class Poll extends Component {
               {this.state.showMap ? 
                 <div>
                   <button onClick={this.renderMap}>Hide Map</button>
-                  <p>Map Goes Here</p>
+                  <PollMap />
                 </div> 
                 : 
                 <button onClick={this.renderMap}>Show Map</button>}
