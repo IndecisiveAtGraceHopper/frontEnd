@@ -17,7 +17,7 @@ const Navbar = (props) => {
             <ul id='nav-items' className='nav navbar-nav'>
               <li><Link to='/userhome'>Your Account</Link></li>
               <li><Link to='/t'>Plan an Adventure!</Link></li>
-              <li><a href='#' onClick={handleLogout}>Log Out</a></li>
+              <li><Link to='/#' onClick={handleLogout}>Log Out</Link></li>
             </ul>
           ) : (
             <ul id='nav-items' className='nav navbar-nav'>

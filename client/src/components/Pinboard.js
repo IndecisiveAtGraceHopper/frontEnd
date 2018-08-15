@@ -5,17 +5,17 @@ const PinBoard = (props) => {
     return (
         <div id='pinBoard'>
             {
-                notes.map(note => {
+                notes.map(note => { return (
                     <div id='note' key={note.id}>
                         {note.title}
                         {note.contents}
                         {
-                            note && note.images && note.images.map(image => {
-                                <img src={image.uri} alt='note image' width='100px' height='100px' />
-                            })
+                            note && note.images && note.images.map(image => { return (
+                                <img src={image.uri} alt='note-img' width='100px' height='100px' />
+                            )})
                         }
                     </div>
-                })
+                )})
             }
         </div>
     )
