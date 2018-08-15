@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {createProfile, me} from '../store'
 import {connect} from 'react-redux'
-import history from '../history'
 
 class UserProfile extends Component {
   constructor(){
@@ -9,6 +8,7 @@ class UserProfile extends Component {
     this.state = {
       user: {
         firstName: '',
+        lastName: '',
         phone: ''
       }
     }
@@ -27,8 +27,8 @@ class UserProfile extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
-    this.props.updateProfile({id: this.props.user.id, firstName: this.state.user.firstName, phone: this.state.user.phone})
-    }
+    console.log(this.state)
+    this.props.updateProfile({firstName: this.state.user.firstName, lastName: this.state.user.lastName, phone: this.state.user.phone}, this.props.user.id)}
 
   render() {
     return (
@@ -38,6 +38,10 @@ class UserProfile extends Component {
           <div>
             <label htmlFor='firstName'>First Name</label>
             <input name='firstName' type='string' onChange={this.handleChange} value={this.state.user.firstName} />
+          </div>
+          <div>
+            <label htmlFor='lastName'>Last Name</label>
+            <input name='lastName' type='string' onChange={this.handleChange} value={this.state.user.lastName} />
           </div>
           <div>
             <label htmlFor='phone'>Phone Number</label>
@@ -54,13 +58,13 @@ class UserProfile extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user.loggedInUser
+    user: state.user
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateProfile: (profileInfo) => dispatch(createProfile(profileInfo)),
+    updateProfile: (profileInfo, userId) => dispatch(createProfile(profileInfo, userId)),
     getUser: () => dispatch(me())
   }
 }
