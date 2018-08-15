@@ -7,7 +7,7 @@ import {logOut} from '../store'
 const Navbar = (props) => {
   const {isLoggedIn, handleLogout} = props
   return (
-    <nav id='navbar' className='navbar navbar-inverse'>
+    <nav id='navbar' className='navbar navbar-default'>
       <div className='container-fluid'>
         <div className='navbar-header'>
           <h2 id='title'>indecisive</h2>
