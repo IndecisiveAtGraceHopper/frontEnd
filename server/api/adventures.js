@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {Adventure} = require('../db/models')
+const {Adventure, Activity} = require('../db/models')
 const {userAuth} = require('../api/auth')
 
 module.exports = router
@@ -14,13 +14,24 @@ router.get('/', async (req, res, next) => {
     }
 })
 
-router.get('/:id', async (req, res, next) => {
+router.use('/:id', async(req, res, next) => {
     try {
         const adventure = await Adventure.findById(req.params.id)
-        res.json(adventure)
-    } catch (err) {
+        if(adventure) {
+          req.adventure = adventure
+        }
+        else {
+          res.send('No Adventure')
+        }
+        next()
+    } catch(err){
         next(err)
     }
+})
+
+router.get('/:id', async (req, res, next) => {
+    console.log('here')
+    res.json(req.adventure)
 })
 
 router.post('/', async (req, res, next) => {
@@ -34,11 +45,24 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
     try {
-        const adventure = await Adventure.findById(req.params.id)
-        const updatedAdventure = await adventure.update(req.body)
+        const updatedAdventure = await req.adventure.update(req.body)
         res.json(updatedAdventure)
     } catch (err) {
         next(err)
+    }
+})
+
+router.get('/:id/activities', async(req, res, next) => {
+    try{
+      const activities = await Activity.findAll({where: {adventureId:req.adventure.id}})
+      if(activities){
+        res.json(activities)
+      }
+      else{
+        res.json('No activities available yet')
+      }
+    }catch(err){
+      next(err)
     }
 })
 
