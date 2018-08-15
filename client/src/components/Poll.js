@@ -12,8 +12,10 @@ class Poll extends Component {
       activityLevel: 2,
       artsyLevel: 2,
       hungerLevel: 2,
-      drinkLevel: 2
+      drinkLevel: 2,
+      showMap: false
     }
+    this.renderMap = this.renderMap.bind(this)
   }
 
 
@@ -38,6 +40,11 @@ class Poll extends Component {
     this.props.submitPollThunk({latitude,longitude, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel, adventureId:2})
   }
 
+  renderMap(evt) {
+    evt.preventDefault()
+    this.setState({showMap: !this.state.showMap})
+  }
+
   render() {
     return (
       <div className="container">
@@ -48,6 +55,15 @@ class Poll extends Component {
               <label htmlFor="name" />
               <input type="text" name="location" onChange={this.handleChange} className="form-control" id="nameInput" aria-describedby="name" placeholder="Enter location" />
               <small id="location" className="form-text text-muted" />
+            </div>
+            <div>
+              {this.state.showMap ? 
+                <div>
+                  <button onClick={this.renderMap}>Hide Map</button>
+                  <p>Map Goes Here</p>
+                </div> 
+                : 
+                <button onClick={this.renderMap}>Show Map</button>}
             </div>
             <div>
               <label htmlFor="priceRange">priceRange</label>
