@@ -58,7 +58,6 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => {
-    console.log('setLocation', setLocation)
     return {
         setLoc: (location) => dispatch(setLocation(location))
     }

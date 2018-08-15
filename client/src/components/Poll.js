@@ -4,6 +4,7 @@ import {submitPollThunk} from '../store/poll'
 import axios from 'axios'
 import key from './secrets'
 import {PollMap} from './index'
+import { me } from '../store';
 
 class Poll extends Component {
   constructor() {
@@ -18,6 +19,10 @@ class Poll extends Component {
       location: 'enter a location'
     }
     this.renderMap = this.renderMap.bind(this)
+  }
+
+  componentDidMount() {
+    this.setState({location: this.props.address})
   }
 
   handleChange = (evt) => {
@@ -41,16 +46,12 @@ class Poll extends Component {
     this.props.submitPollThunk({latitude,longitude, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel, adventureId:2})
   }
 
-  async renderMap(evt) {
+  renderMap(evt) {
     evt.preventDefault()
-    await this.setState({showMap: !this.state.showMap})
-    if (this.state.showMap){
-      await this.setState({location: this.props.address})
-    }
+    this.setState({showMap: !this.state.showMap})
   }
 
   render() {
-    console.log('this.state in render', this.state)
     return (
       <div className="container" id='poll-page'>
         <h1>This is the Poll</h1>
@@ -109,15 +110,16 @@ class Poll extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log('store state', state)
   return {
-    address: state.poll.location
+    address: state.user.address,
+    location: state.poll.location
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    submitPollThunk: poll => dispatch(submitPollThunk(poll))
+    submitPollThunk: poll => dispatch(submitPollThunk(poll)),
+    getCurrentUser: () => dispatch(me())
   }
 }
 
