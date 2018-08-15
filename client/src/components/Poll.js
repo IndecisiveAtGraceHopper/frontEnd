@@ -14,14 +14,15 @@ class Poll extends Component {
       artsyLevel: 2,
       hungerLevel: 2,
       drinkLevel: 2,
-      showMap: false
+      showMap: false,
+      location: ''
     }
     this.renderMap = this.renderMap.bind(this)
   }
 
 
   handleChange = (evt) => {
-   this.setState({
+    this.setState({
       [evt.target.name]: evt.target.value
     })
   }
@@ -31,7 +32,7 @@ class Poll extends Component {
     const {data} = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${key}`)
     const latitude = data.results[0].geometry.location.lat
     const longitude = data.results[0].geometry.location.lng
-      return {latitude, longitude}
+    return {latitude, longitude}
   }
 
   handleSubmit = async (evt) => {
@@ -48,24 +49,27 @@ class Poll extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container" id='poll-page'>
         <h1>This is the Poll</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group form-check">
             <div>
-              <label htmlFor="name" />
-              <input type="text" name="location" onChange={this.handleChange} className="form-control" id="nameInput" aria-describedby="name" placeholder="Enter location" />
+              <label htmlFor="location" />
+              <input type="text" name="location" onChange={this.handleChange} className="form-control" id="nameInput" aria-describedby="name" placeholder={this.state.location || 'Enter a location'} />
               <small id="location" className="form-text text-muted" />
             </div>
-            <div>
-              {this.state.showMap ? 
-                <div>
-                  <button onClick={this.renderMap}>Hide Map</button>
+            {this.state.showMap ? (
+              <div id='map-outer'>
+                <button onClick={this.renderMap}>Hide Map</button>
+                <div id='map-container'>
                   <PollMap />
-                </div> 
-                : 
-                <button onClick={this.renderMap}>Show Map</button>}
-            </div>
+                </div>
+              </div>
+              ) : (
+              <div>
+                <button onClick={this.renderMap}>Show Map</button>
+              </div>
+            )}
             <div>
               <label htmlFor="priceRange">priceRange</label>
               <input type="range" name="priceRange" onChange={this.handleChange} min="1" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
