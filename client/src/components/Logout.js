@@ -3,9 +3,6 @@ import {connect} from 'react-redux'
 import {logOut} from '../store';
 
 class Logout extends Component {
-  constructor(){
-    super()
-  }
   handleLogout = (evt) => {
     evt.preventDefault()
     this.props.logout()

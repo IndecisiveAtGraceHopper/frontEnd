@@ -18,28 +18,28 @@ class UserHome extends Component {
         <Logout />
         <h4>Your Pods</h4>
         {
-          this.props.user.pods && this.props.user.pods.map(pod => {
+          this.props.user.pods && this.props.user.pods.map(pod => { return (
             <div className='singlePod' key={pod.id}>
               POD: {pod.title}
             </div>
-          })
+          )})
         }
         <button>Make a New Pod</button>
         <h4>Upcoming Adventures</h4>
         {
-          upcomingAdventures && upcomingAdventures.map(adventure => {
+          upcomingAdventures && upcomingAdventures.map(adventure => { return (
             <div className='singleAdventure' key={adventure.id}>
               ADVENTURE: {adventure.title}
             </div>
-          })
+          )})
         }
         <h4>Recent Adventures</h4>
         {
-          recentAdventures && recentAdventures.map(adventure => {
+          recentAdventures && recentAdventures.map(adventure => { return (
             <div className='singleAdventure' key={adventure.id}>
               ADVENTURE: {adventure.title}
             </div>
-          })
+          )})
         }
       </div>
     )    
