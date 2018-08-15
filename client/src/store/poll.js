@@ -9,9 +9,7 @@ const SUBMIT_POLL = 'SUBMIT_POLL'
  * INITIAL STATE
  */
 
-const initialState = {
- poll: []
-}
+const initialState = []
 
 /**
  * ACTION CREATORS
@@ -42,7 +40,7 @@ export const submitPollThunk = (poll) => {
 export default function(state = initialState, action) {
   switch (action.type) {
     case SUBMIT_POLL:
-      return { ...state, poll: [...state.poll, action.poll] }
+      return [...state.poll, action.poll]
     default:
       return state
   }

@@ -9,15 +9,14 @@ const ADD_POD = 'ADD_POD'
  * INITIAL STATE
  */
 
-const initialState = {
- pods: []
-}
+const initialState = {}
+
 
 /**
  * ACTION CREATORS
  */
 
-export const addPod = pod => ({type: ADD_POD, pod})
+export const addPod = pod => ({type: ADD_POD, pod:pod})
 
 /**
  * THUNK CREATORS
@@ -26,7 +25,7 @@ export const addPod = pod => ({type: ADD_POD, pod})
 export const createPodThunk = (podName) => {
     return async (dispatch) => {
       try {
-        const {data} = await axios.post('/api/pod', podName)
+        const {data} = await axios.post('/api/pods', podName)
         const action = addPod(data)
         dispatch(action)
       } catch (err) {
@@ -42,7 +41,7 @@ export const createPodThunk = (podName) => {
 export default function(state = initialState, action) {
   switch (action.type) {
     case ADD_POD:
-      return { ...state, pod: [...state.pod, action.pod] }
+      return {...action.pod}
     default:
       return state
   }
