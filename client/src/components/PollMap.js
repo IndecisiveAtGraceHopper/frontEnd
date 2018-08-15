@@ -4,6 +4,7 @@ import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
 import {MAPBOXGL_ACCESS_TOKEN as accessToken} from './secrets'
 import axios from 'axios'
 import key from './secrets'
+import {setLocation} from '../store/poll'
 mapboxgl.accessToken = accessToken
 
 class PollMap extends Component {
@@ -15,6 +16,7 @@ class PollMap extends Component {
     }
 
     async componentDidMount() {
+        this.props.setLoc(this.props.address)
         const address = await this.getGeocode(this.props.address)
         const coords = [address.longitude, address.latitude]
         this.map = new mapboxgl.Map({
@@ -55,11 +57,12 @@ const mapState = state => {
     }
 }
 
-// const mapDispatch = dispatch => {
-//     return {
-//         setUserLocation: (location) => dispatch(setLocation(location))
-//     }
-// }
-  
+const mapDispatch = dispatch => {
+    console.log('setLocation', setLocation)
+    return {
+        setLoc: (location) => dispatch(setLocation(location))
+    }
+}
 
-export default connect(mapState, null)(PollMap)
+
+export default connect(mapState, mapDispatch)(PollMap)

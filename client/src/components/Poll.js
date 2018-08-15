@@ -20,12 +20,6 @@ class Poll extends Component {
     this.renderMap = this.renderMap.bind(this)
   }
 
-  componentDidMount() {
-    console.log('props:', this.props)
-    this.setState({location: this.props.address})
-  }
-
-
   handleChange = (evt) => {
     this.setState({
       [evt.target.name]: evt.target.value
@@ -47,12 +41,16 @@ class Poll extends Component {
     this.props.submitPollThunk({latitude,longitude, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel, adventureId:2})
   }
 
-  renderMap(evt) {
+  async renderMap(evt) {
     evt.preventDefault()
-    this.setState({showMap: !this.state.showMap})
+    await this.setState({showMap: !this.state.showMap})
+    if (this.state.showMap){
+      await this.setState({location: this.props.address})
+    }
   }
 
   render() {
+    console.log('this.state in render', this.state)
     return (
       <div className="container" id='poll-page'>
         <h1>This is the Poll</h1>
@@ -60,7 +58,7 @@ class Poll extends Component {
           <div className="form-group form-check">
             <div>
               <label htmlFor="location" />
-              <input type="text" name="location" onChange={this.handleChange} className="form-control" id="nameInput" aria-describedby="name" value={this.state.address} />
+              <input type="text" name="location" onChange={this.handleChange} className="form-control" id="nameInput" aria-describedby="name" value={this.state.location} />
               <small id="location" className="form-text text-muted" />
             </div>
             {this.state.showMap ? (
@@ -77,27 +75,27 @@ class Poll extends Component {
             )}
             <div>
               <label htmlFor="priceRange">priceRange</label>
-              <input type="range" name="priceRange" onChange={this.handleChange} min="1" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
+              <input type="range" name="priceRange" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
               <small id="priceRange" className="form-text text-muted" />
             </div>
             <div>
               <label htmlFor="activityLevel">activityLevel</label>
-              <input type="range" name="activityLevel" onChange={this.handleChange} min="1" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
+              <input type="range" name="activityLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
               <small id="activityLevel" className="form-text text-muted" />
             </div>
             <div>
               <label htmlFor="artsyLevel">artsyLevel</label>
-              <input type="range" name="artsyLevel" onChange={this.handleChange} min="1" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
+              <input type="range" name="artsyLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
               <small id="artsyLevel" className="form-text text-muted" />
             </div>
             <div>
               <label htmlFor="hungerLevel">hungerLevel</label>
-              <input type="range" name="hungerLevel" onChange={this.handleChange} min="1" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
+              <input type="range" name="hungerLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
               <small id="hungerLevel" className="form-text text-muted" />
             </div>
             <div>
               <label htmlFor="drinkLevel">drinkLevel</label>
-              <input type="range" name="drinkLevel" onChange={this.handleChange} min="1" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
+              <input type="range" name="drinkLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
               <small id="drinkLevel" className="form-text text-muted" />
           </div>
            <span>
@@ -113,7 +111,7 @@ class Poll extends Component {
 const mapStateToProps = state => {
   console.log('store state', state)
   return {
-    address: state.user.address
+    address: state.poll.location
   }
 }
 

@@ -16,15 +16,7 @@ class Routes extends Component {
     const {isLoggedIn, isProfileComplete} = this.props
     return (
       <Switch>
-        <Route exact path="/pod/adventure/:adventureId/activty/activityId" component={Activity} />
-        <Route exact path="/pod/adventure" component={Adventure} />
-        <Route exact path="/pod/:podId" component={Pod} />
-        <Route exact path="/users/poll" component={Poll} />
-        <Route exact path="/users/profile" component={UserProfile} />
-        <Route exact path="/signup" component={Signup} />
-        <Route exact path="/logout" component={Logout} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/userhome" component={UserHome} />
+
         {/*components visible to all*/}
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
@@ -59,7 +51,7 @@ class Routes extends Component {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    isProfileComplete: !!state.user.phone && !!state.user.firstName && !!state.user.lastName && !!state.user.address
+    isProfileComplete: state.user.phone && state.user.firstName && state.user.lastName && state.user.address
   }
 }
 
