@@ -6,7 +6,6 @@ class Pod extends Component {
 
 
   render() {
-  	console.log('STATE', this.state)
   	const podId = this.props.match.params.id
     return (
       <div>

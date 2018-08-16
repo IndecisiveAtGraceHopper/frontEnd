@@ -7,9 +7,10 @@ import poll from './poll'
 import activity from './activity'
 import searchUsers from './searchUsers'
 import pod from './pod'
+import adventure from './adventure'
 
 
-const reducer = combineReducers({user, poll, activity, searchUsers, pod})
+const reducer = combineReducers({user, poll, activity, searchUsers, pod, adventure})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

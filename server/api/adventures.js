@@ -30,7 +30,6 @@ router.use('/:id', async(req, res, next) => {
 })
 
 router.get('/:id', async (req, res, next) => {
-    console.log('here')
     res.json(req.adventure)
 })
 
