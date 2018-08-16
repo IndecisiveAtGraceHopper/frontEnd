@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import React, { Component } from 'react'
-import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
+import mapboxgl, { Point, Marker } from 'mapbox-gl/dist/mapbox-gl'
 import {MAPBOXGL_ACCESS_TOKEN as accessToken} from './secrets'
 import axios from 'axios'
 import key from './secrets'
@@ -29,10 +29,14 @@ class Map extends Component {
                 zoom: this.state.zoom
             }
             this.map = new mapboxgl.Map(mapOptions)
+            const staticMarker = new mapboxgl.Marker()
+                .setLngLat(this.state.coords)
+                .addTo(this.map)
             this.map.on('move', () => {
                 const { lng, lat } = this.map.getCenter()
                 const zoom = this.map.getZoom().toFixed(2)
                 const coords = [lng.toFixed(4), lat.toFixed(4)]
+                staticMarker.setLngLat(coords)
                 this.setState({coords, zoom})
             })
             this.map.on('click', async () => {
