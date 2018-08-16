@@ -177,6 +177,13 @@ async function seed() {
       phone:8342988329,
       address: '12 East 24th street'})
 
+    const dan = await User.create({
+      firstName: 'Dan',
+      lastName: 'Sohval',
+      email: 'dan@indecisive.com',
+      password: '123',
+      phone:8342988329,
+      address: '5 East 110th street'})
 
 
     const adventure1 = await Adventure.create({name: 'Rock Climbing', date: Date.now()})
