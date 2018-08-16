@@ -15,3 +15,5 @@ export {default as Pod} from './Pod'
 export {default as Search} from './Search'
 export {default as PollMap} from './PollMap'
 export {default as CreateAdventure} from './CreateAdventure'
+export {default as Map} from './Map'
+
