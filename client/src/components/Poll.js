@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import {submitPollThunk} from '../store/poll'
 import axios from 'axios'
 import key from './secrets'
-import {PollMap} from './index'
+import {Map} from './index'
 
 
 class Poll extends Component {
@@ -65,7 +65,7 @@ class Poll extends Component {
           <div className="form-group form-check">
             <div>
               <label htmlFor="location" />
-              <input type="text" name="location" onChange={this.handleChange} className="form-control" id="nameInput" aria-describedby="name" value={this.state.location} />
+              <input type="text" name="location" onChange={this.handleChange} className="form-control" id="nameInput" aria-describedby="name" placeholder={this.state.location} value={this.props.location} />
               <small id="location" className="form-text text-muted" />
               {/*<button onClick={this.onClick}>Find Me</button>*/}
             </div>
@@ -73,7 +73,7 @@ class Poll extends Component {
               <div id='map-outer'>
                 <button onClick={this.renderMap}>Hide Map</button>
                 <div id='map-container'>
-                  <PollMap />
+                  <Map interactive='true'/>
                 </div>
               </div>
               ) : (
