@@ -11,39 +11,29 @@ class PollMap extends Component {
     constructor() {
         super()
         this.state = {
-            currentLocation: ''
+            coords: [],
+            zoom: 14.5
         }
     }
-
+    
     async componentDidMount() {
         this.props.setLoc(this.props.address)
         const address = await this.getGeocode(this.props.address)
         const coords = [address.longitude, address.latitude]
+        this.setState({currentLocation: coords})
         const mapOptions = {
             container: this.mapContainer,
             style: 'mapbox://styles/mapbox/streets-v10',
-            center: coords,
-            zoom: 14.5
+            center: (this.state.coords.length === 2) ? this.state.coords : coords,
+            zoom: this.state.zoom
         }
         this.map = new mapboxgl.Map(mapOptions)
-        this.map.on('load', () => {
-            this.map.loadImage('https://i.imgur.com/MK4NUzI.png', (error, image) => {
-                if (error) throw error
-                this.map.addImage('custom-marker', image)
-                this.map.addLayer({
-                    id: 'markers',
-                    type: 'symbol',
-                    source: {
-                        type: 'geojson',
-                        date: {
-                            type: 'FeatureCollection',
-                            features:[{'type':'Feature','geometry':{'type':'Point','coordinates':coords}}]}
-                    },
-                    layout: {
-                        'icon-image': 'custom-marker',
-                    }
-                })
-            })
+        this.map.on('move', () => {
+            const { lng, lat } = this.map.getCenter()
+            const zoom = this.map.getZoom().toFixed(2)
+            const coords = [lng.toFixed(4), lat.toFixed(4)]
+            this.setState({coords, zoom})
+            console.log('new coords:', coords)
         })
     }
 
