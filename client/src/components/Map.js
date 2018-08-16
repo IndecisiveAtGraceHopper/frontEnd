@@ -61,17 +61,37 @@ class Map extends Component {
     async createMultiPointMap() {
         console.log('creating multi point map')
         console.log('this.state.coords', this.state.coords, this.state.coords)
-        const centerCoords = ''
+        const newCoords = await this.state.coords.map(async (coord) => {
+            const geocode = await this.getGeocode(coord)
+            return [geocode.longitude, geocode.latitude]
+        })
+        this.setState({coords: newCoords})
+        const centerCoords = await newCoords[0]
         const mapOptions = {
             container: this.mapContainer,
             style: 'mapbox://styles/mapbox/streets-v10',
-            center: '',
-
+            center: centerCoords,
+            zoom: this.state.zoom
+        }
+        this.map = new mapboxgl.Map(mapOptions)
+        const myCoords = await newCoords
+        console.log('mycoords', myCoords)
+        for (let i=0; i<myCoords.length; i++) {
+            const addressMarker = new mapboxgl.Marker()
+                .setLngLat({coords: myCoords[i], zoom: this.state.zoom})
+                .addTo(this.map)
         }
     }
 
     async createSinglePointMap() {
         console.log('creating single point map')
+        const mapOptions = {
+            container: this.mapContainer,
+            style: 'mapbox://styles/mapbox/streets-v10',
+            center: this.state.coords,
+            zoom: this.state.zoom
+        }
+        this.map = new mapboxgl.Map(mapOptions)
     }
 
     getGeocode = async (address) => {
