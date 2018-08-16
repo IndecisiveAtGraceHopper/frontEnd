@@ -14,28 +14,33 @@ class Adventure extends Component {
       pollId: '',
       name: '',
       notes: [],
-      userId: ''
+      userId: '',
+      showMap: false,
+      locations: []
     }
   }
-  componentDidMount() {
-    console.log('hey')
-    this.props.fetch(1)
-  }
-  render() {
-    console.log('activities', this.props.activities)
+
+  async componentDidMount() {
+    await this.props.fetch(1)
     const activities = this.props.activities
     const locations = activities.map(activity => {return activity.address})
+    this.setState({locations})
+  }
+
+  render() {
     return (
       <div>
         <h3>Adventure</h3>
-        <div>{
-          this.props.activities.length && this.props.activities.map( (activity) => 
-            <Activity activity={activity} isCoord={true} key={activity.id}/>
-          )
-        }</div>
-        <div id='map-container'>
-          <Map interactive={false} coords={locations} />
+        <div>
+          { this.props.activities.length && this.props.activities.map((activity) => 
+            <Activity activity={activity} isCoord={true} key={activity.id}/>)
+          }
         </div>
+        <div id='adventure-map-container'>
+          { this.state.locations.length &&
+            <Map interactive={false} coords={this.state.locations} />
+          }
+        </div>     
       </div>
     )
   }
