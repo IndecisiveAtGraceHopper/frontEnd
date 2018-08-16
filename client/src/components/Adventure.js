@@ -23,7 +23,9 @@ class Adventure extends Component {
   async componentDidMount() {
     await this.props.fetch(1)
     const activities = this.props.activities
-    const locations = activities.map(activity => {return activity.address})
+    const locations = activities.map(activity => {
+      return {coords: activity.address, title: activity.name}
+    })
     this.setState({locations})
   }
 

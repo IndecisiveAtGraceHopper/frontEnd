@@ -60,17 +60,17 @@ class Map extends Component {
 
     async createMultiPointMap() {
         console.log('creating multi point map')
-        const newCoords = await this.state.coords.map(async (coord) => {
-            const geocode = await this.getGeocode(coord)
-            return [geocode.longitude, geocode.latitude]
+        const coords = await this.state.coords.map(async (coord) => {
+            const geocode = await this.getGeocode(coord.coords)
+            return {coords: [geocode.longitude, geocode.latitude], title: coord.title}
         })
-        const myCoords = await Promise.all(newCoords)
-        this.setState({coords: myCoords})
-        const longitudes = myCoords.map(coord => {
-            return Number(coord[0])
+        const places = await Promise.all(coords)
+        this.setState({coords: places})
+        const longitudes = places.map(place => {
+            return Number(place.coords[0])
         })
-        const latitudes = myCoords.map(coord => {
-            return Number(coord[1])
+        const latitudes = places.map(place => {
+            return Number(place.coords[1])
         })
         let maxLong = longitudes[0]
         let maxLat = latitudes[0]
@@ -92,10 +92,15 @@ class Map extends Component {
             zoom: this.state.zoom
         }
         this.map = new mapboxgl.Map(mapOptions)
-        for (let i=0; i<myCoords.length; i++) {
+        for (let i=0; i<places.length; i++) {
+            const addressPopUp = new mapboxgl.Popup({offset: [0, -15]})
+                .setLngLat(places[i].coords)
+                .setHTML('<p>' + places[i].title + '</p>')
+                .setLngLat(places[i].coords)
             const addressMarker = new mapboxgl.Marker()
-                .setLngLat(myCoords[i])
+                .setLngLat(places[i].coords)
                 .addTo(this.map)
+                .setPopup(addressPopUp)
         }
         this.map.fitBounds([[minLong - 0.005, minLat - 0.005],[maxLong + 0.005, maxLat + 0.005]])
     }
