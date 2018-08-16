@@ -107,19 +107,24 @@ class Map extends Component {
 
     async createSinglePointMap() {
         console.log('creating single point map')
-        const geocode = await this.getGeocode(this.state.coord)
-        const coords = [geocode.longitude, geocode.latitude]
+        const geocode = await this.getGeocode(this.state.coords.coords)
+        const coords = {coords: [geocode.longitude, geocode.latitude], title: this.state.coords.title}
         this.setState({coords})
         const mapOptions = {
             container: this.mapContainer,
             style: 'mapbox://styles/mapbox/streets-v10',
-            center: coords,
+            center: coords.coords,
             zoom: this.state.zoom
         }
         this.map = new mapboxgl.Map(mapOptions)
+        const singlePopUp = new mapboxgl.Popup({offset: [0, -15]})
+            .setLngLat(coords.coords)
+            .setHTML('<p>' + title + '</p>')
+            .setLngLat(coords.coords)
         const singleMarker = new mapboxgl.Marker()
-            .setLngLat(coords)
+            .setLngLat(coords.coords)
             .addTo(this.map)
+            .setPopup(singlePopUp)
     }
 
     getGeocode = async (address) => {
