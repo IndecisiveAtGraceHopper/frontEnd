@@ -8,7 +8,10 @@ class Pod extends Component {
 	componentDidMount () {
 	    this.props.getAllUsersInPodThunk(this.props.match.params.id)
 	}
-
+  onClick = (evt)=>{
+    evt.preventDefault()
+    window.location = `/pods/${this.props.match.params.id}/createAdventure`
+  }
   render() {
   	const podId = this.props.match.params.id
 
@@ -27,7 +30,7 @@ class Pod extends Component {
           <h2>Search for friends</h2>
           <h5></h5>
         <div><Search podId={podId}/></div>
-        <button onClick = {this.props.history.push('/pods/:id/createAdventure'}>Create An Adventure</button>
+        <button onClick = {this.onClick}>Create An Adventure</button>
         </div>
       </div>
     );
