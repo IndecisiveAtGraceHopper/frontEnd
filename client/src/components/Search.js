@@ -25,13 +25,13 @@ class Search extends React.Component {
 
   handleChange(event) {
     this.setState({userToSearch: event.target.value})
-
   }
 
   async handleClick(event){
 
     event.preventDefault()
     await axios.post('/api/pods/userPod', ({podId: this.props.podId, userId: event.target.value}))
+    window.location.reload();
   }
 
   handleSubmit (event) {
@@ -53,14 +53,12 @@ class Search extends React.Component {
   }
 
   render() {
-    console.log('STATE', this.props.userId)
-
     return (
       <div>
         <form onSubmit={this.handleSubmit} className="form-inline">
           <input id='searchInput' type="search" name="userToSearch" onChange={this.handleChange} className= "form-control" placeholder="Search for user" aria-label="Search"/>
           <div>
-            <button type='submit'>Search</button>
+            <button className="btn btn-dark" type='submit'>Search</button>
           </div>
         </form>
         {this.state.noUserFound ? (
