@@ -25,13 +25,11 @@ export const selectAdventure = adventure => ({type: SELECT_ADVENTURE, adventure}
  * THUNK CREATORS
  */
 
-export const CreateAdventure = (adventure) => {
+export const createAdventure = (adventure) => {
     return async (dispatch) => {
       try {
-        console.log('i am in the thunk')
-        const {data} = await axios.get(`/api/adventures/${adventureId}/activities`)
-        const action = loadActivities(data)
-        dispatch(action)
+        const {data} = axios.post('/api/adventure', adventure)
+        dispatch(selectAdventure(data))
       } catch (err) {
         console.log(err)
       }
@@ -43,12 +41,8 @@ export const CreateAdventure = (adventure) => {
  */
 export default function(state = initialState, action) {
   switch (action.type) {
-    case LOAD_ACTIVITIES:
-      return [...action.activities]
-    case CHANGE_VOTE:
-      return state.map((activity)=> activity.id === action.activity.id ? action.activity: activity)
-    case REMOVE_ACTIVITIES:
-      return state.filter((activity)=> activity.id === action.activityId)
+    case SELECT_ADVENTURE:
+      return [...action.adventure]
     default:
       return state
   }

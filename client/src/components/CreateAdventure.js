@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Poll from './Poll'
-
+import {createAdventure} from '../store/adventure'
 class CreateAdventure extends Component {
   constructor(){
+    super()
     this.state = {
       name: '',
       date: ''
@@ -11,7 +12,8 @@ class CreateAdventure extends Component {
   }
 
   onClick = (evt)=> {
-
+    evt.preventDefault()
+    this.props.submit(this.state)
 
   }
 
@@ -28,7 +30,11 @@ class CreateAdventure extends Component {
   }
 }
 
-const map
+const mapDispatch = (dispatch)=> {
+  return {
+    submit: (adventure)=> dispatch(createAdventure(adventure))
+  }
+}
 
 
 
