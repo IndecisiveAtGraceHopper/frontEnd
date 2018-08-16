@@ -1,10 +1,6 @@
 import {connect} from 'react-redux'
 import React, { Component } from 'react'
-<<<<<<< HEAD
-import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
-=======
 import mapboxgl, { Point, Marker } from 'mapbox-gl/dist/mapbox-gl'
->>>>>>> 03d634451624a2657b8c83501d24cd1c3dde5e0f
 import {MAPBOXGL_ACCESS_TOKEN as accessToken} from './secrets'
 import axios from 'axios'
 import key from './secrets'
@@ -54,21 +50,14 @@ class Map extends Component {
         this.map.remove()
     }
 
-<<<<<<< HEAD
-    getGeocode = async(evt) => {
-        const location= evt.split().join("+")
-=======
     getGeocode = async (address) => {
         const location = address.split().join("+")
->>>>>>> 03d634451624a2657b8c83501d24cd1c3dde5e0f
         const {data} = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${key}`)
         const latitude = data.results[0].geometry.location.lat
         const longitude = data.results[0].geometry.location.lng
         return {latitude, longitude}
     }
 
-<<<<<<< HEAD
-=======
     getAddress = async (coords) => {
         const lat = coords[1]
         const lng = coords[0]
@@ -76,7 +65,6 @@ class Map extends Component {
         return res.data.results[0].formatted_address
     }
 
->>>>>>> 03d634451624a2657b8c83501d24cd1c3dde5e0f
     render() {
         const style = {
             position: 'absolute',
@@ -85,15 +73,7 @@ class Map extends Component {
             width: '100%',
             height: '400px'
         }
-<<<<<<< HEAD
-        return (
-            <div id='mapbox-map' style={style} ref={el => this.mapContainer = el}>
-                <img src='pin.svg' />
-            </div>
-        )
-=======
         return <div id='mapbox-map' style={style} ref={el => this.mapContainer = el} />;
->>>>>>> 03d634451624a2657b8c83501d24cd1c3dde5e0f
     }
 }
 
