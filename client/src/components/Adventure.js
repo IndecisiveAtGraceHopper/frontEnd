@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Activity from './Activity'
 import {fetchActivities} from '../store/activity'
 import {connect} from 'react-redux'
+import {Map} from './index'
 
 class Adventure extends Component {
   constructor() {
@@ -22,13 +23,21 @@ class Adventure extends Component {
   }
   render() {
     console.log('activities', this.props.activities)
+    const activities = this.props.activities
+    const locations = activities.map(activity => {return activity.address})
     return (
       <div>
-        Adventure
-
-        {this.props.activities.length && this.props.activities.map(activity=> <Activity activity={activity} isCoord={true}/>)}
+        <h3>Adventure</h3>
+        <div>{
+          this.props.activities.length && this.props.activities.map( (activity) => 
+            <Activity activity={activity} isCoord={true} key={activity.id}/>
+          )
+        }</div>
+        <div id='map-container'>
+          <Map interactive={false} coords={locations} />
+        </div>
       </div>
-    );
+    )
   }
 }
 
