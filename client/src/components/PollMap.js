@@ -19,11 +19,31 @@ class PollMap extends Component {
         this.props.setLoc(this.props.address)
         const address = await this.getGeocode(this.props.address)
         const coords = [address.longitude, address.latitude]
-        this.map = new mapboxgl.Map({
+        const mapOptions = {
             container: this.mapContainer,
-            style: 'mapbox://styles/almondmilk96/cjkvhicus23172snx1zadgqvj',
+            style: 'mapbox://styles/mapbox/streets-v10',
             center: coords,
-            zoom: 14
+            zoom: 14.5
+        }
+        this.map = new mapboxgl.Map(mapOptions)
+        this.map.on('load', () => {
+            this.map.loadImage('https://i.imgur.com/MK4NUzI.png', (error, image) => {
+                if (error) throw error
+                this.map.addImage('custom-marker', image)
+                this.map.addLayer({
+                    id: 'markers',
+                    type: 'symbol',
+                    source: {
+                        type: 'geojson',
+                        date: {
+                            type: 'FeatureCollection',
+                            features:[{'type':'Feature','geometry':{'type':'Point','coordinates':coords}}]}
+                    },
+                    layout: {
+                        'icon-image': 'custom-marker',
+                    }
+                })
+            })
         })
     }
 
