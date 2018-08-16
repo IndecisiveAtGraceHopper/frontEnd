@@ -2,6 +2,12 @@ const express = require('express')
 const router = express.Router()
 const {Poll, User} = require('../db/models')
 const {userAuth} = require('../api/auth')
+if (process.env.NODE_ENV !== 'production') require('../../secrets')
+var twilio = require('twilio')
+var client = new twilio(
+  process.env.TWILIO_ACCOUNT_SID,
+  process.env.TWILIO_AUTH_TOKEN
+)
 
 /* GET users listing. */
 router.get('/', async (req, res, next) => {
@@ -18,6 +24,23 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id)
+    res.json(user)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.post('/:id/text', async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id)
+    client.messages
+    .create({
+      body: `Your friend ${user.fullName} thinks you should check out this awesome site: http://localhost:3000`,
+      to: req.body.phone,
+      from: process.env.TWILIO_PHONE_NUMBER
+    })
+    .then(message => console.log(message.sid))
+    .done()
     res.json(user)
   } catch (err) {
     next(err)
