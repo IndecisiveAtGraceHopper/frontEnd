@@ -30,10 +30,9 @@ class UserHome extends Component {
   }
 
   render() {
-     console.log('podId', this.state.podId)
     return (
       <div>
-      <h4>POD</h4>
+      <h3 className="text-center"> Create a new pod! </h3>
         <form onSubmit={this.handleSubmit}>
          <div className="form-group form-check">
             <label htmlFor="name" />
@@ -42,7 +41,8 @@ class UserHome extends Component {
             <small id="name" className="form-text text-muted" />
         </div>
           <span>
-           <button type='submit'>Create New Pod</button>
+          <br/>
+           <button className="btn btn-primary btn-lg btn-block"type='submit'>Create New Pod</button>
           </span>
       </form>
     </div>
@@ -51,8 +51,6 @@ class UserHome extends Component {
 }
 
 const mapState = state => {
-  console.log('STATEMAP', state)
-  console.log(state.user.id)
   return ({
     userId: state.user.id,
   })
