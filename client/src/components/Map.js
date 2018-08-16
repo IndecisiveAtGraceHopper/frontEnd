@@ -1,6 +1,10 @@
 import {connect} from 'react-redux'
 import React, { Component } from 'react'
+<<<<<<< HEAD
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
+=======
+import mapboxgl, { Point, Marker } from 'mapbox-gl/dist/mapbox-gl'
+>>>>>>> 03d634451624a2657b8c83501d24cd1c3dde5e0f
 import {MAPBOXGL_ACCESS_TOKEN as accessToken} from './secrets'
 import axios from 'axios'
 import key from './secrets'
@@ -8,37 +12,71 @@ import {setLocation} from '../store/poll'
 mapboxgl.accessToken = accessToken
 
 class Map extends Component {
-    constructor() {
+    constructor(props) {
         super()
         this.state = {
-            currentLocation: ''
+            coords: props.coords,
+            zoom: 14.5,
+            interactive: props.interactive
         }
     }
 
     async componentDidMount() {
-        this.props.setLoc(this.props.address)
-        const address = await this.getGeocode(this.props.address)
-        const coords = [address.longitude, address.latitude]
-        this.map = new mapboxgl.Map({
-            container: this.mapContainer,
-            style: 'mapbox://styles/almondmilk96/cjkvhicus23172snx1zadgqvj',
-            center: coords,
-            zoom: 14
-        })
+        if (this.state.interactive) {
+            const address = await this.getGeocode(this.state.coords)
+            const coords = [address.longitude, address.latitude]
+            this.setState({coords})
+            const mapOptions = {
+                container: this.mapContainer,
+                style: 'mapbox://styles/mapbox/streets-v10',
+                center: (this.state.coords.length === 2) ? this.state.coords : coords,
+                zoom: this.state.zoom
+            }
+            this.map = new mapboxgl.Map(mapOptions)
+            const staticMarker = new mapboxgl.Marker()
+                .setLngLat(this.state.coords)
+                .addTo(this.map)
+            this.map.on('move', () => {
+                const { lng, lat } = this.map.getCenter()
+                const zoom = this.map.getZoom().toFixed(2)
+                const coords = [lng.toFixed(4), lat.toFixed(4)]
+                staticMarker.setLngLat(coords)
+                this.setState({coords, zoom})
+            })
+            this.map.on('click', async () => {
+                const address = await this.getAddress(this.state.coords)
+                this.props.setLoc(address)
+            })
+        }
     }
 
     componentWillUnmount() {
         this.map.remove()
     }
 
+<<<<<<< HEAD
     getGeocode = async(evt) => {
         const location= evt.split().join("+")
+=======
+    getGeocode = async (address) => {
+        const location = address.split().join("+")
+>>>>>>> 03d634451624a2657b8c83501d24cd1c3dde5e0f
         const {data} = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${key}`)
         const latitude = data.results[0].geometry.location.lat
         const longitude = data.results[0].geometry.location.lng
         return {latitude, longitude}
     }
 
+<<<<<<< HEAD
+=======
+    getAddress = async (coords) => {
+        const lat = coords[1]
+        const lng = coords[0]
+        const res = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${key}`)
+        return res.data.results[0].formatted_address
+    }
+
+>>>>>>> 03d634451624a2657b8c83501d24cd1c3dde5e0f
     render() {
         const style = {
             position: 'absolute',
@@ -47,11 +85,15 @@ class Map extends Component {
             width: '100%',
             height: '400px'
         }
+<<<<<<< HEAD
         return (
             <div id='mapbox-map' style={style} ref={el => this.mapContainer = el}>
                 <img src='pin.svg' />
             </div>
         )
+=======
+        return <div id='mapbox-map' style={style} ref={el => this.mapContainer = el} />;
+>>>>>>> 03d634451624a2657b8c83501d24cd1c3dde5e0f
     }
 }
 

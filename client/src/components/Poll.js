@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import {submitPollThunk} from '../store/poll'
 import axios from 'axios'
 import key from './secrets'
-import {PollMap} from './index'
+import {Map} from './index'
 
 
 class Poll extends Component {
@@ -16,13 +16,17 @@ class Poll extends Component {
       hungerLevel: 2,
       drinkLevel: 2,
       showMap: false,
-      location: 'enter a location'
+      location: (this.props && this.props.location) ? this.props.location : 'enter a location'
     }
     this.renderMap = this.renderMap.bind(this)
   }
 
   componentDidMount() {
     this.setState({location: this.props.address})
+  }
+
+  componentWillReceiveProps() {
+    this.setState({location: this.props.location})
   }
 
   handleChange = (evt) => {
@@ -73,7 +77,7 @@ class Poll extends Component {
               <div id='map-outer'>
                 <button onClick={this.renderMap}>Hide Map</button>
                 <div id='map-container'>
-                  <PollMap />
+                  <Map interactive='true' coords={this.state.location}/>
                 </div>
               </div>
               ) : (
