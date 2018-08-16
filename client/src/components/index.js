@@ -15,4 +15,4 @@ export {default as Pod} from './Pod'
 export {default as Search} from './Search'
 export {default as CreateAdventure} from './CreateAdventure'
 export {default as Map} from './Map'
-
+export {default as SendText} from './SendText'

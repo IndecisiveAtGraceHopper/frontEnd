@@ -1,6 +1,12 @@
 const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
+if (process.env.NODE_ENV !== 'production') require('../../../secrets')
+var twilio = require('twilio')
+var client = new twilio(
+  process.env.TWILIO_ACCOUNT_SID,
+  process.env.TWILIO_AUTH_TOKEN
+)
 
 const User = db.define('user', {
   firstName: {
@@ -86,5 +92,29 @@ const setSaltAndPassword = user => {
 
 User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
+
+
+User.prototype.sendNotifications = function(coordinatorName) {
+
+  client.messages
+    .create({
+      body: `You've been invited by ${coordinatorName} to go on an adventure! Log in to see your adventure now: http://localhost:3000`,
+      to: process.env.MY_PHONE_NUMBER, // Text this number: ${this.phone}
+      from: process.env.TWILIO_PHONE_NUMBER // From a valid Twilio number
+    })
+    .then(message => console.log(message.sid))
+    .done()
+}
+
+User.prototype.sendPollCompleteNotification = function(){
+  client.messages
+    .create({
+      body: `The poll has been completed and results are ready to view: http://localhost:3000`,
+      to: process.env.MY_PHONE_NUMBER, // Text this number: ${this.phone}
+      from: process.env.TWILIO_PHONE_NUMBER // From a valid Twilio number
+    })
+    .then(message => console.log(message.sid))
+    .done()
+}
 
 module.exports = User
