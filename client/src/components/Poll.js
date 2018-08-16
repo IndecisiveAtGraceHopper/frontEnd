@@ -25,8 +25,9 @@ class Poll extends Component {
     this.setState({location: this.props.address})
   }
 
-  componentWillReceiveProps() {
-    this.setState({location: this.props.location})
+  async componentWillReceiveProps(newProps) {
+    const location = newProps.location
+    await this.setState({location})
   }
 
   handleChange = (evt) => {

@@ -1,4 +1,4 @@
-#poll-page {
+#poll-page, #adventure-page {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -8,7 +8,7 @@
     justify-content: space-around;
 }
 
-#map-container {
+#map-container, #adventure-map-container {
     position: relative;
     width: 100%;
     height: 400px;
