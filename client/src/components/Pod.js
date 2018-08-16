@@ -27,6 +27,7 @@ class Pod extends Component {
           <h2>Search for friends</h2>
           <h5></h5>
         <div><Search podId={podId}/></div>
+        <button onClick = {this.props.history.push('/pods/:id/createAdventure'}>Create An Adventure</button>
         </div>
       </div>
     );
