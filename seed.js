@@ -13,7 +13,7 @@ async function seed() {
       lastName: 'Hirschman',
       email: 'karah@indecisive.com',
       password: '123',
-      phone:8342988329,
+      phone:2403296669,
       address: '5 Hanover Square'})
 
     const karaF = await User.create({
@@ -21,7 +21,7 @@ async function seed() {
       lastName: 'Ferrari',
       email: 'karaf@indecisive.com',
       password: '123',
-      phone:8342988329,
+      phone:8608179810,
       address: '10 Hanover Square'})
 
     const sarah = await User.create({
@@ -29,7 +29,7 @@ async function seed() {
       lastName: 'Lynch',
       email: 'sarah@indecisive.com',
       password: '123',
-      phone:8342988329,
+      phone:2039062676,
       address: '20 Hanover Square'})
 
     const hawa = await User.create({
@@ -37,7 +37,7 @@ async function seed() {
       lastName: 'Sako',
       email: 'hawa@indecisive.com',
       password: '123',
-      phone:8342988329,
+      phone:6462281767,
       address: '25 Hanover Square'})
 
     const sophia = await User.create({
