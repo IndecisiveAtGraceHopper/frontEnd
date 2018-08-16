@@ -66,7 +66,25 @@ class Map extends Component {
         })
         const myCoords = await Promise.all(newCoords)
         this.setState({coords: myCoords})
-        const centerCoords = await myCoords[0]
+        const longitudes = myCoords.map(coord => {
+            return Number(coord[0])
+        })
+        const latitudes = myCoords.map(coord => {
+            return Number(coord[1])
+        })
+        let maxLong = longitudes[0]
+        let maxLat = latitudes[0]
+        let minLat = latitudes[0]
+        let minLong = longitudes[0]
+        for (let i=0; i<longitudes.length; i++) {
+            if (longitudes[i] > maxLong) maxLong = longitudes[i]
+            if (longitudes[i] < minLong) minLong = longitudes[i]
+            if (latitudes[i] > maxLat) maxLat = latitudes[i]
+            if (latitudes[i] < minLat) minLat = latitudes[i]
+        }
+        const avgLong = (minLong + maxLong) / 2
+        const avgLat = (minLat + maxLat) / 2
+        const centerCoords = [avgLong, avgLat]
         const mapOptions = {
             container: this.mapContainer,
             style: 'mapbox://styles/mapbox/streets-v10',
@@ -79,6 +97,7 @@ class Map extends Component {
                 .setLngLat(myCoords[i])
                 .addTo(this.map)
         }
+        this.map.fitBounds([[minLong - 0.005, minLat - 0.005],[maxLong + 0.005, maxLat + 0.005]])
     }
 
     async createSinglePointMap() {
