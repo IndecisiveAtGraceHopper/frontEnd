@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Route, Switch, withRouter} from 'react-router-dom'
-import {Poll, UserHome, UserProfile, Signup, Logout, Login, Home, Adventure, Activity, Pod, Search} from './components'
+import {Poll, UserHome, UserProfile, Signup, Logout, Login, Home, Adventure, Activity, Pod, Search, SendText} from './components'
 import { me } from './store'
 import {connect} from 'react-redux'
 
@@ -33,6 +33,7 @@ class Routes extends Component {
                 <Route exact path="/pod/adventure/:adventureId/activity/activityId" component={Activity} />
                 <Route exact path="/pod/adventure/" component={Adventure} />
                 <Route exact path="/pods/:id" component={Pod} />
+                <Route exact path="/users/:id" component={SendText} />
                 <Route exact path="/users/poll" component={Poll} />
                 <Route exact path="/userhome" component={UserHome} />
               </Switch>

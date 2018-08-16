@@ -4,7 +4,7 @@ const Adventure = require('./adventure')
 const Note = require('./note')
 const Poll = require('./poll')
 const Pod = require('./pod')
-const UserPod = require ('./UserPod')
+const UserPod = require('./UserPod')
 
 Adventure.belongsTo(User, { foreignKey: 'coordinator' })
 User.hasMany(Adventure, { foreignKey: 'coordinator' })
@@ -14,6 +14,10 @@ Adventure.belongsTo(Pod)
 
 User.belongsToMany(Pod, { through: 'user_pods' })
 Pod.belongsToMany(User, { through: 'user_pods' })
+
+UserPod.belongsTo(User)
+User.hasMany(UserPod)
+
 
 User.hasMany(Poll)
 Poll.belongsTo(User)

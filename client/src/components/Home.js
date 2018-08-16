@@ -1,11 +1,19 @@
 import React from 'react'
 
-const Home = () => {
+
+class Home extends React.Component {
+
+
+
+
+render(){
   return (
     <div>
-      <p>Home</p>
+      <h4>Home</h4>
     </div>
   )
+}
+
 }
 
 export default Home
