@@ -16,13 +16,17 @@ class Poll extends Component {
       hungerLevel: 2,
       drinkLevel: 2,
       showMap: false,
-      location: 'enter a location'
+      location: (this.props && this.props.location) ? this.props.location : 'enter a location'
     }
     this.renderMap = this.renderMap.bind(this)
   }
 
   componentDidMount() {
     this.setState({location: this.props.address})
+  }
+
+  componentWillReceiveProps() {
+    this.setState({location: this.props.location})
   }
 
   handleChange = (evt) => {
@@ -65,7 +69,7 @@ class Poll extends Component {
           <div className="form-group form-check">
             <div>
               <label htmlFor="location" />
-              <input type="text" name="location" onChange={this.handleChange} className="form-control" id="nameInput" aria-describedby="name" placeholder={this.state.location} value={this.props.location} />
+              <input type="text" name="location" onChange={this.handleChange} className="form-control" id="nameInput" aria-describedby="name" value={this.state.location} />
               <small id="location" className="form-text text-muted" />
               {/*<button onClick={this.onClick}>Find Me</button>*/}
             </div>
@@ -73,7 +77,7 @@ class Poll extends Component {
               <div id='map-outer'>
                 <button onClick={this.renderMap}>Hide Map</button>
                 <div id='map-container'>
-                  <Map interactive='true'/>
+                  <Map interactive='true' coords={this.state.location}/>
                 </div>
               </div>
               ) : (

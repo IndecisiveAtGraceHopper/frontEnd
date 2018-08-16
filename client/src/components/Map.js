@@ -11,7 +11,7 @@ class Map extends Component {
     constructor(props) {
         super()
         this.state = {
-            coords: [],
+            coords: props.coords,
             zoom: 14.5,
             interactive: props.interactive
         }
@@ -19,8 +19,7 @@ class Map extends Component {
 
     async componentDidMount() {
         if (this.state.interactive) {
-            this.props.setLoc(this.props.address)
-            const address = await this.getGeocode(this.props.address)
+            const address = await this.getGeocode(this.state.coords)
             const coords = [address.longitude, address.latitude]
             this.setState({coords})
             const mapOptions = {
