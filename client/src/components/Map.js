@@ -83,13 +83,19 @@ class Map extends Component {
 
     async createSinglePointMap() {
         console.log('creating single point map')
+        const geocode = await this.getGeocode(this.state.coord)
+        const coords = [geocode.longitude, geocode.latitude]
+        this.setState({coords})
         const mapOptions = {
             container: this.mapContainer,
             style: 'mapbox://styles/mapbox/streets-v10',
-            center: this.state.coords,
+            center: coords,
             zoom: this.state.zoom
         }
         this.map = new mapboxgl.Map(mapOptions)
+        const singleMarker = new mapboxgl.Marker()
+            .setLngLat(coords)
+            .addTo(this.map)
     }
 
     getGeocode = async (address) => {
