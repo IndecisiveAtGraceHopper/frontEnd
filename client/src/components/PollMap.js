@@ -15,7 +15,7 @@ class PollMap extends Component {
             zoom: 14.5
         }
     }
-    
+
     async componentDidMount() {
         this.props.setLoc(this.props.address)
         const address = await this.getGeocode(this.props.address)
@@ -33,7 +33,6 @@ class PollMap extends Component {
             const zoom = this.map.getZoom().toFixed(2)
             const coords = [lng.toFixed(4), lat.toFixed(4)]
             this.setState({coords, zoom})
-            console.log('new coords:', coords)
         })
     }
 
