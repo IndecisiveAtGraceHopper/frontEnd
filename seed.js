@@ -186,8 +186,8 @@ async function seed() {
       address: '5 East 110th street'})
 
 
-    const adventure1 = await Adventure.create({name: 'Rock Climbing', date: Date.now()})
-    // await Pod.bulkCreate([{userId: 1, adventureId: 1}, {userId: 2, adventureId: 1}, {userId: 3, adventureId: 1}, {userId: 4, adventureId: 1}])
+    const adventure1 = await Adventure.create({name: 'Rock Climbing', date: Date.now(), coordinator: 4})
+    const pod1 = await Pod.create({name: 'fab four'})
     const adventure2 = await Adventure.create({name:'testing', date: Date.now(), totalCount: 5})
     const nitehawkCinema = await Activity.create({date: Date.now(), address: '136 Metropolitan Ave, Brooklyn, NY', selected: false, adventureId: 1, name:'Nitehawk Cinema'})
     const bigGayIceCream = await Activity.create({date: Date.now(), address: '61 Grove St, New York, NY', selected: false, adventureId: 1, name: 'Big Gay Ice Cream Shop'})

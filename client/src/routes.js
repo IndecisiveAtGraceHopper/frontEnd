@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Route, Switch, withRouter} from 'react-router-dom'
-import {Poll, UserHome, UserProfile, Signup, Logout, Login, Home, Adventure, Activity, Pod, Search, SendText} from './components'
+import {Poll, UserHome, UserProfile, Signup, Logout, Login, Home, Adventure, Activity, Pod, Search, CreateAdventure, SendText} from './components'
 import { me } from './store'
 import {connect} from 'react-redux'
 
@@ -30,11 +30,13 @@ class Routes extends Component {
             {/*components visible to logged in users with complete profiles*/}
             {isProfileComplete && (
               <Switch>
-                <Route exact path="/pod/adventure/:adventureId/activity/activityId" component={Activity} />
                 <Route exact path="/pod/adventure/" component={Adventure} />
                 <Route exact path="/pods/:id" component={Pod} />
+                <Route path ="/pods/:id/CreateAdventure" component={CreateAdventure} />
                 <Route exact path="/users/:id/text" component={SendText} />
                 <Route exact path="/users/poll" component={Poll} />
+                <Route exact path="/users/:id" component={SendText} />
+
                 <Route exact path="/userhome" component={UserHome} />
               </Switch>
             )}
