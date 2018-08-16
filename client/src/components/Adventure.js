@@ -29,9 +29,9 @@ class Adventure extends Component {
 
   render() {
     return (
-      <div>
+      <div id='adventure-page'>
         <h3>Adventure</h3>
-        <div>
+        <div id='activities-container'>
           { this.props.activities.length && this.props.activities.map((activity) => 
             <Activity activity={activity} isCoord={true} key={activity.id}/>)
           }
