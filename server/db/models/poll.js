@@ -4,6 +4,8 @@ const Adventure = require('./adventure')
 const tally = require('../../PollResultsCalculator')
 const categories = require('../../categories')
 const apiCalls = require('../../call')
+const pollCompleteNotification = require('../../pollCompleteNotification')
+
 
 const Poll = db.define('poll', {
   latitude: {
@@ -60,6 +62,7 @@ const Poll = db.define('poll', {
             let results = await tally(data)
             let cats = categories(results)
             apiCalls(cats, results.location, results.priceRange)
+            pollCompleteNotification(adventure.podId)
           }
        } catch(err) {
         console.log("DANGER DANGER WILL ROBINSON DANGER", err)
