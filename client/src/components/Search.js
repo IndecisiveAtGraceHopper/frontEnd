@@ -31,10 +31,7 @@ class Search extends React.Component {
   async handleClick(event){
 
     event.preventDefault()
-    // this.setState({userId: event.target.value})
-    console.log('EVENT********', event.target.value)
     await axios.post('/api/pods/userPod', ({podId: this.props.podId, userId: event.target.value}))
-
   }
 
   handleSubmit (event) {
@@ -56,12 +53,10 @@ class Search extends React.Component {
   }
 
   render() {
-    console.log("SEARCHPROPS", this.props)
-    console.log("SEARCHSTATE", this.state)
+    console.log('STATE', this.props.userId)
+
     return (
-
       <div>
-
         <form onSubmit={this.handleSubmit} className="form-inline">
           <input id='searchInput' type="search" name="userToSearch" onChange={this.handleChange} className= "form-control" placeholder="Search for user" aria-label="Search"/>
           <div>
@@ -85,7 +80,8 @@ class Search extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    users: state.searchUsers.allUsers
+    users: state.searchUsers.allUsers,
+    userId: state.user.id,
   }
 }
 

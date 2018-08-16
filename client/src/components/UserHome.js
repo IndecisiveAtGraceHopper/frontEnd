@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Logout from './Logout'
 import {connect} from 'react-redux'
 import {getUserAdventures, getUserPods, createPodThunk} from '../store'
+import axios from 'axios'
 
 /**
  * COMPONENT
@@ -10,14 +11,16 @@ class UserHome extends Component {
   constructor(){
     super()
     this.state = {
-      name: ''
+      name: '',
+      userId: null
     }
   }
 
   handleSubmit = async (evt) => {
     evt.preventDefault()
-    this.props.createNewPod({name:this.state.name}).then(createdPod =>
-      window.location = `/pods/${createdPod.id}`)
+    const createdPod = await this.props.createNewPod({name:this.state.name})
+    await axios.post('/api/pods/userPod', ({podId: createdPod.id, userId: this.props.userId}))
+    window.location = `/pods/${createdPod.id}`
   }
 
   handleChange = (evt) => {
@@ -27,14 +30,10 @@ class UserHome extends Component {
   }
 
   render() {
-    console.log('PROPS IS THIS IT', this.props)
-    console.log('STATE', this.state)
-    const user = this.props.user
-    //what is the best way to filter adventures into upcoming and recent?
-    // const upcomingAdventures = user.adventures && user.adventures.filter()
-    // const recentAdventures = user.adventures && user.adventures.filter()
+     console.log('podId', this.state.podId)
     return (
-      <div> POD
+      <div>
+      <h4>POD</h4>
         <form onSubmit={this.handleSubmit}>
          <div className="form-group form-check">
             <label htmlFor="name" />
@@ -53,18 +52,14 @@ class UserHome extends Component {
 
 const mapState = state => {
   console.log('STATEMAP', state)
+  console.log(state.user.id)
   return ({
-    user: state.user,
-
-    // adventures: state.user.adventures,
-    // pods: state.user.pods
+    userId: state.user.id,
   })
 }
 
 const mapDispatch = dispatch => {
   return ({
-    // fetchPods: (userId) => dispatch(getUserPods(userId)),
-    // fetchAdventures: (userId) => dispatch(getUserAdventures(userId)),
     createNewPod: (name) => dispatch(createPodThunk(name))
   })
 }
