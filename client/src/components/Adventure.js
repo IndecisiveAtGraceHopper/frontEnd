@@ -26,7 +26,7 @@ class Adventure extends Component {
       <div>
         Adventure
 
-        {this.props.activities.length &&<Activity activity={this.props.activities[0]} />}
+        {this.props.activities.length && this.props.activities.map(activity=> <Activity activity={activity} isCoord={true}/>)}
       </div>
     );
   }

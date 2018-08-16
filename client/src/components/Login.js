@@ -44,6 +44,7 @@ class Login extends React.Component {
           </div>
           <div className='authElement'>
             <button type="submit">Log In</button>
+            {(this.props.user && this.props.user.error)&&<span>Wrong Username or Password</span>}
           </div>
           <div className='authElement'>
             <button><Link to='/signup'>Sign Up</Link></button>
@@ -61,4 +62,10 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login)
+const mapStateToProps = (state)=> {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

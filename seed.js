@@ -16,7 +16,8 @@ async function seed() {
     const adventure1 = await Adventure.create({name: 'Rock Climbing', date: Date.now()})
     // await Pod.bulkCreate([{userId: 1, adventureId: 1}, {userId: 2, adventureId: 1}, {userId: 3, adventureId: 1}, {userId: 4, adventureId: 1}])
     const adventure2 = await Adventure.create({name:'testing', date: Date.now(), totalCount: 5})
-    const activity1 = await Activity.create({date: Date.now(), address: 'NY, NY', selected: true, adventureId: 1})
+    const activity1 = await Activity.create({date: Date.now(), address: 'NY, NY', selected: false, adventureId: 1, name:'1'})
+    const activity2 = await Activity.create({date: Date.now(), address: 'NY, NY', selected: false, adventureId: 1, name: '2'})
 
   const board1 = await Note.create({notes: "can't wait to go rock climbing!", adventureId: 1})
 

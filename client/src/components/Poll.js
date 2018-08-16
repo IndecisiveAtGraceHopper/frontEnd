@@ -4,7 +4,7 @@ import {submitPollThunk} from '../store/poll'
 import axios from 'axios'
 import key from './secrets'
 import {PollMap} from './index'
-import { me } from '../store';
+
 
 class Poll extends Component {
   constructor() {
@@ -45,6 +45,12 @@ class Poll extends Component {
     const {latitude, longitude} = await this.getGeocode(this.state.location)
     this.props.submitPollThunk({latitude,longitude, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel, adventureId:2})
   }
+  // can only test on https
+  // onClick =(evt)=> {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition((coords)=> console.log('coords', coords))
+  //   } else alert('Geolocation not supported')
+  // }
 
   renderMap(evt) {
     evt.preventDefault()
@@ -61,6 +67,7 @@ class Poll extends Component {
               <label htmlFor="location" />
               <input type="text" name="location" onChange={this.handleChange} className="form-control" id="nameInput" aria-describedby="name" value={this.state.location} />
               <small id="location" className="form-text text-muted" />
+              {/*<button onClick={this.onClick}>Find Me</button>*/}
             </div>
             {this.state.showMap ? (
               <div id='map-outer'>
@@ -119,7 +126,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
   return {
     submitPollThunk: poll => dispatch(submitPollThunk(poll)),
-    getCurrentUser: () => dispatch(me())
   }
 }
 
