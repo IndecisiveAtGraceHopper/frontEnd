@@ -13,8 +13,8 @@ async function seed() {
     const sarah = await User.create({firstName: 'Sarah', lastName: 'Lynch', email: 'sarah@indecisive.com', password: '123'})
     const hawa = await User.create({firstName: 'Hawa', lastName: 'Sako', email: 'hawa@indecisive.com', password: '123'})
 
-    const adventure1 = await Adventure.create({name: 'Rock Climbing', date: Date.now()})
-    // await Pod.bulkCreate([{userId: 1, adventureId: 1}, {userId: 2, adventureId: 1}, {userId: 3, adventureId: 1}, {userId: 4, adventureId: 1}])
+    const adventure1 = await Adventure.create({name: 'Rock Climbing', date: Date.now(), coordinator: 4})
+    const pod1 = await Pod.create({name: 'fab four'})
     const adventure2 = await Adventure.create({name:'testing', date: Date.now(), totalCount: 5})
     const activity1 = await Activity.create({date: Date.now(), address: 'NY, NY', selected: false, adventureId: 1, name:'1'})
     const activity2 = await Activity.create({date: Date.now(), address: 'NY, NY', selected: false, adventureId: 1, name: '2'})

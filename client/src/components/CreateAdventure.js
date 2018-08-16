@@ -11,19 +11,25 @@ class CreateAdventure extends Component {
     }
   }
 
+  handleChange = (evt)=> {
+    this.setState({[evt.target.name]: evt.target.value})
+
+  }
+
   onClick = (evt)=> {
     evt.preventDefault()
-    this.props.submit(this.state)
+    this.props.submit({...this.state, podId: +this.props.match.params.id})
 
   }
 
   render() {
+    if (this.props.user) {console.log('here', this.props.user)}
     return(
         <form onSubmit= {this.onClick}>
           <label>Name:</label>
-          <input value= {this.state.name} />
+          <input value= {this.state.name} name='name' onChange={this.handleChange}/>
           <label>Date:</label>
-          <input type ='date' value = {this.state.date}/>
+          <input type ='date' value = {this.state.date} name='date' onChange={this.handleChange}/>
           <button type='submit'>Start your adventure!</button>
         </form>
         )
@@ -38,4 +44,5 @@ const mapDispatch = (dispatch)=> {
 
 
 
-export default connect(null, null)(CreateAdventure);
+
+export default connect(null, mapDispatch)(CreateAdventure);

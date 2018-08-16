@@ -17,7 +17,6 @@ class Routes extends Component {
     return (
       <Switch>
         {/*components visible to all*/}
-      <Route path='/test' component={CreateAdventure} />{/*testing*/}
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
@@ -31,9 +30,9 @@ class Routes extends Component {
             {/*components visible to logged in users with complete profiles*/}
             {isProfileComplete && (
               <Switch>
-                <Route exact path="/pod/adventure/:adventureId/activity/activityId" component={Activity} />
                 <Route exact path="/pod/adventure/" component={Adventure} />
                 <Route exact path="/pods/:id" component={Pod} />
+                <Route exact path ="/pods/:id/CreateAdventure" component={CreateAdventure} />
                 <Route exact path="/users/poll" component={Poll} />
                 <Route exact path="/userhome" component={UserHome} />
               </Switch>

@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const {Adventure, Activity} = require('../db/models')
+const {Adventure, Activity, User, Pod} = require('../db/models')
 const {userAuth} = require('../api/auth')
+
 
 module.exports = router
 
@@ -35,7 +36,9 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try {
-        const newAdventure = await Adventure.create(req.body)
+        const count = await User.count({include: [{model: Pod, where: {id: req.body.podId}}]})
+        console.log( "COUNTS", count)
+        const newAdventure = await Adventure.create({...req.body, coordinator: req.user.id, totalCount: count})
         res.json(newAdventure)
     } catch (err) {
         next(err)

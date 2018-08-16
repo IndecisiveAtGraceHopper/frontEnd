@@ -28,7 +28,7 @@ export const selectAdventure = adventure => ({type: SELECT_ADVENTURE, adventure}
 export const createAdventure = (adventure) => {
     return async (dispatch) => {
       try {
-        const {data} = axios.post('/api/adventure', adventure)
+        const {data} = await axios.post('/api/adventures', adventure)
         dispatch(selectAdventure(data))
       } catch (err) {
         console.log(err)
