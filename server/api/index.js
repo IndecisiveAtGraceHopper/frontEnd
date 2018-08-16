@@ -17,6 +17,8 @@ router.use('/pods', require('./pods'))
 
 router.use('/polls', require('./polls'))
 
+router.use('/test', require('./test'))
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' })

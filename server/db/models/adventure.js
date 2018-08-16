@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
+const adventureNotificationFunction = require('../../adventureNotificationFunction')
 
 const Adventure = db.define('adventure', {
   name: {
@@ -18,6 +19,10 @@ const Adventure = db.define('adventure', {
     type: Sequelize.INTEGER,
     defaultValue: 0
   }
-});
+})
+
+Adventure.afterCreate((adventure) => {
+  adventureNotificationFunction(adventure.coordinator, adventure.podId)
+})
 
 module.exports = Adventure
