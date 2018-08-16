@@ -19,8 +19,8 @@ class Map extends Component {
 
     async componentDidMount() {
         if (this.state.interactive) {
-            const address = await this.getGeocode(this.state.coords)
-            const coords = [address.longitude, address.latitude]
+            const geocode = await this.getGeocode(this.state.coords)
+            const coords = [geocode.longitude, geocode.latitude]
             this.setState({coords})
             const mapOptions = {
                 container: this.mapContainer,
@@ -44,7 +44,12 @@ class Map extends Component {
                 await this.props.setLoc(address)
             })
         } else {
-
+            const coords = await this.state.coords.map(async (coord) => {
+                const geocode = await this.getGeocode(coord)
+                return [geocode.longitude, geocode.latitude]
+            })
+            console.log(coords)
+            this.setState({coords})
         }
     }
 
