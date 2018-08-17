@@ -19,7 +19,7 @@ const Navbar = (props) => {
               <li><Link to='/userhome'>Plan an Adventure!</Link></li>
               <li><Link to='/user/adventures'>Your Adventures</Link></li>
             </ul>
-            <button id='logout'><Link to='/#' onClick={handleLogout}>Log Out</Link></button>
+            <button id='logout-button'><Link to='/#' onClick={handleLogout}>Log Out</Link></button>
           </div>
         ) : (
           <div className='nav-items'>

@@ -23,12 +23,13 @@
     text-decoration: none;
 }
 
-.nav-items, #navbar, #logged-out-navbar, #logged-in-navbar, #logged-in-navbar #logout {
+.nav-items, #navbar, #logged-in-navbar #logout-button {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     align-content: space-around;
     justify-content: space-around;
+    border: 2px solid black;
 }
 
 #navbar {
