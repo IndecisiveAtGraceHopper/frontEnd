@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {getUserAdventuresThunk} from '../store'
+import {Link} from 'react-router-dom'
 
 class Adventures extends Component {
     constructor() {
@@ -32,8 +33,8 @@ class Adventures extends Component {
                 <div>
                 {
                     futureAdventures.map(adventure => (
-                    <div id="adventure" key={adventure.id}>
-                        <h5>{adventure.name}</h5>
+                        <div id="adventure" key={adventure.id}>
+                            <h4><Link to={`/adventures/${adventure.id}`}>{adventure.name}</Link></h4>
                         </div>
                     ))
                 }
@@ -42,11 +43,11 @@ class Adventures extends Component {
                 <div>
                 {
                     pastAdventures.map(adventure => (
-                    <div id="adventure" key={adventure.id}>
-                        <h5>{adventure.name}</h5>
+                        <div id="adventure" key={adventure.id}>
+                            <h4><Link to={`/adventures/${adventure.id}`}>{adventure.name}</Link></h4>
                         </div>
-                    )
-                )}
+                    ))
+                }
                 </div>
             </div>
         )
