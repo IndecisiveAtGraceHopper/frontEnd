@@ -3,6 +3,7 @@ import Logout from './Logout'
 import {connect} from 'react-redux'
 import {getUserAdventures, getUserPods, createPodThunk} from '../store'
 import axios from 'axios'
+import UserPods from './User'
 
 /**
  * COMPONENT
@@ -32,6 +33,7 @@ class UserHome extends Component {
   render() {
     return (
       <div>
+       <div><UserPods id={this.props.userId} /></div>
       <h3 className="text-center"> Create a new pod! </h3>
         <form onSubmit={this.handleSubmit}>
          <div className="form-group form-check">
