@@ -18,6 +18,8 @@ class Map extends Component {
         this.createInteractiveMap = this.createInteractiveMap.bind(this)
         this.createMultiPointMap = this.createMultiPointMap.bind(this)
         this.createSinglePointMap = this.createSinglePointMap.bind(this)
+        this.getGeocode = this.getGeocode.bind(this)
+        this.getAddress = this.getAddress.bind(this)
     }
 
     componentDidMount() {
@@ -31,19 +33,18 @@ class Map extends Component {
     }
 
     async createInteractiveMap() {
-        console.log('creating interactive map')
         const geocode = await this.getGeocode(this.state.coords)
         const coords = [geocode.longitude, geocode.latitude]
-        this.setState({coords})
+        await this.setState({coords})
         const mapOptions = {
             container: this.mapContainer,
             style: 'mapbox://styles/mapbox/streets-v10',
-            center: (this.state.coords.length === 2) ? this.state.coords : coords,
+            center: coords,
             zoom: this.state.zoom
         }
         this.map = new mapboxgl.Map(mapOptions)
         const staticMarker = new mapboxgl.Marker()
-            .setLngLat(this.state.coords)
+            .setLngLat(coords)
             .addTo(this.map)
         this.map.on('move', async () => {
             const { lng, lat } = this.map.getCenter()
@@ -59,13 +60,11 @@ class Map extends Component {
     }
 
     async createMultiPointMap() {
-        console.log('creating multi point map')
-        const coords = await this.state.coords.map(async (coord) => {
+        const coordPromises = this.state.coords.map(async (coord) => {
             const geocode = await this.getGeocode(coord.coords)
             return {coords: [geocode.longitude, geocode.latitude], title: coord.title}
         })
-        const places = await Promise.all(coords)
-        this.setState({coords: places})
+        const places = await Promise.all(coordPromises)
         const longitudes = places.map(place => {
             return Number(place.coords[0])
         })
@@ -106,36 +105,35 @@ class Map extends Component {
     }
 
     async createSinglePointMap() {
-        console.log('creating single point map')
         const geocode = await this.getGeocode(this.state.coords.coords)
-        const coords = [{coords: [geocode.longitude, geocode.latitude], title: this.state.coords.title}]
-        this.setState({coords})
+        const coords = [geocode.longitude, geocode.latitude]
+        const title = this.state.coords.title
         const mapOptions = {
             container: this.mapContainer,
             style: 'mapbox://styles/mapbox/streets-v10',
-            center: coords.coords,
+            center: coords,
             zoom: this.state.zoom
         }
         this.map = new mapboxgl.Map(mapOptions)
         const singlePopUp = new mapboxgl.Popup({offset: [0, -15]})
-            .setLngLat(coords.coords)
-            .setHTML('<p>' + coords.title + '</p>')
-            .setLngLat(coords.coords)
+            .setLngLat(coords)
+            .setHTML('<p>' + title + '</p>')
+            .setLngLat(coords)
         const singleMarker = new mapboxgl.Marker()
-            .setLngLat(coords.coords)
+            .setLngLat(coords)
             .addTo(this.map)
             .setPopup(singlePopUp)
     }
 
-    getGeocode = async (address) => {
-        const location = address.split().join("+")
+    async getGeocode (address) {
+        const location = address.split().join('+')
         const {data} = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${key}`)
         const latitude = data.results[0].geometry.location.lat
         const longitude = data.results[0].geometry.location.lng
         return {latitude, longitude}
     }
 
-    getAddress = async (coords) => {
+    async getAddress (coords) {
         const lat = coords[1]
         const lng = coords[0]
         const res = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${key}`)
@@ -154,17 +152,10 @@ class Map extends Component {
     }
 }
 
-const mapState = state => {
-    return {
-        address: state.user.address
-    }
-}
-
 const mapDispatch = dispatch => {
     return {
         setLoc: (location) => dispatch(setLocation(location))
     }
 }
 
-
-export default connect(mapState, mapDispatch)(Map)
+export default connect(null, mapDispatch)(Map)
