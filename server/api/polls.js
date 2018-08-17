@@ -16,7 +16,7 @@ router.get('/', async (req, res, next) => {
     }
 })
 
-router.get('/:pollId', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
         const poll = await Poll.findById(req.params.pollId)
         res.json(poll)

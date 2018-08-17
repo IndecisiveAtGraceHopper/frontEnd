@@ -1,7 +1,8 @@
-const userAuthorize = (req, res, next) => {
-  if (req.user && req.user.id === req.params.userId )
+const userAuth = (req, res, next) => {
+  console.log(req.params.userId)
+  if (req.user && +req.user.id === +req.params.userId )
     return next()
   else
     res.sendStatus(401)
 }
-module.exports = userAuthorize
+module.exports = {userAuth}

@@ -36,9 +36,9 @@ class CreateAdventure extends Component {
   }
 }
 
-const mapDispatch = (dispatch)=> {
+const mapDispatch = (dispatch, {history})=> {
   return {
-    submit: (adventure)=> dispatch(createAdventure(adventure))
+    submit: (adventure)=> dispatch(createAdventure(adventure, history))
   }
 }
 

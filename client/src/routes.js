@@ -23,21 +23,20 @@ class Routes extends Component {
         {/*components visible to logged in users*/}
         {isLoggedIn && (
           <Switch>
-            <Route exact path="/users/profile" component={UserProfile} />
-            <Route exact path="/search" component={Search} />
+            <Route exact path="/profile" component={UserProfile} />
+
 
             <Route exact path="/logout" component={Logout} />
             {/*components visible to logged in users with complete profiles*/}
             {isProfileComplete && (
               <Switch>
-                <Route exact path="/pod/adventure/" component={Adventure} />
+                <Route exact path = "/pods" component={UserHome} />
+                <Route exact path="/search" component={Search} />
                 <Route exact path="/pods/:id" component={Pod} />
                 <Route path ="/pods/:id/CreateAdventure" component={CreateAdventure} />
                 <Route exact path="/users/:id/text" component={SendText} />
-                <Route exact path="/users/poll" component={Poll} />
+                <Route exact path="/adventure/:id/" component={Adventure} />
                 <Route exact path="/users/:id" component={SendText} />
-
-                <Route exact path="/userhome" component={UserHome} />
               </Switch>
             )}
             <Route component={UserProfile} />
