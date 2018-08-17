@@ -48,7 +48,7 @@ class Poll extends Component {
     evt.preventDefault()
     const {priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel} = this.state
     const {latitude, longitude} = await this.getGeocode(this.state.location)
-    this.props.submitPollThunk({latitude,longitude, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel, adventureId:2})
+    this.props.submitPollThunk({latitude,longitude, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel, adventureId: +this.props.adventureId, userId:this.props.userId})
   }
   // can only test on https
   // onClick =(evt)=> {
@@ -63,6 +63,7 @@ class Poll extends Component {
   }
 
   render() {
+    console.log('props', this.props)
     return (
       <div className="container" id='poll-page'>
         <h1>This is the Poll</h1>
@@ -124,7 +125,8 @@ class Poll extends Component {
 const mapStateToProps = state => {
   return {
     address: state.user.address,
-    location: state.poll.location
+    location: state.poll.location,
+    userId: state.user.id
   }
 }
 

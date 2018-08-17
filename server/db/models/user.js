@@ -99,7 +99,7 @@ User.prototype.sendNotifications = function(coordinatorName) {
 
   client.messages
     .create({
-      body: `You've been invited by ${coordinatorName} to go on an adventure! Log in to see your adventure now: http://localhost:3000`,
+      body: `You've been invited by ${coordinatorName} to go on an adventure! Log in to see your adventure now: http://localhost:3000/`,
       to: this.phone,
       from: process.env.TWILIO_PHONE_NUMBER // From a valid Twilio number
     })

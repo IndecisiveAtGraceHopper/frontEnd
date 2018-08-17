@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {Adventure, Activity, User, Pod} = require('../db/models')
+const {Adventure, Activity, User, Pod, Poll} = require('../db/models')
 const {userAuth} = require('../api/auth')
 
 
@@ -30,8 +30,18 @@ router.use('/:id', async(req, res, next) => {
     }
 })
 
+
 router.get('/:id', async (req, res, next) => {
     res.json(req.adventure)
+})
+
+router.get('/:id/poll/:userId', userAuth, async(req, res, next) => {
+    try{
+        const poll = await Poll.findOne({where: {adventureId: req.params.id, userId: req.params.userId}})
+        res.json(poll)
+    } catch (err) {
+        next(err)
+    }
 })
 
 router.post('/', async (req, res, next) => {
