@@ -56,12 +56,6 @@ export const getUserPodsThunk = (id) => {
   }
 }
 
-export const getUserAdventuresThunk = (id) => {
-  return async (dispatch) => {
-    const user = await axios.get(`/api/users/${id}`)
-    console.log('user', user)
-  }
-}
 /**
  * REDUCER
  */
