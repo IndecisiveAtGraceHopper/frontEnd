@@ -15,7 +15,8 @@ const initialState = {
   lastName: '',
   phone: '',
   email: '',
-  address: ''
+  address: '',
+  image: ''
 }
 
 /**
@@ -80,7 +81,6 @@ export const createProfile = (profileInfo, userId) => async dispatch => {
   try {
     const res = await axios.put(`/auth/profile/${userId}`, profileInfo)
     dispatch(getUser(res.data))
-    history.push('/userhome')
   }catch (err) {
     console.error(err)
   }
