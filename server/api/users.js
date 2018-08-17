@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {Poll, User, Pod} = require('../db/models')
+const {Poll, User, Pod, Adventure} = require('../db/models')
 const {userAuth} = require('../api/auth')
 if (process.env.NODE_ENV !== 'production') require('../../secrets')
 var twilio = require('twilio')
@@ -23,12 +23,11 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const user = await User.findById(+req.params.id,
-      {
-        include: [{
-          model:Pod
-        }]
-      })
+    const user = await User.findById( +req.params.id, {include: 
+      [{model:Pod, include: 
+        [{model:Adventure}]
+      }]
+    })
     res.json(user)
   } catch (err) {
     next(err)

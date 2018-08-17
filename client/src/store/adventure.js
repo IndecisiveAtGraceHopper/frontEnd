@@ -5,8 +5,6 @@ import axios from 'axios'
  */
 const SELECT_ADVENTURE = 'SELECT_ADVENTURE'
 
-
-
 /**
  * INITIAL STATE
  */
@@ -19,22 +17,20 @@ const initialState = {}
 
 export const selectAdventure = adventure => ({type: SELECT_ADVENTURE, adventure})
 
-
-
 /**
  * THUNK CREATORS
  */
 
 export const createAdventure = (adventure, history) => {
-    return async (dispatch) => {
-      try {
-        const {data} = await axios.post('/api/adventures', adventure)
-        dispatch(selectAdventure(data))
-        history.push(`/adventure/${data.id}`)
-      } catch (err) {
-        console.log(err)
-      }
+  return async (dispatch) => {
+    try {
+      const {data} = await axios.post('/api/adventures', adventure)
+      dispatch(selectAdventure(data))
+      history.push(`/adventure/${data.id}`)
+    } catch (err) {
+      console.log(err)
     }
+  }
 }
 
 /**

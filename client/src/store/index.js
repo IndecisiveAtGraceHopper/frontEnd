@@ -21,5 +21,6 @@ export * from './user'
 export * from './poll'
 export * from './searchUsers'
 export * from './pod'
+export * from './adventure'
 
 

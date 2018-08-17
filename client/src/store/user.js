@@ -6,6 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const USER_ADVENTURES = 'USER_ADVENTURES'
 
 /**
  * INITIAL STATE
@@ -16,7 +17,8 @@ const initialState = {
   phone: '',
   email: '',
   address: '',
-  image: ''
+  image: '',
+  adventures: []
 }
 
 /**
@@ -24,6 +26,7 @@ const initialState = {
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
+const userAdventures = adventures => ({type: USER_ADVENTURES, adventures})
 
 /**
  * THUNK CREATORS
@@ -94,11 +97,15 @@ export const getUserPods = userId => async dispatch => {
   }
 }
 
-export const getUserAdventures = userId => async dispatch => {
-  try {
-    const adventures = await axios.get(`/api/user/adventures/${userId}`)
-  } catch (err) {
-    console.error(err)
+export const getUserAdventuresThunk = (id) => {
+  return async (dispatch) => {
+    const user = await axios.get(`/api/users/${id}`)
+    let adventures = []
+    const pods = user.data.pods
+    pods.forEach(pod => {
+      adventures = adventures.concat(pod.adventures)
+    })
+    dispatch(userAdventures(adventures))
   }
 }
 
@@ -112,6 +119,8 @@ export default function(state = initialState, action) {
       return {...action.user}
     case REMOVE_USER:
       return {}
+    case USER_ADVENTURES: 
+      return {...state, adventures: action.adventures}
     default:
       return state
   }
