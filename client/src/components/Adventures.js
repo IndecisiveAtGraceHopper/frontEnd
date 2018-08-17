@@ -49,6 +49,9 @@ class Adventures extends Component {
                     ))
                 }
                 </div>
+                <div>
+                    <button><Link to='/pods'>Create a New Adventure</Link></button>
+                </div>
             </div>
         )
     }
