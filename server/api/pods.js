@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Pod = require('../db/models/pod')
+const Adventure = require('../db/models/adventure')
 const User = require('../db/models/user')
 const UserPod = require('../db/models/userPod')
 const {userAuth} = require('../api/auth')
@@ -22,7 +23,10 @@ router.get('/:id', async (req, res, next) => {
         const pod = await Pod.findById(req.params.id,
            {
             include: [{
-                model: User
+                model: User,
+                include:[{
+                    model:Adventure
+                }]
             }]
         })
         res.json(pod)
