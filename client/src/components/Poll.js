@@ -16,27 +16,27 @@ class Poll extends Component {
       hungerLevel: 2,
       drinkLevel: 2,
       showMap: false,
-      location: (this.props && this.props.location) ? this.props.location : 'enter a location'
+      location: 'enter a location'
     }
     this.renderMap = this.renderMap.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.getGeocode = this.getGeocode.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentDidMount() {
-    this.setState({location: this.props.address})
+  async componentDidMount() {
+    await this.setState({location: this.props.address})
   }
 
   async componentWillReceiveProps(newProps) {
-    const location = newProps.location
-    await this.setState({location})
+    await this.setState({location: newProps.location})
   }
 
-  handleChange = (evt) => {
-    this.setState({
-      [evt.target.name]: evt.target.value
-    })
+  async handleChange (evt) {
+    await this.setState({[evt.target.name]: evt.target.value})
   }
 
-  getGeocode = async(evt) => {
+  async getGeocode (evt) {
     const location= evt.split().join("+")
     const {data} = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${key}`)
     const latitude = data.results[0].geometry.location.lat
@@ -44,7 +44,7 @@ class Poll extends Component {
     return {latitude, longitude}
   }
 
-  handleSubmit = async (evt) => {
+  async handleSubmit (evt) {
     evt.preventDefault()
     const {priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel} = this.state
     const {latitude, longitude} = await this.getGeocode(this.state.location)
@@ -57,9 +57,9 @@ class Poll extends Component {
   //   } else alert('Geolocation not supported')
   // }
 
-  renderMap(evt) {
+  async renderMap(evt) {
     evt.preventDefault()
-    this.setState({showMap: !this.state.showMap})
+    await this.setState({showMap: !this.state.showMap})
   }
 
   render() {
