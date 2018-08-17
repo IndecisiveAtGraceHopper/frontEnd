@@ -8,15 +8,14 @@ const Navbar = (props) => {
   const {isLoggedIn, handleLogout} = props
   return (
     <nav id='navbar' className='navbar navbar-default'>
-      <div className='container-fluid'>
         <div className='navbar-header'>
-          <h2 id='title'>indecisive</h2>
+          <Link to='/userhome'><h2 id='title'>indecisive</h2></Link>
         </div>
         {
           isLoggedIn ? (
             <ul id='nav-items' className='nav navbar-nav'>
-              <li><Link to='/userhome'>Your Account</Link></li>
-              <li><Link to='/t'>Plan an Adventure!</Link></li>
+              <li><Link to='/users/profile'>Your Account</Link></li>
+              <li><Link to='/userhome'>Plan an Adventure!</Link></li>
               <li><Link to='/#' onClick={handleLogout}>Log Out</Link></li>
             </ul>
           ) : (
@@ -26,7 +25,6 @@ const Navbar = (props) => {
             </ul>
           )
         }
-      </div>
     </nav>
   )
 }
