@@ -23,7 +23,7 @@
     text-decoration: none;
 }
 
-.nav-items, #navbar, #logged-out-navbar, #logged-in-navbar {
+.nav-items, #navbar, #logged-out-navbar, #logged-in-navbar, #logged-in-navbar #logout {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
