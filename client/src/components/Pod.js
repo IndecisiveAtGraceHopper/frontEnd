@@ -13,7 +13,8 @@ class Pod extends Component {
     window.location = `/pods/${this.props.match.params.id}/createAdventure`
   }
   render() {
-  	const podId = this.props.match.params.id
+
+    const podId = this.props.match.params.id
 
 	if(this.props.users){
     return (
@@ -36,7 +37,7 @@ class Pod extends Component {
     );
   }
 
-  return <h1>here!</h1>
+  return <h1>here why!</h1>
 }
 }
 
