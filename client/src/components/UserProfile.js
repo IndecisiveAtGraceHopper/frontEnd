@@ -35,7 +35,8 @@ class UserProfile extends Component {
     if (this.state.user.image.length > 3) {
       this.setState({currentImage: this.state.user.image})
     }
-    this.props.updateProfile({firstName: this.state.user.firstName, lastName: this.state.user.lastName, phone: this.state.user.phone, email: this.state.user.email, address: this.state.user.address, image: this.state.user.image}, this.props.user.id)}
+    this.props.updateProfile({firstName: this.state.user.firstName, lastName: this.state.user.lastName, phone: this.state.user.phone, email: this.state.user.email, address: this.state.user.address, image: this.state.user.image}, this.props.user.id)
+  }
 
   render() {
     return (
