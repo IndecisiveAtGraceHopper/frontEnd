@@ -53,7 +53,8 @@ class Map extends Component {
             staticMarker.setLngLat(coords)
             await this.setState({coords, zoom})
         })
-        this.map.on('click', async () => {
+        //listener type may need to be 'touchend' for app, needs to be mouseup for web
+        this.map.on('mouseup', async () => {
             const address = await this.getAddress(this.state.coords)
             await this.props.setLoc(address)
         })
