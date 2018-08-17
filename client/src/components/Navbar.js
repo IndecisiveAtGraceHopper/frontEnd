@@ -15,9 +15,9 @@ const Navbar = (props) => {
         isLoggedIn ? (
           <div className='nav-items'>
             <ul id='logged-out-navbar' className='nav navbar-nav'>
-              <li><Link to='/users/profile'>Your Account</Link></li>
-              <li><Link to='/user/adventures'>Your Adventures</Link></li>
-              <li><Link to='/userhome'>Pods</Link></li>
+              <li><Link to='/profile'>Your Account</Link></li>
+              <li><Link to='/adventures'>Your Adventures</Link></li>
+              <li><Link to='/pods'>Pods</Link></li>
             </ul>
             <button id='logout-button'><Link to='/#' onClick={handleLogout}>Log Out</Link></button>
           </div>
