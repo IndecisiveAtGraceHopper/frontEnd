@@ -18,3 +18,27 @@
     align-content: space-around;
     justify-content: space-around;
 }
+
+#navbar-header :hover {
+    text-decoration: none;
+}
+
+.nav-items, #navbar, #logged-in-navbar #logout-button {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+    border: 2px solid black;
+}
+
+#navbar {
+    text-align: center;
+    align-items: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+#logout {
+    max-width: 100px;
+}

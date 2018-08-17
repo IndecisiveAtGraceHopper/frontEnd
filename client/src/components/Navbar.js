@@ -7,27 +7,30 @@ import {logOut} from '../store'
 const Navbar = (props) => {
   const {isLoggedIn, handleLogout} = props
   return (
-    <nav id='navbar' className='navbar navbar-default'>
-      <div className='container-fluid'>
-        <div className='navbar-header'>
-          <h2 id='title'>indecisive</h2>
-        </div>
-        {
-          isLoggedIn ? (
-            <ul id='nav-items' className='nav navbar-nav'>
-              <li><Link to='/userhome'>Your Account</Link></li>
-              <li><Link to='/t'>Plan an Adventure!</Link></li>
-              <li><Link to='/#' onClick={handleLogout}>Log Out</Link></li>
+    <div id='navbar' className='navbar navbar-default'>
+      <div id='navbar-header'>
+        <Link to='/userhome'><h2 id='title'>indecisive</h2></Link>
+      </div>
+      {
+        isLoggedIn ? (
+          <div className='nav-items'>
+            <ul id='logged-out-navbar' className='nav navbar-nav'>
+              <li><Link to='/users/profile'>Your Account</Link></li>
+              <li><Link to='/userhome'>Plan an Adventure!</Link></li>
+              <li><Link to='/user/adventures'>Your Adventures</Link></li>
             </ul>
-          ) : (
-            <ul id='nav-items' className='nav navbar-nav'>
+            <button id='logout-button'><Link to='/#' onClick={handleLogout}>Log Out</Link></button>
+          </div>
+        ) : (
+          <div className='nav-items'>
+            <ul id='logged-in-navbar' className='nav navbar-nav'>
               <li><Link to='/login'>Log In</Link></li>
               <li><Link to='/signup'>Sign Up</Link></li>
             </ul>
-          )
-        }
-      </div>
-    </nav>
+          </div>
+        )
+      }
+    </div>
   )
 }
 
