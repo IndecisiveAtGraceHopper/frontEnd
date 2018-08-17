@@ -79,9 +79,7 @@ export const logOut = () => async dispatch => {
 
 export const createProfile = (profileInfo, userId) => async dispatch => {
   try {
-    console.log('profileInfo', profileInfo)
     const res = await axios.put(`/auth/profile/${userId}`, profileInfo)
-    console.log('res', res.data)
     dispatch(getUser(res.data))
   }catch (err) {
     console.error(err)
