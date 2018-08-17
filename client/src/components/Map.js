@@ -53,7 +53,7 @@ class Map extends Component {
             staticMarker.setLngLat(coords)
             await this.setState({coords, zoom})
         })
-        //listener type may need to be 'touchend' for app, needs to be mouseup for web
+        //listener type may need to be 'touchend' for app, needs to be 'mouseup' for web
         this.map.on('mouseup', async () => {
             const address = await this.getAddress(this.state.coords)
             await this.props.setLoc(address)
@@ -84,18 +84,19 @@ class Map extends Component {
         }
         const avgLong = (minLong + maxLong) / 2
         const avgLat = (minLat + maxLat) / 2
-        const centerCoords = [avgLong, avgLat]
+        const coords = [avgLong, avgLat]
         const mapOptions = {
             container: this.mapContainer,
             style: 'mapbox://styles/mapbox/streets-v10',
-            center: centerCoords,
+            center: coords,
             zoom: this.state.zoom
         }
         this.map = new mapboxgl.Map(mapOptions)
         for (let i=0; i<places.length; i++) {
+            const title = places[i].title
             const addressPopUp = new mapboxgl.Popup({offset: [0, -15]})
                 .setLngLat(places[i].coords)
-                .setHTML('<p>' + places[i].title + '</p>')
+                .setHTML('<p>' + title + '</p>')
                 .setLngLat(places[i].coords)
             const addressMarker = new mapboxgl.Marker()
                 .setLngLat(places[i].coords)
