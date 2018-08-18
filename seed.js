@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('./server/db')
-const {User, Pod, Adventure, Activity, Note, Poll} = require('./server/db/models')
+const {User, Pod, Adventure, Activity, Note, Poll, UserPod} = require('./server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -185,10 +185,75 @@ async function seed() {
       phone:8342988329,
       address: '5 East 110th street'})
 
+    //pods
+    const pod1 = await Pod.create({name: 'The crew'})
+    const pod2 = await Pod.create({name: 'UN Friends'})
+    const pod3 = await Pod.create({name: 'The Click'})
+    const pod4 = await Pod.create({name: 'The Marvels'})
+    const pod5 = await Pod.create({name: 'Chic Click'})
+    const pod6 = await Pod.create({name: 'The ultimate pod'})
+    const pod7 = await Pod.create({name: 'adventure buds'})
+    const pod8 = await Pod.create({name: 'Liberados'})
 
-    const adventure1 = await Adventure.create({name: 'Rock Climbing', date: Date.now(), coordinator: 4})
-    const pod1 = await Pod.create({name: 'fab four'})
-    const adventure2 = await Adventure.create({name:'testing', date: Date.now(), totalCount: 5})
+    //adventure
+
+    const adventure1 = await Adventure.create({name:'Out and About', date: Date.now(),totalCount: 4, coordinator: 4, podId:1})
+    const adventure2 = await Adventure.create({name:'Catching Up', date: Date.now(), totalCount: 3, coordinator: 3, podId:5})
+    const adventure3 = await Adventure.create({name:'Planning for fun', date: Date.now(), totalCount: 5, coordinator: 2, podId:2})
+    const adventure4 = await Adventure.create({name:'Adventure', date: Date.now(), totalCount: 6, coordinator: 1, podId:4})
+    const adventure5 = await Adventure.create({name:'Fun with Friends', date: Date.now(), totalCount: 4, coordinator: 20, podId:6})
+    const adventure6 = await Adventure.create({name:'Friday night fun', date: Date.now(), totalCount: 3, coordinator: 13, podId:3})
+    const adventure7 = await Adventure.create({name:'Get ready for fun', date: Date.now(), totalCount: 4, coordinator: 1, podId:7})
+    const adventure8 = await Adventure.create({name:'leave your SO at home', date: Date.now(), totalCount: 6, coordinator: 19, podId:8})
+
+
+    //userpod
+
+    const userPod1 = await UserPod.create({userId: 4, podId:1})
+    const userPod2 = await UserPod.create({userId: 1, podId:1})
+    const userPod3 = await UserPod.create({userId: 2, podId:1})
+    const userPod4 = await UserPod.create({userId: 3, podId:1})
+
+    const userPod5 = await UserPod.create({userId: 3, podId:5})
+    const userPod6 = await UserPod.create({userId: 22, podId:5})
+    const userPod7 = await UserPod.create({userId: 19, podId:5})
+
+    const userPod8 = await UserPod.create({userId: 8, podId:2})
+    const userPod9 = await UserPod.create({userId: 10, podId:2})
+    const userPod10 = await UserPod.create({userId: 2, podId:2})
+    const userPod11 = await UserPod.create({userId: 1, podId:2})
+    const userPod12 = await UserPod.create({userId: 20, podId:2})
+
+    const userPod13 = await UserPod.create({userId: 1, podId:4})
+    const userPod14 = await UserPod.create({userId: 7, podId:4})
+    const userPod15 = await UserPod.create({userId: 9, podId:4})
+    const userPod16 = await UserPod.create({userId: 15, podId:4})
+    const userPod17 = await UserPod.create({userId: 12, podId:4})
+    const userPod18 = await UserPod.create({userId: 3, podId:4})
+
+    const userPod19 = await UserPod.create({userId: 20, podId:6})
+    const userPod20 = await UserPod.create({userId: 2, podId:6})
+    const userPod21 = await UserPod.create({userId: 4, podId:6})
+    const userPod22 = await UserPod.create({userId: 11, podId:6})
+
+    const userPod23 = await UserPod.create({userId: 13, podId:3})
+    const userPod24 = await UserPod.create({userId: 14, podId:3})
+    const userPod25 = await UserPod.create({userId: 19, podId:3})
+
+
+    const userPod26 = await UserPod.create({userId: 1, podId:7})
+    const userPod27 = await UserPod.create({userId: 2, podId:7})
+    const userPod28 = await UserPod.create({userId: 3, podId:7})
+    const userPod29 = await UserPod.create({userId: 4, podId:7})
+
+    const userPod30 = await UserPod.create({userId: 19, podId:8})
+    const userPod31 = await UserPod.create({userId: 7, podId:8})
+    const userPod32 = await UserPod.create({userId: 8, podId:8})
+    const userPod33 = await UserPod.create({userId: 11, podId:8})
+    const userPod34 = await UserPod.create({userId: 12, podId:8})
+    const userPod35 = await UserPod.create({userId: 17, podId:8})
+
+
     const nitehawkCinema = await Activity.create({date: Date.now(), address: '136 Metropolitan Ave, Brooklyn, NY', selected: false, adventureId: 1, name:'Nitehawk Cinema'})
     const bigGayIceCream = await Activity.create({date: Date.now(), address: '61 Grove St, New York, NY', selected: false, adventureId: 1, name: 'Big Gay Ice Cream Shop'})
 
@@ -198,6 +263,7 @@ async function seed() {
   const poll2 = await Poll.create({priceRange: 4, activityLevel: 4, artsyLevel: 1, hungerLevel: 2, drinkLevel: 2, userId: 2, adventureId:1})
   const poll3 = await Poll.create({priceRange: 4, activityLevel: 4, artsyLevel: 1, hungerLevel: 2, drinkLevel: 2, userId: 3, adventureId:1})
   const poll4 = await Poll.create({priceRange: 4, activityLevel: 4, artsyLevel: 1, hungerLevel: 2, drinkLevel: 2, userId: 4, adventureId:1})
+
 
   console.log(`seeded successfully`)
 }
