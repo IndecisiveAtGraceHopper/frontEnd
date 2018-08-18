@@ -8,6 +8,8 @@ const ADD_POD = 'ADD_POD'
 const GET_POD = 'GET_POD'
 
 const USER_PODS = 'USERS_PODS'
+
+const ADD_USER_TO_POD = 'ADD_USER_TO_POD'
 /**
  * INITIAL STATE
  */
@@ -21,6 +23,7 @@ const initialState = {}
 export const addPod = pod => ({type: ADD_POD, pod:pod})
 export const getPod = pod => ({type: GET_POD, pod:pod})
 export const userPods = pod => ({type: USER_PODS, pod:pod})
+export const addUserToPod = user => ({type:ADD_USER_TO_POD, user:user})
 
 /**
  * THUNK CREATORS
@@ -56,6 +59,13 @@ export const getUserPodsThunk = (id) => {
   }
 }
 
+export const createUserPodThunk = (userId, podId) => async dispatch => {
+  const response = await axios.post('/api/pods/userPod', ({podId, userId}))
+  const { user } = response.data
+  const action = addUserToPod(user)
+  return dispatch(action)
+}
+
 /**
  * REDUCER
  */
@@ -67,6 +77,16 @@ export default function(state = initialState, action) {
       return {...action.pod}
     case USER_PODS:
       return {...action.pod}
+    case ADD_USER_TO_POD:
+      const newUsers = state.users.slice()
+
+      const userIndex = newUsers.findIndex(u => u.id == action.user.id)
+      if (userIndex < 0) {
+        newUsers.push(action.user)
+      }
+
+
+      return {...state, users: newUsers }
     default:
       return state
   }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {getUsersThunk} from '../store'
+import {getUsersThunk, createUserPodThunk} from '../store'
 import axios from 'axios'
 
 class Search extends React.Component {
@@ -30,8 +30,9 @@ class Search extends React.Component {
   async handleClick(event){
 
     event.preventDefault()
-    await axios.post('/api/pods/userPod', ({podId: this.props.podId, userId: event.target.value}))
-    window.location.reload();
+    this.props.createUserPodThunk(event.target.value, this.props.podId)
+    // await axios.post('/api/pods/userPod', ())
+    // window.location.reload();
   }
 
   handleSubmit (event) {
@@ -85,7 +86,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUsersThunk: () => dispatch(getUsersThunk())
+    getUsersThunk: () => dispatch(getUsersThunk()),
+    createUserPodThunk: (userId, podId) => dispatch(createUserPodThunk(userId, podId))
   }
 }
 
