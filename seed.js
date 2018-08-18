@@ -45,7 +45,7 @@ async function seed() {
       lastName: 'Milano',
       email: 'sophia@indecisive.com',
       password: '123',
-      phone:8342988329,
+      phone:15005550006,
       address: '205 Water street'})
 
     const rayna = await User.create({
@@ -53,7 +53,7 @@ async function seed() {
       lastName: 'Mauss',
       email: 'rayna@indecisive.com',
       password: '123',
-      phone:8342988329,
+      phone:15005550006,
       address: '2 East 126th street'
     })
     const james = await User.create({
@@ -61,7 +61,7 @@ async function seed() {
       lastName: 'Miao',
       email: 'James@indecisive.com',
       password: '123',
-      phone:8342988329,
+      phone:15005550006,
       address: '4 East 126th street'})
 
     const lucas = await User.create({
@@ -69,7 +69,7 @@ async function seed() {
       lastName: 'Simoné',
       email: 'lucas@indecisive.com',
       password: '123',
-      phone:8342988329,
+      phone:15005550006,
       address: '10 West 130th street'})
 
     const mia = await User.create({
@@ -77,7 +77,7 @@ async function seed() {
       lastName: 'Carpenter',
       email: 'mia@indecisive.com',
       password: '123',
-      phone:8342988329,
+      phone:15005550006,
       address: '10 East 99th street'})
 
     const alex = await User.create({
@@ -85,7 +85,7 @@ async function seed() {
       lastName: 'Rivera',
       email: 'alex@indecisive.com',
       password: '123',
-      phone:8342988329,
+      phone:15005550006,
       address: '140 Joralemon street'})
 
     const peter = await User.create({
@@ -93,7 +93,7 @@ async function seed() {
       lastName: 'Mills',
       email: 'peter@indecisive.com',
       password: '123',
-      phone:8342988329,
+      phone:15005550006,
       address: '111-12 Atlantic Avenue'
     })
 
@@ -102,7 +102,7 @@ async function seed() {
       lastName: 'Norwett',
       email: 'matt@indecisive.com',
       password: '123',
-      phone:8342988329,
+      phone:15005550006,
       address: '140 Joralemon street'})
 
     const rema = await User.create({
@@ -110,7 +110,7 @@ async function seed() {
       lastName: 'Singh',
       email: 'rema@indecisive.com',
       password: '123',
-      phone:8342988329,
+      phone:15005550006,
       address: '5 Atlantic Avenue'})
 
     const brandon = await User.create({
@@ -118,7 +118,7 @@ async function seed() {
       lastName: 'Ortega',
       email: 'brandon@indecisive.com',
       password: '123',
-      phone:8342988329,
+      phone:15005550006,
       address: '10 east 52nd street'})
 
     const jake = await User.create({
@@ -126,7 +126,7 @@ async function seed() {
       lastName: 'Matthews',
       email: 'jake@indecisive.com',
       password: '123',
-      phone:8342988329,
+      phone:15005550006,
       address: '12 East 12th street'})
 
     const silas = await User.create({
@@ -134,7 +134,7 @@ async function seed() {
       lastName: 'Miller',
       email: 'silas@indecisive.com',
       password: '123',
-      phone:8342988329,
+      phone:15005550006,
       address: '1 Bank Street'})
 
     const john = await User.create({
@@ -142,7 +142,7 @@ async function seed() {
       lastName: 'McDonald',
       email: 'john@indecisive.com',
       password: '123',
-      phone:8342988329,
+      phone:15005550006,
       address: '1433 Harrod Avenue'})
 
     const mitch = await User.create({
@@ -150,7 +150,7 @@ async function seed() {
       lastName: 'Michaelson',
       email: 'michaelson@indecisive.com',
       password: '123',
-      phone:8342988329,
+      phone:15005550006,
       address: '12 E Tremont Ave'})
 
     const simon = await User.create({
@@ -158,7 +158,7 @@ async function seed() {
       lastName: 'Francis',
       email: 'simon@indecisive.com',
       password: '123',
-      phone:8342988329,
+      phone:15005550006,
       address: '1170 Grand Concourse'})
 
     const carter = await User.create({
@@ -166,7 +166,7 @@ async function seed() {
       lastName: 'Brady',
       email: 'carter@indecisive.com',
       password: '123',
-      phone:8342988329,
+      phone:15005550006,
       address: '10 East 24th street'})
 
     const resse = await User.create({
@@ -174,7 +174,7 @@ async function seed() {
       lastName: 'Pinkerton',
       email: 'reese@indecisive.com',
       password: '123',
-      phone:8342988329,
+      phone:15005550006,
       address: '12 East 24th street'})
 
     const dan = await User.create({
@@ -182,7 +182,7 @@ async function seed() {
       lastName: 'Sohval',
       email: 'dan@indecisive.com',
       password: '123',
-      phone:8342988329,
+      phone:15005550006,
       address: '5 East 110th street'})
 
 

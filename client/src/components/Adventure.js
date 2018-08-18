@@ -4,6 +4,7 @@ import {fetchActivities} from '../store/activity'
 import {getPoll} from '../store/poll'
 import {connect} from 'react-redux'
 import {Map, Poll} from './index'
+import {PinBoard} from './index'
 
 class Adventure extends Component {
   constructor() {
@@ -37,17 +38,19 @@ class Adventure extends Component {
         return (
           <div id='adventure-page'>
             <h3>Adventure</h3>
-
             <div id='activities-container'>
-                      {this.props.activities.map((activity) =>
-                        <Activity activity={activity} isCoord={true} key={activity.id}/>)
-                      }
-                    </div>
-                    <div id='adventure-map-container'>
-                      { this.state.locations.length &&
-                        <Map interactive={false} coords={this.state.locations} />
-                      }
-                    </div>
+              {this.props.activities.map((activity) =>
+                <Activity activity={activity} isCoord={true} key={activity.id}/>
+              )}
+            </div>
+            <div id='adventure-map-container'>
+              {this.state.locations.length &&
+                <Map interactive={false} coords={this.state.locations} />
+              }
+            </div>
+            <div id='pinboard-container'>
+              <PinBoard />
+            </div>
           </div>
         )
       }
@@ -60,7 +63,7 @@ class Adventure extends Component {
   }
 }
 
-const mapState= (state)=> {
+const mapState = (state) => {
   return {
     activities: state.activity,
     userId: state.user.id,
@@ -75,4 +78,4 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Adventure);
+export default connect(mapState, mapDispatch)(Adventure)
