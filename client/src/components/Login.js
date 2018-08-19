@@ -28,26 +28,28 @@ class Login extends React.Component {
   render() {
     return (
       <div className="authForm" id="loginPage">
-        <GoogleLogin className='authElement' />
+        <GoogleLogin className='authElement'/>
         <form onSubmit={this.handleSubmit} className='authElement'>
           <div>
             <label htmlFor="email">
               <div><h3>Email</h3></div>
             </label>
-            <div><input name="email" type="text" onChange={this.handleChange} /></div>
+            <div><input className="form-control" name="email" type="text" onChange={this.handleChange} /></div>
           </div>
           <div>
             <label htmlFor="password">
               <div><h3>Password</h3></div>
             </label>
-            <div><input name="password" type="password" onChange={this.handleChange} /></div>
+            <div><input class="form-control" name="password" type="password" onChange={this.handleChange} /></div>
           </div>
           <div className='authElement'>
-            <button type="submit">Log In</button>
+            <button className='btn btn-primary'type="submit">Log In</button>
             {(this.props.user && this.props.user.error)&&<span>Wrong Username or Password</span>}
           </div>
           <div className='authElement'>
-            <button><Link to='/signup'>Sign Up</Link></button>
+          <a href='/signup'>
+              <button className='btn btn-dark'>Sign Up</button>
+          </a>
           </div>
         </form>
       </div>
