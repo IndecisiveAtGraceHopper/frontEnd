@@ -8,7 +8,7 @@ Built with:
 Create-React-App, Node.js, Express, React-Redux, Sequelize, PostgresSQL, Twilio API, Google Maps API, Google Calendar API
 
 Built by:
-Kara Ferrari
-Kara Hirschhman
-Hawa Sako
+Kara Ferrari,
+Kara Hirschhman,
+Hawa Sako,
 Sarah Lynch
