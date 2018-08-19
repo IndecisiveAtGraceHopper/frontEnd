@@ -20,9 +20,6 @@ class Pod extends Component {
 
 
   render() {
-    console.log('THSIS', this.props.users)
-    console.log('ADVENTURES', this.props.adventures)
-
       if(this.props.pods){
         return (
           <div>

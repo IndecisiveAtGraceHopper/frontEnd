@@ -14,6 +14,7 @@ class Pod extends Component {
   }
   render() {
     const podId = this.props.match.params.id
+    console.log("PODDDDD", this.props.pod)
 
 	if(this.props.users){
     return (
