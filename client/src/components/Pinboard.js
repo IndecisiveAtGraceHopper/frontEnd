@@ -6,16 +6,19 @@ class PinBoard extends Component {
     constructor() {
         super()
         this.state = {
-
+            notes: []
         }
     }
 
-    componentDidMount() {
-        
+    async componentDidMount() {
+        await this.props.getThisAdventure(this.props.id)
+        await this.setState(this.props.adventure)
+        console.log('this.props.adventure', this.props.adventure)
+        console.log('this.state', this.state)
     }
 
     render() {
-        const notes = this.props
+        const {notes} = this.state
         return (
             <div id='pinBoard'>
                 {notes.map(note => { 
