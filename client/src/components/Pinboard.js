@@ -3,6 +3,17 @@ import {connect} from 'react-redux'
 import {getAdventure} from '../store/adventure'
 
 class PinBoard extends Component {
+    constructor() {
+        super()
+        this.state = {
+
+        }
+    }
+
+    componentDidMount() {
+        
+    }
+
     render() {
         const notes = this.props
         return (
