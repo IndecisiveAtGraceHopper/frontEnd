@@ -21,7 +21,6 @@ class SendText extends React.Component {
   }
 
 render(){
-  console.log("SEND TEXT", this.props)
   return (
     <div>
       <h4>Send this site to a friend</h4>

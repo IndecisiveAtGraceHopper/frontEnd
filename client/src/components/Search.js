@@ -31,8 +31,6 @@ class Search extends React.Component {
 
     event.preventDefault()
     this.props.createUserPodThunk(event.target.value, this.props.podId)
-    // await axios.post('/api/pods/userPod', ())
-    // window.location.reload();
   }
 
   handleSubmit (event) {

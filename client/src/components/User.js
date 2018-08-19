@@ -49,7 +49,6 @@ class Pod extends Component {
     }
 
 const mapStateToProps = state => {
-   console.log('STATE******', state)
   return {
     pods: state.pod.pods,
     users: state.pod.users,
