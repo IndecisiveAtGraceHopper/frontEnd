@@ -119,7 +119,7 @@ export default function(state = initialState, action) {
       return {...action.user}
     case REMOVE_USER:
       return {}
-    case USER_ADVENTURES: 
+    case USER_ADVENTURES:
       return {...state, adventures: action.adventures}
     default:
       return state

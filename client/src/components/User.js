@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Search from './Search'
 import { connect } from 'react-redux'
 import {getUserPodsThunk} from '../store'
+import {Link} from 'react-router-dom'
 
 class Pod extends Component {
   constructor() {
@@ -16,6 +17,8 @@ class Pod extends Component {
 	    this.props.getAllUsersPod(this.props.id)
 	}
 
+
+
   render() {
       if(this.props.pods){
         return (
@@ -25,8 +28,16 @@ class Pod extends Component {
               {
                 this.props.pods.map(pod => (
                   <div id="pod" key={pod.id}>
-                    <h5>{pod.name}</h5>
-                      </div>
+                      <Link to={`/pods/${pod.id}`}>{pod.name}</Link>
+
+                    {
+                      pod.adventures.map(adventure => (
+                        <div key={`adventure-${adventure.id}`}> --{adventure.name} </div>
+                        )
+                      )
+                    }
+
+                  </div>
                 )
               )}
               </div>
@@ -40,7 +51,7 @@ class Pod extends Component {
 const mapStateToProps = state => {
   return {
     pods: state.pod.pods,
-    users: state.pod.users
+    users: state.pod.users,
   }
 }
 
