@@ -23,18 +23,20 @@ class Pod extends Component {
       if(this.props.pods){
         return (
           <div>
-            <h2>Current Pods</h2>
+            <h3 className="text-center font-weight-normal">Current pods:</h3>
              <div>
               {
                 this.props.pods.map(pod => (
-                  <div id="pod" key={pod.id}>
-                      <Link to={`/pods/${pod.id}`}>{pod.name}</Link>
+                  <div id="pod" key={pod.id} className="text-center">
+                      <Link to={`/pods/${pod.id}`}>
+                        <h5>{pod.name}</h5>
+                      </Link>
 
                     {
-                      pod.adventures.map(adventure => (
-                        <div key={`adventure-${adventure.id}`}> --{adventure.name} </div>
-                        )
-                      )
+                      // pod.adventures.map(adventure => (
+                      //   <div key={`adventure-${adventure.id}`}> --{adventure.name} </div>
+                      //   )
+                      // )
                     }
 
                   </div>
@@ -44,7 +46,7 @@ class Pod extends Component {
           </div>
         );
       }
-      return <h1>here!</h1>
+      return <h1>You have no pods yet, but that is easy to fix!</h1>
       }
     }
 

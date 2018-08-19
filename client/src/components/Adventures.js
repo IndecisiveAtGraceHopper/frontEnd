@@ -50,7 +50,7 @@ class Adventures extends Component {
                 }
                 </div>
                 <div>
-                    <button><Link to='/pods'>Create a New Adventure</Link></button>
+                   <a href="/pods" class="badge badge-primary">Create a new adventure</a>
                 </div>
             </div>
         )

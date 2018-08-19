@@ -25,14 +25,17 @@ class CreateAdventure extends Component {
   render() {
     if (this.props.user) {console.log('here', this.props.user)}
     return(
-        <form onSubmit= {this.onClick}>
+        <div>
+        <form onSubmit= {this.onClick} className="input-group mb-2 mr-sm-2">
           <label>Name:</label>
-          <input value= {this.state.name} name='name' onChange={this.handleChange}/>
+          <input className="form-control mb-2 mr-sm-2" value= {this.state.name} name='name' onChange={this.handleChange}/>
           <label>Date:</label>
-          <input type ='date' value = {this.state.date} name='date' onChange={this.handleChange}/>
-          <button type='submit'>Start your adventure!</button>
+          <input className="form-control mb-2 mr-sm-2" type ='date' value = {this.state.date} name='date' onChange={this.handleChange}/>
+          <br/>
         </form>
-        )
+        <button type='submit' className="btn btn-secondary btn-lg btn-block">Start your adventure!</button>
+       </div>
+    )
   }
 }
 
