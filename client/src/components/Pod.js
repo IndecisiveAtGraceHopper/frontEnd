@@ -13,13 +13,12 @@ class Pod extends Component {
     window.location = `/pods/${this.props.match.params.id}/createAdventure`
   }
   render() {
-
     const podId = this.props.match.params.id
-
 	if(this.props.users){
     return (
       <div>
-        <h2>Current Pod Members</h2>
+        <h2>{this.props.pod.name}</h2>
+        <h5>Current Pod Members</h5>
         <div>
         {
          		this.props.users.map(user => (
