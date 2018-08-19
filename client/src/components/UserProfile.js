@@ -72,7 +72,7 @@ class UserProfile extends Component {
             {!this.state.user.email ? <p>Email cannot be null</p> : null}
           </div>
           <div>
-            <label htmlFor='firstName'>Last Name</label><br/>
+            <label htmlFor='firstName'>First Name</label><br/>
             <input className="form-control mx-sm-3" name='firstName' type='string' onChange={this.handleChange} value={this.state.user.firstName} defaultValue={this.state.user.firstName} />
             {!this.state.user.firstName ? <p>You must enter your first name </p> : null}
           </div>
@@ -98,7 +98,7 @@ class UserProfile extends Component {
           </div>
 
           <div>
-            <button type='submit button' className="btn btn-dark">Submit</button>
+            <button type='submit button' className="btn btn-dark btn-lg btn-block">Submit</button>
           </div>
         </form>
       </div>
