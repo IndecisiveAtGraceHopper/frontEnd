@@ -9,6 +9,6 @@ Create-React-App, Node.js, Express, React-Redux, Sequelize, PostgresSQL, Twilio 
 
 Built by:
 Kara Ferrari,
-Kara Hirschhman,
+Kara Hirschman,
 Hawa Sako,
 Sarah Lynch
