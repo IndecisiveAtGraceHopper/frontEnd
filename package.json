@@ -6,7 +6,7 @@
     "start": "nodemon ./server/app.js",
     "seed": "node seed.js",
     "concurrently": "concurrently \"npm start\" \"cd client && npm start\"",
-    "test": "NODE_ENV='test' mocha \"./server/db/models/poll.spec.js\" "
+    "test": "NODE_ENV='test' mocha \"./server/**/*.spec.js\""
   },
   "dependencies": {
     "@google/maps": "^0.5.5",
@@ -40,5 +40,14 @@
     "sequelize": "^4.38.0",
     "socket.io": "^2.1.1",
     "twilio": "^3.19.1"
+  },
+  "devDependencies": {
+    "axios-mock-adapter": "^1.9.0",
+    "chai": "^3.5.0",
+    "enzyme": "^3.0.0",
+    "enzyme-adapter-react-16": "^1.0.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.17.5",
+    "supertest": "^3.0.0"
   }
 }
