@@ -2,7 +2,7 @@ const { expect } = require('chai')
 const request = require('supertest')
 const db = require('../../db')
 const app = require('../../app')
-const Pod = db.model('pod')
+const Pod = db.model('pods')
 
 describe('Pod routes', () => {
     beforeEach(() => {
