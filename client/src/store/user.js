@@ -92,6 +92,7 @@ export const createProfile = (profileInfo, userId) => async dispatch => {
   try {
     const res = await axios.put(`/auth/profile/${userId}`, profileInfo)
     dispatch(getUser(res.data))
+    history.push('/pods')
   }catch (err) {
     console.error(err)
   }
@@ -145,7 +146,7 @@ export default function(state = initialState, action) {
     case ADD_ADVENTURE:
       return {...state, adventures: [...state.adventures, action.adventure]}
     case UPDATE_ADVENTURE:
-      return {...state, adventures: state.adventures.map(adventure=> adventure.id===action.id ? {...adventure, counter: adventure.counter++}: adventure)}
+      return {...state, adventures: state.adventures.map(adventure=> adventure.id === action.id ? {...adventure, counter: adventure.counter++}: adventure)}
     default:
       return state
   }
