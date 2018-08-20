@@ -60,7 +60,7 @@ class UserProfile extends Component {
   render() {
     return (
       <div id='user-profile'>
-        <h3 className="font-weight-normal">Welcome {this.state.user.firstName},</h3>
+        <h3 className="font-weight-normal">Welcome, {this.state.user.firstName}</h3>
         <br></br>
         <form id='userProfile' onSubmit={this.handleSubmit}  className="form-group">
           <div className="form-group">

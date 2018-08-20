@@ -30,11 +30,7 @@ const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
 const userAdventures = adventures => ({type: USER_ADVENTURES, adventures})
 const addAdventure = adventure => ({type: ADD_ADVENTURE, adventure})
-export const updateAdventure = id => {
-  let theaction = {type: UPDATE_ADVENTURE, id};
-  console.log("THE ACTION ****", theaction)
-  return theaction;
-}
+export const updateAdventure = id => ({type: UPDATE_ADVENTURE, id})
 
 /**
  * THUNK CREATORS
@@ -94,14 +90,6 @@ export const createProfile = (profileInfo, userId) => async dispatch => {
     dispatch(getUser(res.data))
     history.push('/pods')
   }catch (err) {
-    console.error(err)
-  }
-}
-
-export const getUserPods = userId => async dispatch => {
-  try {
-    const pods = await axios.get(`/api/user/pods/${userId}`)
-  } catch (err) {
     console.error(err)
   }
 }
