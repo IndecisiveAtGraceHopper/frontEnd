@@ -54,19 +54,25 @@ class Search extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit} className="form-inline">
-          <input id='searchInput' type="search" name="userToSearch" onChange={this.handleChange} className= "form-control" placeholder="Search for user" aria-label="Search"/>
+        <form onSubmit={this.handleSubmit}>
+          <input id='searchInput' type="search" name="userToSearch" onChange={this.handleChange} className="form-control mx-sm-3" placeholder="Search for & add friends to pod!" aria-label="Search"/>
           <div>
-            <button className="btn btn-dark" type='submit'>Search</button>
+            <button className="btn btn-dark btn-lg btn-block" type='submit'>Search</button>
           </div>
         </form>
         {this.state.noUserFound ? (
           <h4>No user found by that name</h4>
         ) : null}
         {this.state.userFound ? (
-          <h4>Here are the users with that name:{
-            <ul>{
-              this.state.usersFound.map((user,index) => <li key={index}>{user.image}{user.fullName}<button value={user.id} onClick={this.handleClick}>Add to Pod</button></li>)
+          <h4 className="font-weight-normal">Here are the users with that name:{
+            <ul>
+              {
+                this.state.usersFound.map((user,index) =>
+                  <li key={index}>
+                    <div>{user.image}{user.fullName}</div>
+                    <button className="btn btn-dark btn-sm" value={user.id} onClick={this.handleClick}>Add to Pod</button>
+                  </li>
+                )
             }</ul>
           }</h4>
         ) : null}
