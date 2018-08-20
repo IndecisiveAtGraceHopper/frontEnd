@@ -30,7 +30,7 @@ const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
 const userAdventures = adventures => ({type: USER_ADVENTURES, adventures})
 const addAdventure = adventure => ({type: ADD_ADVENTURE, adventure})
-const updateAdventure = id => ({type: UPDATE_ADVENTURE, id})
+export const updateAdventure = id => ({type: UPDATE_ADVENTURE, id})
 
 /**
  * THUNK CREATORS
@@ -68,7 +68,7 @@ export const authLogin = (userInfo) => async dispatch => {
   }
   try {
     dispatch(getUser(res.data))
-    history.push('/userhome')
+    history.push('/pods')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }
@@ -88,15 +88,8 @@ export const createProfile = (profileInfo, userId) => async dispatch => {
   try {
     const res = await axios.put(`/auth/profile/${userId}`, profileInfo)
     dispatch(getUser(res.data))
+    history.push('/pods')
   }catch (err) {
-    console.error(err)
-  }
-}
-
-export const getUserPods = userId => async dispatch => {
-  try {
-    const pods = await axios.get(`/api/user/pods/${userId}`)
-  } catch (err) {
     console.error(err)
   }
 }
@@ -141,7 +134,7 @@ export default function(state = initialState, action) {
     case ADD_ADVENTURE:
       return {...state, adventures: [...state.adventures, action.adventure]}
     case UPDATE_ADVENTURE:
-      return {...state, adventures: state.adventures.map(adventure=> adventure.id===action.id ? {...adventure, counter: adventure.counter++}: adventure)}
+      return {...state, adventures: state.adventures.map(adventure=> adventure.id === action.id ? {...adventure, counter: adventure.counter++}: adventure)}
     default:
       return state
   }
