@@ -64,7 +64,7 @@ class UserProfile extends Component {
         <br></br>
         <form id='userProfile' onSubmit={this.handleSubmit}  className="form-group">
           <div className="form-group">
-            <img src={this.state.currentImage}  className="rounded mx-auto d-block" width='200px' height='200px' />
+            <img src={this.state.currentImage} alt='userprofile' className="rounded mx-auto d-block" width='200px' height='200px' />
           </div>
           <div>
             <label htmlFor='email'>Email</label><br/>

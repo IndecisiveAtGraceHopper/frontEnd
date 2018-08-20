@@ -27,8 +27,8 @@ class Activity extends Component {
             <h4>{activity.downVotes}</h4>
             {!activity.selected && (
               <div>
-                <button onClick ={this.handleUpVote}>👍</button>
-                <button onClick = {this.handleDownVote}>👎</button>
+                <button onClick ={this.handleUpVote}><span role='img' aria-label='thumbs-up'>👍</span></button>
+                <button onClick = {this.handleDownVote}><span role='img' aria-label='thumbs-up'>👎</span></button>
                 {this.props.isCoord && <button onClick = {this.handleSelect}>Select</button>}
               </div>)
             }

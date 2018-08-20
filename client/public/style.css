@@ -23,9 +23,23 @@
     text-decoration: none;
 }
 
-.nav-items, #navbar, #logged-in-navbar #logout-button {
+#navbar {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+    padding: 10px;
+    margin: 10px;
+}
+
+#navbar-header {
+    padding-top: 20px;
+}
+
+#logged-in-navbar, #logged-out-navbar {
+    display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     align-content: space-around;
     justify-content: space-around;
@@ -55,4 +69,20 @@
 button {
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+#pod-header {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+    list-style: none;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+}
+
+.page-body {
+    padding: 20px;
 }

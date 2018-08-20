@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
-import Logout from './Logout'
 import {connect} from 'react-redux'
-import {getUserAdventures, getUserPods, createPodThunk} from '../store'
+import {createPodThunk} from '../store'
 import axios from 'axios'
 import UserPods from './User'
 

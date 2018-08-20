@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Route, Switch, withRouter} from 'react-router-dom'
-import {Poll, UserHome, UserProfile, Signup, Logout, Login, Home, Adventure, Adventures, Activity, Pod, Search, CreateAdventure, SendText, User} from './components'
+import {UserHome, UserProfile, Signup, Logout, Login, Home, Adventure, Adventures, Pod, Search, CreateAdventure, SendText} from './components'
 import { me } from './store'
 import {connect} from 'react-redux'
 

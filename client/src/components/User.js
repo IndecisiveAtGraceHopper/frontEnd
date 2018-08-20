@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Search from './Search'
 import { connect } from 'react-redux'
 import {getUserPodsThunk} from '../store'
 import {Link} from 'react-router-dom'

@@ -15,11 +15,11 @@ const Navbar = (props) => {
         isLoggedIn ? (
           <div className='nav-items'>
             <ul id='logged-out-navbar' className='nav navbar-nav'>
-              <li><Link to='/profile'>Your Account</Link></li>
-              <li><Link to='/adventures'>Your Adventures</Link></li>
+              <li><Link to='/profile'>Profile</Link></li>
+              <li><Link to='/adventures'>Adventures</Link></li>
               <li><Link to='/pods'>Pods</Link></li>
+              <li><button id='logout-button' className="btn btn-primary btn-sm" onClick={handleLogout}>Log Out</button></li>
             </ul>
-            <button id='logout-button'><Link to='/#' onClick={handleLogout}>Log Out</Link></button>
           </div>
         ) : (
           <div className='nav-items'>
