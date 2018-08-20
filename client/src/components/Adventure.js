@@ -73,11 +73,7 @@ class Adventure extends Component {
     }
   }
 
-<<<<<<< HEAD
 const mapState= (state, {match})=> {
-=======
-const mapState = (state) => {
->>>>>>> master
   return {
     activities: state.activity,
     userId: state.user.id,

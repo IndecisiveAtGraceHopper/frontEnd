@@ -33,11 +33,25 @@ router.post('/', async (req, res, next) => {
     }
 })
 
+router.use('/:id', async(req, res, next) => {
+    try {
+        const note = await Note.findById(req.params.id)
+        if (note.userId === req.user.id){
+            req.note = note
+            next()
+        }
+        else{
+            res.sendStatus(401)
+        }
+    }
+    catch(err){
+        next(err)
+    }
+})
 
 router.put('/:id', async (req, res, next) => {
     try {
-        const note = await Note.findById(req.params.id)
-        const updatedNote = await note.update(req.body)
+        const updatedNote = await req.note.update(req.body)
         res.json(updatedNote)
     } catch (err) {
         next(err)
@@ -46,8 +60,7 @@ router.put('/:id', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
     try {
-        const note = await Note.findById(req.params.id)
-        note.destroy()
+        req.note.destroy()
         res.sendStatus(204)
     } catch (err) {
         next(err)
