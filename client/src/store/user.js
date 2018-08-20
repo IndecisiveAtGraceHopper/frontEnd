@@ -30,7 +30,11 @@ const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
 const userAdventures = adventures => ({type: USER_ADVENTURES, adventures})
 const addAdventure = adventure => ({type: ADD_ADVENTURE, adventure})
-const updateAdventure = id => ({type: UPDATE_ADVENTURE, id})
+export const updateAdventure = id => {
+  let theaction = {type: UPDATE_ADVENTURE, id};
+  console.log("THE ACTION ****", theaction)
+  return theaction;
+}
 
 /**
  * THUNK CREATORS
