@@ -19,35 +19,35 @@ const Poll = db.define('poll', {
   priceRange: {
     type: Sequelize.INTEGER,
     validate: {
-      min: 1,
+      min: 0,
       max: 4
     }
   },
   activityLevel: {
     type: Sequelize.INTEGER,
     validate: {
-      min: 1,
+      min: 0,
       max: 4
     }
   },
   artsyLevel: {
     type: Sequelize.INTEGER,
     validate: {
-      min: 1,
+      min: 0,
       max: 4
     }
   },
   hungerLevel: {
     type: Sequelize.INTEGER,
     validate: {
-      min: 1,
+      min: 0,
       max: 4
     }
   },
   drinkLevel: {
     type: Sequelize.INTEGER,
     validate: {
-      min: 1,
+      min: 0,
       max: 4
     }
   }
@@ -61,7 +61,7 @@ const Poll = db.define('poll', {
             const data = await Poll.findAll({where: {adventureId: poll.adventureId}})
             let results = await tally(data)
             let cats = categories(results)
-            apiCalls(cats, results.location, results.priceRange)
+            apiCalls(cats, results.location, results.priceRange, poll.adventureId)
             pollCompleteNotification(adventure.podId)
           }
        } catch(err) {

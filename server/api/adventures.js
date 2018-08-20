@@ -18,11 +18,16 @@ router.get('/', async (req, res, next) => {
 router.use('/:id', async(req, res, next) => {
     try {
         const adventure = await Adventure.findById(req.params.id)
-        if(adventure) {
-          req.adventure = adventure
-        }
-        else {
-          res.send('No Adventure')
+        const pod = await Pod.findById(adventure.podId, {include: [{model: User}]})
+        if(pod.users.some(user => user.id === req.user.id)){
+            if(adventure) {
+              req.adventure = adventure
+            }
+            else {
+                res.send('No Adventure')
+            }}
+        else{
+            res.sendStatus(401)
         }
         next()
     } catch(err){
@@ -57,8 +62,13 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
     try {
-        const updatedAdventure = await req.adventure.update(req.body)
-        res.json(updatedAdventure)
+        if (req.adventure.coordinator===req.user.id){
+            const updatedAdventure = await req.adventure.update(req.body)
+            res.json(updatedAdventure)
+        }
+        else{
+            res.sendStatus(401)
+        }
     } catch (err) {
         next(err)
     }

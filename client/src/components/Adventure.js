@@ -4,6 +4,8 @@ import {fetchActivities} from '../store/activity'
 import {getPoll} from '../store/poll'
 import {connect} from 'react-redux'
 import {Map, Poll} from './index'
+import {getUserAdventuresThunk} from '../store/user'
+
 
 class Adventure extends Component {
   constructor() {
@@ -24,6 +26,7 @@ class Adventure extends Component {
   async componentDidMount() {
     await this.props.getPoll(this.props.match.params.id, this.props.userId)
     await this.props.fetch(this.props.match.params.id)
+    await this.props.getAdventures(this.props.userId)
     const activities = this.props.activities
     const locations = activities.map(activity => {
       return {coords: activity.address, title: activity.name}
@@ -54,24 +57,31 @@ class Adventure extends Component {
     else if (!Object.keys(this.props.poll).length){
       return (<Poll adventureId={this.props.match.params.id} />)
     }
+    else if (this.props.adventure) {
+      const {adventure} = this.props
+      console.log('adventure', adventure)
+      return (<h1> {`${adventure[0].counter} out of ${adventure[0].totalCount} of your polls are in`} </h1>)
+      }
     else {
-      return (<h1> 5 out of 4 polls completed </h1>)
+      return <h1> Loading </h1>
+    }
     }
   }
-}
 
-const mapState= (state)=> {
+const mapState= (state, {match})=> {
   return {
     activities: state.activity,
     userId: state.user.id,
-    poll: state.poll.poll
+    poll: state.poll.poll,
+    adventure: (state.user.adventures && state.user.adventures.filter(el => el.id === +match.params.id))
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
     fetch: (id) => dispatch(fetchActivities(id)),
-    getPoll: (AdventureId, userId) => dispatch(getPoll(AdventureId, userId))
+    getPoll: (AdventureId, userId) => dispatch(getPoll(AdventureId, userId)),
+    getAdventures: (id)=> dispatch(getUserAdventuresThunk(id))
   }
 }
 

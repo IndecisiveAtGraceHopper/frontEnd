@@ -17,7 +17,6 @@ class Adventures extends Component {
     }
 
     render() {
-        const today = '2018-08-17'
         const allAdventures = this.state.adventures
         const futureAdventures = allAdventures.filter(adventure => {
             const date = new Date(adventure.date)

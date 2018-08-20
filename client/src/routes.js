@@ -34,7 +34,7 @@ class Routes extends Component {
                 <Route exact path="/pods/:id/CreateAdventure" component={CreateAdventure} />
                 <Route exact path="/users/:id/text" component={SendText} />
                 <Route exact path="/adventures" component={Adventures} />
-                <Route exact path="/adventure/:id/" component={Adventure} />
+                <Route exact path="/adventures/:id/" component={Adventure} />
                 <Route exact path="/users/:id" component={SendText} />
               </Switch>
             )}

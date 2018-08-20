@@ -7,6 +7,8 @@ import history from '../history'
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 const USER_ADVENTURES = 'USER_ADVENTURES'
+const ADD_ADVENTURE ='ADD_ADVENTURE'
+const UPDATE_ADVENTURE ='UPDATE_ADVENTURE'
 
 /**
  * INITIAL STATE
@@ -27,6 +29,8 @@ const initialState = {
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
 const userAdventures = adventures => ({type: USER_ADVENTURES, adventures})
+const addAdventure = adventure => ({type: ADD_ADVENTURE, adventure})
+const updateAdventure = id => { console.log('what is going on'); return {type: UPDATE_ADVENTURE, id}}
 
 /**
  * THUNK CREATORS
@@ -109,6 +113,19 @@ export const getUserAdventuresThunk = (id) => {
   }
 }
 
+export const createAdventure = (adventure, history) => {
+  return async (dispatch) => {
+    try {
+      const {data} = await axios.post('/api/adventures', adventure)
+      dispatch(addAdventure(data))
+      console.log('history', history)
+      history.push(`/adventures/${data.id}`)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
 
 /**
  * REDUCER
@@ -116,11 +133,15 @@ export const getUserAdventuresThunk = (id) => {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_USER:
-      return {...action.user}
+      return {...state, ...action.user}
     case REMOVE_USER:
       return {}
-    case USER_ADVENTURES: 
+    case USER_ADVENTURES:
       return {...state, adventures: action.adventures}
+    case ADD_ADVENTURE:
+      return {...state, adventures: [...state.adventures, action.adventure]}
+    case UPDATE_ADVENTURE:
+      return {...state, adventures: state.adventures.map(adventure=> adventure.id===action.id ? {...adventure, counter: adventure.counter++}: adventure)}
     default:
       return state
   }

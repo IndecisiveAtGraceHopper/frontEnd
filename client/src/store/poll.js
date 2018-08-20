@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import updateAdventure from './user'
 /**
  * ACTION TYPES
  */
@@ -43,6 +43,7 @@ export const getPoll = (adventureId, userId)=> {
     try {
       const {data} = await axios.get(`/api/adventures/${adventureId}/poll/${userId}`)
       dispatch(setPoll(data))
+
     } catch (err){
       console.log('err in getPoll', err)
     }

@@ -6,23 +6,23 @@ const {userAuth} = require('../api/auth')
 
 module.exports = router
 
-router.get('/', async (req, res, next) => {
-    try {
-        const notes = await Note.findAll()
-        res.json(notes)
-    } catch (err) {
-        next(err)
-    }
-})
+// router.get('/', async (req, res, next) => { // this route doesn't work
+//     try {
+//         const notes = await Note.findAll()
+//         res.json(notes)
+//     } catch (err) {
+//         next(err)
+//     }
+// })
 
-router.get('/:podId', async (req, res, next) => {
-    try {
-        const note = await Note.findById(req.params.id)
-        res.json(note)
-    } catch (err) {
-        next(err)
-    }
-})
+// router.get('/:podId', async (req, res, next) => { //this route doesn't make sense
+//     try {
+//         const note = await Note.findById(req.params.id)
+//         res.json(note)
+//     } catch (err) {
+//         next(err)
+//     }
+// })
 
 router.post('/', async (req, res, next) => {
     try {
@@ -32,6 +32,7 @@ router.post('/', async (req, res, next) => {
         next(err)
     }
 })
+
 
 router.put('/:id', async (req, res, next) => {
     try {
