@@ -20,7 +20,7 @@ describe('Activity routes', () => {
             const res = await request(app)
                 .get('/api/activities')
                 .expect(200)
-            expect(typeof res.body).to.be.equal('array')
+            expect(Array.isArray(res.body)).to.be.true
         })
 
         it('GET /api/activities/:id', async () => {
@@ -28,19 +28,14 @@ describe('Activity routes', () => {
                 .get('/api/activities/1')
                 .expect(200)
             expect(res.body.name).to.be.equal('Brooklyn Bridge walk')
-            expect(res.body.id).to.be.equal(1)
         })
 
         it('POST /api/activities', async () => {
             const res = await request(app)
-                .post('/api/activities', {
+                .post('/api/activities')
+                .send({
                     name: 'Super fun activity',
-                    date: '06/14/2019',
-                    address: 'Washington Square Park',
-                    rating: 4,
-                    selected: false,
-                    upVotes: 0,
-                    downVotes: 0
+                    date: '06/14/2019'
                 })
                 .expect(200)
             expect(res.body.name).to.be.equal('Super fun activity')
@@ -48,7 +43,8 @@ describe('Activity routes', () => {
 
         it('PUT /api/activities/:id', async () => {
             const res = await request(app)
-                .put('/api/activities/2', {
+                .put('/api/activities/1')
+                .send({
                     name: 'Picnic',
                     address: 'Prospect Park',
                     rating: 5

@@ -6,9 +6,7 @@ module.exports = router
 
 router.get('/', async (req, res, next) => {
     try {
-        const activities = await Activity.findAll({
-            attributes: [name, date, address, rating, selected, upVotes, downVotes]
-        })
+        const activities = await Activity.findAll({attributes: ['name', 'date', 'address', 'rating', 'selected', 'upVotes', 'downVotes']})
         res.json(activities)
     } catch (err) {
         next(err)
@@ -17,15 +15,9 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try {
-        console.log('req.name', req.activity.name)
         const properties = {
-            name: req.name,
-            date: req.date, 
-            address: req.address,
-            rating: req.rating,
-            selected: req.selected,
-            upVotes: req.upVotes,
-            downVotes: req.downVotes
+            name: req.body.name,
+            date: req.body.date
         }
         const newActivity = await Activity.create(properties)
         res.json(newActivity)
@@ -37,9 +29,8 @@ router.post('/', async (req, res, next) => {
 router.use('/:id', async(req, res, next) => {
     try {
         const activity = await Activity.findById(req.params.id, {
-            attributes: [name, date, address, rating, selected, upVotes, downVotes]
+            attributes: ['name', 'date', 'address', 'rating', 'selected', 'upVotes', 'downVotes']
         })
-        console.log('activity', activity)
         if (activity) {
             req.activity = activity
             next()
@@ -57,11 +48,7 @@ router.use('/:id', async(req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
     try {
-        const activity = await Activity.findById(req.params.id, {
-            attributes: [name, date, address, rating, selected, upVotes, downVotes]
-        })
-        console.log('activity', activity)
-        res.json(activity)
+        res.json(req.activity)
     } catch (err) {
         next(err)
     }
@@ -71,13 +58,13 @@ router.get('/:id', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
     try {
         const updates = {
-            name: req.name,
-            date: req.date,
-            address: req.address,
-            rating: req.rating,
-            selected: req.selected,
-            upVotes: req.upVotes,
-            downVotes: req.downVotes,
+            name: req.body.name,
+            date: req.body.date,
+            address: req.body.address,
+            rating: req.body.rating,
+            selected: req.body.selected,
+            upVotes: req.body.upVotes,
+            downVotes: req.body.downVotes
         }
         const updatedActivity = await req.activity.update(updates)
         res.json(updatedActivity)
