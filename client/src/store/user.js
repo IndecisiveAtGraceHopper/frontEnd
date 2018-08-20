@@ -72,7 +72,7 @@ export const authLogin = (userInfo) => async dispatch => {
   }
   try {
     dispatch(getUser(res.data))
-    history.push('/userhome')
+    history.push('/pods')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }
