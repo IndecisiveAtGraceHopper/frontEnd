@@ -30,7 +30,15 @@ class Pod extends Component {
   }
 
   render() {
-    console.log('this.state.adventures', this.state.adventures)
+    const allAdventures = this.state.adventures
+    let futureAdventures = allAdventures.filter(adventure => {
+        const date = new Date(adventure.date)
+        return Date.parse(date) >= Date.now()
+    })
+    let pastAdventures = allAdventures.filter(adventure => {
+        const date = new Date(adventure.date)
+        return Date.parse(date) < Date.now()
+    })
     const podId = this.props.match.params.id
 	  if(this.props.users) {
       return (
@@ -63,13 +71,13 @@ class Pod extends Component {
               <h4 className="text-center">Upcoming:</h4>
               <ul>
               {
-                this.state.adventures.map(adventure => <li key={adventure.id}><Link to={`/adventure/${adventure.id}`}>{adventure.name}</Link></li>)
+                futureAdventures.map(adventure => <li key={adventure.id}><Link to={`/adventure/${adventure.id}`}>{adventure.name}</Link></li>)
               }
               </ul>
               <h4 className="text-center">Past:</h4>
               <ul>
               {
-                this.state.adventures.map(adventure => <li key={adventure.id}><Link to={`/adventure/${adventure.id}`}>{adventure.name}</Link></li>)
+                pastAdventures.map(adventure => <li key={adventure.id}><Link to={`/adventure/${adventure.id}`}>{adventure.name}</Link></li>)
               }
               </ul>
             </div>
