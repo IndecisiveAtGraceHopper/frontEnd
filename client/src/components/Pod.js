@@ -51,7 +51,7 @@ class Pod extends Component {
           </div>
           <div id='pod-content'>
             <div id='pod-members'>
-              <h3 className="text-center">Pod Members</h3>
+              <h3 className="text-center">Members</h3>
               {
                 this.props.users.map(user => (
                   <div className="col-sm-6" id="user" key={user.id}>
@@ -67,14 +67,14 @@ class Pod extends Component {
               </div>
             </div>
             <div id='pod-adventures'>
-              <h3 className="text-center">Pod Adventures</h3>
-              <h4 className="text-center">Upcoming:</h4>
+              <h3 className="text-center">Adventures</h3>
+              <h4 className="text-left">Upcoming:</h4>
               <ul>
               {
                 futureAdventures.map(adventure => <li key={adventure.id}><Link to={`/adventure/${adventure.id}`}>{adventure.name}</Link></li>)
               }
               </ul>
-              <h4 className="text-center">Past:</h4>
+              <h4 className="text-left">Past:</h4>
               <ul>
               {
                 pastAdventures.map(adventure => <li key={adventure.id}><Link to={`/adventure/${adventure.id}`}>{adventure.name}</Link></li>)
