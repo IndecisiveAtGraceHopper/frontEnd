@@ -30,7 +30,7 @@ export const addUserToPod = user => ({type:ADD_USER_TO_POD, user:user})
 export const createPodThunk = (podName) => {
     return async (dispatch) => {
       try {
-        const response = await axios.post('/api/pods', podName)
+        const response = await axios.post('https://obscure-lowlands-38066.herokuapp.com/api/pods', podName)
         const newPod = response.data
         return Promise.resolve(newPod)
       } catch (err) {
@@ -41,7 +41,7 @@ export const createPodThunk = (podName) => {
 
 export const getUsersInPodThunk = (id) => {
   return async (dispatch) => {
-    const response = await axios.get(`/api/pods/${id}`)
+    const response = await axios.get(`https://obscure-lowlands-38066.herokuapp.com/api/pods/${id}`)
     const pod = response.data
     const action = getPod(pod)
     return dispatch(action)
@@ -50,7 +50,7 @@ export const getUsersInPodThunk = (id) => {
 
 export const getUserPodsThunk = (id) => {
   return async (dispatch) => {
-    const response = await axios.get(`/api/users/${id}`);
+    const response = await axios.get(`https://obscure-lowlands-38066.herokuapp.com/api/users/${id}`);
     const pods = response.data;
     const action = userPods(pods);
     return dispatch(action);
@@ -58,7 +58,7 @@ export const getUserPodsThunk = (id) => {
 }
 
 export const createUserPodThunk = (userId, podId) => async dispatch => {
-  const response = await axios.post('/api/pods/userPod', ({podId, userId}))
+  const response = await axios.post('https://obscure-lowlands-38066.herokuapp.com/api/pods/userPod', ({podId, userId}))
   const { user } = response.data
   const action = addUserToPod(user)
   return dispatch(action)

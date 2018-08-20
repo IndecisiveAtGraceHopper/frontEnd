@@ -30,7 +30,7 @@ export const removeActivities = activityId => ({type: REMOVE_ACTIVITIES, activit
 export const fetchActivities = (adventureId) => {
     return async (dispatch) => {
       try {
-        const {data} = await axios.get(`/api/adventures/${adventureId}/activities`)
+        const {data} = await axios.get(`https://obscure-lowlands-38066.herokuapp.com/api/adventures/${adventureId}/activities`)
         const action = loadActivities(data)
         dispatch(action)
       } catch (err) {
@@ -43,7 +43,7 @@ export const updateVote = (activity)=> {
   return async (dispatch) => {
     try{
       console.log('updateThunk', activity)
-      const {data} = await axios.put(`/api/activities/${activity.id}`, activity)
+      const {data} = await axios.put(`https://obscure-lowlands-38066.herokuapp.com/api/activities/${activity.id}`, activity)
       const action = changeVote(data)
       dispatch(action)
 

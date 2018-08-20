@@ -28,7 +28,7 @@ const getAllUsers = (allUsers) => ({type: GET_ALL_USERS, allUsers: allUsers})
 
  export const getUsersThunk = () => async dispatch => {
    try {
-     const res = await axios.get('/api/users')
+     const res = await axios.get('https://obscure-lowlands-38066.herokuapp.com/api/users')
      dispatch(getAllUsers(res.data))
    }catch(err){
      console.log(err)
