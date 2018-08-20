@@ -17,21 +17,25 @@ class Pod extends Component {
 	if(this.props.users){
     return (
       <div>
-        <h2>{this.props.pod.name}</h2>
-        <h5>Current Pod Members</h5>
-        <div>
+        <h2 className="text-center font-weight-normal">{this.props.pod.name}</h2><br/>
+        <h5 className="text-center font-weight-bold">Current Pod Members</h5>
+        <button class="btn btn-success pull-right center" onClick = {this.onClick}>Create An Adventure</button>
+
+        <div className="row">
         {
          		this.props.users.map(user => (
-	         	 	<div id="user" key={user.id}>
-	         	 		<h5>{user.fullName}</h5>
-	                </div>
+	         	 	<div className="col-sm-6" id="user" key={user.id}>
+	         	 		<h5 className= "text-center font-weight-normal">{user.fullName}</h5>
+	                <div class="card-body">
+                  <img src={user.image}  className="rounded mx-auto d-block" width='30px' height='30px'/>
+                  </div>
+                  </div>
               	)
              )}
-          <h2>Search for friends</h2>
-          <h5></h5>
-        <div><Search podId={podId}/></div>
-        <button onClick = {this.onClick}>Create An Adventure</button>
         </div>
+        <div><Search podId={podId}/></div>
+
+
       </div>
     );
   }

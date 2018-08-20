@@ -60,38 +60,45 @@ class UserProfile extends Component {
   render() {
     return (
       <div id='user-profile'>
-        <h3>Welcome, {this.state.user.email}</h3>
-        <form id='userProfile' onSubmit={this.handleSubmit}>
-          <div>
-            <label htmlFor='firstName'>First Name</label>
-            <input name='firstName' type='string' onChange={this.handleChange} value={this.state.user.firstName} defaultValue={this.state.user.firstName} />
-            {!this.state.user.firstName ? <p>First name cannot be null</p> : null}
+        <h3 className="font-weight-normal">Welcome {this.state.user.firstName},</h3>
+        <br></br>
+        <form id='userProfile' onSubmit={this.handleSubmit}  className="form-group">
+          <div className="form-group">
+            <img src={this.state.currentImage}  className="rounded mx-auto d-block" width='200px' height='200px' />
           </div>
           <div>
-            <label htmlFor='lastName'>Last Name</label>
-            <input name='lastName' type='string' onChange={this.handleChange} value={this.state.user.lastName} defaultValue={this.state.user.lastName} />
-            {!this.state.user.lastName ? <p>Last name cannot be null</p> : null}
+            <label htmlFor='email'>Email</label><br/>
+            <input className="form-control mx-sm-3" name='email' type='string' onChange={this.handleChange} value={this.state.user.email} defaultValue={this.state.user.firstName} />
+            {!this.state.user.email ? <p>Email cannot be null</p> : null}
           </div>
           <div>
-            <label htmlFor='phone'>Phone Number</label>
-            <input name='phone' type='string' onChange={this.handleChange} value={this.state.user.phone} defaultValue={this.state.user.phone} />
+            <label htmlFor='firstName'>First Name</label><br/>
+            <input className="form-control mx-sm-3" name='firstName' type='string' onChange={this.handleChange} value={this.state.user.firstName} defaultValue={this.state.user.firstName} />
+            {!this.state.user.firstName ? <p>You must enter your first name </p> : null}
+          </div>
+          <div>
+            <label htmlFor='lastName'>Last Name</label><br/>
+            <input className="form-control mx-sm-3" name='lastName' type='string' onChange={this.handleChange} value={this.state.user.lastName} defaultValue={this.state.user.lastName} />
+            {!this.state.user.lastName ? <p>You must enter your last name</p> : null}
+          </div>
+          <div>
+            <label htmlFor='phone'>Phone Number</label><br/>
+            <input className="form-control mx-sm-3" name='phone' type='string' onChange={this.handleChange} value={this.state.user.phone} defaultValue={this.state.user.phone} />
             {!this.state.user.phone ? <p>Phone number cannot be null</p> : null}
           </div>
           <div>
-            <label htmlFor='address'>Address</label>
-            <input name='address' type='string' onChange={this.handleChange} value={this.state.user.address} defaultValue={this.state.user.address} />
+            <label htmlFor='address'>Address</label><br/>
+            <input className="form-control mx-sm-3" name='address' type='string' onChange={this.handleChange} value={this.state.user.address} defaultValue={this.state.user.address} />
             {!this.state.user.address ? <p>Address cannot be null</p> : null}
           </div>
           <div>
-            <label htmlFor='image'>Profile Photo URL</label>
-            <input name='image' type='string' onChange={this.handleChange} value={this.state.user.image} defaultValue={this.state.user.image} />
+            <label htmlFor='image'>Profile Photo URL</label><br/>
+            <input className="form-control mx-sm-3" name='image' type='string' onChange={this.handleChange} value={this.state.user.image} defaultValue={this.state.user.image} />
             {!this.state.user.image ? <p>Photo URL cannot be null</p> : null}
           </div>
+
           <div>
-            <img src={this.state.currentImage} width='200px' height='200px' />
-          </div>
-          <div>
-            <button type='submit'>Submit</button>
+            <button type='submit button' className="btn btn-dark btn-lg btn-block">Submit</button>
           </div>
         </form>
       </div>
