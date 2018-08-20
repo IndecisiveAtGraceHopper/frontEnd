@@ -65,8 +65,9 @@ class Adventure extends Component {
       return (<h1> {`${adventure[0].counter} out of ${adventure[0].totalCount} of your polls are in`} </h1>)
       }
     else {
-      return <h1> Loading </h1>
-    }
+      return (
+        <div className='page-body'><h1>Loading</h1></div>
+      )
     }
   }
 

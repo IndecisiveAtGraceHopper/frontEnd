@@ -16,10 +16,8 @@ class Poll extends Component {
       artsyLevel: 2,
       hungerLevel: 2,
       drinkLevel: 2,
-      showMap: false,
       location: 'enter a location'
     }
-    this.renderMap = this.renderMap.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.getGeocode = this.getGeocode.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -59,11 +57,6 @@ class Poll extends Component {
   //   } else alert('Geolocation not supported')
   // }
 
-  async renderMap(evt) {
-    evt.preventDefault()
-    await this.setState({showMap: !this.state.showMap})
-  }
-
   render() {
     console.log('props', this.props)
     return (
@@ -76,19 +69,12 @@ class Poll extends Component {
               <input type="text" name="location" onChange={this.handleChange} className="form-control" id="nameInput" aria-describedby="name" value={this.state.location} />
               <small id="location" className="form-text text-muted" />
               {/*<button onClick={this.onClick}>Find Me</button>*/}
-            </div>
-            {this.state.showMap ? (
               <div id='map-outer'>
-                <button onClick={this.renderMap}>Hide Map</button>
                 <div id='map-container'>
                   <Map interactive='true' coords={this.state.location}/>
-                </div>
+                </div>  
               </div>
-              ) : (
-              <div>
-                <button onClick={this.renderMap}>Show Map</button>
-              </div>
-            )}
+            </div>
             <div>
               <label htmlFor="priceRange">priceRange</label>
               <input type="range" name="priceRange" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />

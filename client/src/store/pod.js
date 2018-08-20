@@ -80,7 +80,7 @@ export default function(state = initialState, action) {
     case ADD_USER_TO_POD:
       const newUsers = state.users.slice()
 
-      const userIndex = newUsers.findIndex(u => u.id == action.user.id)
+      const userIndex = newUsers.findIndex(u => u.id === action.user.id)
       if (userIndex < 0) {
         newUsers.push(action.user)
       }

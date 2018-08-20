@@ -17,17 +17,18 @@ class Pod extends Component {
 	if(this.props.users){
     return (
       <div>
-        <h2 className="text-center font-weight-normal">{this.props.pod.name}</h2><br/>
-        <h5 className="text-center font-weight-bold">Current Pod Members</h5>
-        <button class="btn btn-success pull-right center" onClick = {this.onClick}>Create An Adventure</button>
-
+        <ul id='pod-header'>
+          <li><h2 className="text-center font-weight-normal">{this.props.pod.name}</h2></li>
+          <li><button className="btn btn-block btn-success" onClick={this.onClick}>Create An Adventure</button></li>
+          <li><h5 className="text-center font-weight-bold">Current Pod Members</h5></li>
+        </ul>
         <div className="row">
         {
          		this.props.users.map(user => (
 	         	 	<div className="col-sm-6" id="user" key={user.id}>
 	         	 		<h5 className= "text-center font-weight-normal">{user.fullName}</h5>
 	                <div class="card-body">
-                  <img src={user.image}  className="rounded mx-auto d-block" width='30px' height='30px'/>
+                  <img src={user.image} alt='profile' className="rounded mx-auto d-block" width='30px' height='30px'/>
                   </div>
                   </div>
               	)
