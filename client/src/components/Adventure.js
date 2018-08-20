@@ -70,7 +70,7 @@ class Adventure extends Component {
       )
     }
   }
-
+}
 const mapState= (state, {match})=> {
   return {
     activities: state.activity,
