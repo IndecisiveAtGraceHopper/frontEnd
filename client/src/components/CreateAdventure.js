@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {createAdventure} from '../store/adventure'
+import Poll from './Poll'
+import {createAdventure} from '../store/user'
+
 class CreateAdventure extends Component {
   constructor(){
     super()
@@ -17,6 +19,7 @@ class CreateAdventure extends Component {
 
   onClick = (evt) => {
     evt.preventDefault()
+    console.log('here')
     this.props.submit({...this.state, podId: +this.props.match.params.id})
 
   }

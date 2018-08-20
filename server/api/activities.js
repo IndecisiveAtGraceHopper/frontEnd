@@ -46,6 +46,23 @@ router.use('/:id', async(req, res, next) => {
     }
 })
 
+// router.post('/', async (req, res, next) => {
+//     try {
+//         const newActivity = await Activity.create(req.body)
+//         res.json(newActivity)
+//     } catch (err) {
+//         next(err)
+//     }
+// })
+
+// router.put('/:id', async (req, res, next) => {
+//     try {
+//         const updatedActivity = await req.activity.update(req.body)
+//         res.json(updatedActivity)
+//     } catch (err) {
+//         next(err)
+//     }
+// })
 router.get('/:id', async (req, res, next) => {
     try {
         res.json(req.activity)
@@ -73,11 +90,11 @@ router.put('/:id', async (req, res, next) => {
     }
 })
 
-router.delete('/:id', async (req, res, next) => {
-    try {
-        req.activity.destroy()
-        res.sendStatus(204)
-    } catch (err) {
-        next(err)
-    }
-})
+// router.delete('/:id', async (req, res, next) => {
+//     try {
+//         req.activity.destroy()
+//         res.sendStatus(204)
+//     } catch (err) {
+//         next(err)
+//     }
+// })

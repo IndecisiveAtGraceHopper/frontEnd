@@ -26,7 +26,7 @@ export const createAdventure = (adventure, history) => {
     try {
       const {data} = await axios.post('/api/adventures', adventure)
       dispatch(selectAdventure(data))
-      history.push(`/adventure/${data.id}`)
+      history.push(`/adventures/${data.id}`)
     } catch (err) {
       console.log(err)
     }
