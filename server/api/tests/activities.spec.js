@@ -55,7 +55,7 @@ describe('Activity routes', () => {
 
         it('DELETE /api/activities/:id', async () => {
             const res = await request(app)
-                .delete('/api/activities/2')
+                .delete('/api/activities/1')
                 .expect(204)
         })
     })

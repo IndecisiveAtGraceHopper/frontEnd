@@ -58,16 +58,16 @@ router.get('/:id', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
     try {
         const updates = {
-            name: req.body.name,
-            date: req.body.date,
-            address: req.body.address,
-            rating: req.body.rating,
-            selected: req.body.selected,
-            upVotes: req.body.upVotes,
-            downVotes: req.body.downVotes
+            name: req.body.name ? req.body.name : null,
+            date: req.body.date ? req.body.date : null,
+            address: req.body.address ? req.body.address : null,
+            rating: req.body.rating ? req.body.rating : null,
+            selected: req.body.selected ? req.body.selected : null,
+            upVotes: req.body.upVotes ? req.body.upVotes : null,
+            downVotes: req.body.downVotes ? req.body.downVotes : null
         }
-        const updatedActivity = await req.activity.update(updates)
-        res.json(updatedActivity)
+        await req.activity.update(updates)
+        res.status(201).json(req.activity)
     } catch (err) {
         next(err)
     }
