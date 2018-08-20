@@ -46,7 +46,6 @@ router.use('/:id', async(req, res, next) => {
     }
 })
 
-<<<<<<< HEAD
 // router.post('/', async (req, res, next) => {
 //     try {
 //         const newActivity = await Activity.create(req.body)
@@ -64,7 +63,6 @@ router.use('/:id', async(req, res, next) => {
 //         next(err)
 //     }
 // })
-=======
 router.get('/:id', async (req, res, next) => {
     try {
         res.json(req.activity)
@@ -91,7 +89,6 @@ router.put('/:id', async (req, res, next) => {
         next(err)
     }
 })
->>>>>>> master
 
 // router.delete('/:id', async (req, res, next) => {
 //     try {

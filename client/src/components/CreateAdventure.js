@@ -18,6 +18,7 @@ class CreateAdventure extends Component {
 
   onClick = (evt)=> {
     evt.preventDefault()
+    console.log('here')
     this.props.submit({...this.state, podId: +this.props.match.params.id})
 
   }
@@ -33,7 +34,7 @@ class CreateAdventure extends Component {
           <input className="form-control mb-2 mr-sm-2" type ='date' value = {this.state.date} name='date' onChange={this.handleChange}/>
           <br/>
         </form>
-        <button type='submit' className="btn btn-secondary btn-lg btn-block">Start your adventure!</button>
+        <button type='submit' className="btn btn-secondary btn-lg btn-block" onClick={this.onClick}>Start your adventure!</button>
        </div>
     )
   }

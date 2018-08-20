@@ -36,9 +36,6 @@ class Adventure extends Component {
   }
 
   render() {
-    return (
-      <PinBoard id={this.props.match.params.id}/>
-    )
     if (this.props.activities.length){
         return (
           <div id='adventure-page'>
