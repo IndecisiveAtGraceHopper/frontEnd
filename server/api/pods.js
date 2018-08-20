@@ -24,8 +24,8 @@ router.get('/:id', async (req, res, next) => {
            {
             include: [{
                 model: User,
-                include:[{
-                    model:Adventure
+                include: [{
+                    model: Adventure
                 }]
             }]
         })
@@ -45,10 +45,11 @@ router.post('/', async (req, res, next) => {
 })
 
 router.post('/userPod', async (req, res, next) => {
-    try {
-        const pod = await Pod.findById(+req.body.podId)
+try {
+    const pod = await Pod.findById(+req.body.podId)
+        const user = await User.findById(+req.body.userId)
         pod.addUser(+req.body.userId)
-        res.json(pod)
+        res.json({pod, user})
     } catch (err) {
         next(err)
     }
@@ -73,4 +74,3 @@ router.delete('/:id', async (req, res, next) => {
         next(err)
     }
 })
-

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { runInNewContext } from 'vm';
 
 /**
  * ACTION TYPES
@@ -27,6 +28,17 @@ export const createAdventure = (adventure, history) => {
       const {data} = await axios.post('/api/adventures', adventure)
       dispatch(selectAdventure(data))
       history.push(`/adventures/${data.id}`)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
+export const getAdventure = id => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get(`/api/adventures/${id}`)
+      dispatch(selectAdventure(data))
     } catch (err) {
       console.log(err)
     }

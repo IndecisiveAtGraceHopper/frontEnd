@@ -6,7 +6,11 @@ import React from 'react'
 export const GoogleLogin = () => {
   return (
     <div id='login'>
-      <button><a href="http://localhost:3001/auth/google">Login with Google</a></button>
+     <a href="http://localhost:3001/auth/google">
+      <button className="btn btn-primary btn-lg btn-block">Login with Google</button>
+      </a>
+      <br/>
+      <br/>
     </div>
   )
 }

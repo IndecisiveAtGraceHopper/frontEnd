@@ -15,6 +15,8 @@ router.use('/pods', require('./pods'))
 
 router.use('/polls', require('./polls'))
 
+router.use('/date', require('./date'))
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

@@ -5,6 +5,7 @@ import {getPoll} from '../store/poll'
 import {connect} from 'react-redux'
 import {Map, Poll} from './index'
 import {getUserAdventuresThunk} from '../store/user'
+import {PinBoard} from './index'
 
 
 class Adventure extends Component {
@@ -35,22 +36,26 @@ class Adventure extends Component {
   }
 
   render() {
-
+    return (
+      <PinBoard id={this.props.match.params.id}/>
+    )
     if (this.props.activities.length){
         return (
           <div id='adventure-page'>
             <h3>Adventure</h3>
-
             <div id='activities-container'>
-                      {this.props.activities.map((activity) =>
-                        <Activity activity={activity} isCoord={true} key={activity.id}/>)
-                      }
-                    </div>
-                    <div id='adventure-map-container'>
-                      { this.state.locations.length &&
-                        <Map interactive={false} coords={this.state.locations} />
-                      }
-                    </div>
+              {this.props.activities.map((activity) =>
+                <Activity activity={activity} isCoord={true} key={activity.id}/>
+              )}
+            </div>
+            <div id='adventure-map-container'>
+              {this.state.locations.length &&
+                <Map interactive={false} coords={this.state.locations} />
+              }
+            </div>
+            <div id='pinboard-container'>
+              <PinBoard />
+            </div>
           </div>
         )
       }
@@ -68,7 +73,11 @@ class Adventure extends Component {
     }
   }
 
+<<<<<<< HEAD
 const mapState= (state, {match})=> {
+=======
+const mapState = (state) => {
+>>>>>>> master
   return {
     activities: state.activity,
     userId: state.user.id,
@@ -85,4 +94,4 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Adventure);
+export default connect(mapState, mapDispatch)(Adventure)

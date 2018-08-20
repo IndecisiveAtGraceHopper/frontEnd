@@ -34,7 +34,8 @@ class UserHome extends Component {
     return (
       <div>
        <div><UserPods id={this.props.userId} /></div>
-      <h3 className="text-center"> Create a new pod! </h3>
+       <br/>
+      <h3 className="text-center font-weight-normal"> Create a new pod! </h3>
         <form onSubmit={this.handleSubmit}>
          <div className="form-group form-check">
             <label htmlFor="name" />
@@ -44,7 +45,7 @@ class UserHome extends Component {
         </div>
           <span>
           <br/>
-           <button className="btn btn-primary btn-lg btn-block"type='submit'>Create New Pod</button>
+           <button className="btn btn-secondary btn-lg btn-block"type='submit'>Create</button>
           </span>
       </form>
     </div>
