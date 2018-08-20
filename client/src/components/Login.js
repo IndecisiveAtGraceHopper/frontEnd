@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {authLogin} from '../store'
 import GoogleLogin from './GoogleLogin'
-import {Link} from 'react-router-dom'
 
 class Login extends React.Component {
   constructor(){
@@ -40,16 +39,11 @@ class Login extends React.Component {
             <label htmlFor="password">
               <div><h3>Password</h3></div>
             </label>
-            <div><input class="form-control" name="password" type="password" onChange={this.handleChange} /></div>
+            <div><input className="form-control" name="password" type="password" onChange={this.handleChange} /></div>
           </div>
           <div className='authElement'>
             <button className='btn btn-primary'type="submit">Log In</button>
             {(this.props.user && this.props.user.error)&&<span>Wrong Username or Password</span>}
-          </div>
-          <div className='authElement'>
-          <a href='/signup'>
-              <button className='btn btn-dark'>Sign Up</button>
-          </a>
           </div>
         </form>
       </div>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Poll from './Poll'
 import {createAdventure} from '../store/adventure'
 class CreateAdventure extends Component {
   constructor(){
@@ -11,12 +10,12 @@ class CreateAdventure extends Component {
     }
   }
 
-  handleChange = (evt)=> {
+  handleChange = (evt) => {
     this.setState({[evt.target.name]: evt.target.value})
 
   }
 
-  onClick = (evt)=> {
+  onClick = (evt) => {
     evt.preventDefault()
     this.props.submit({...this.state, podId: +this.props.match.params.id})
 
@@ -33,7 +32,7 @@ class CreateAdventure extends Component {
           <input className="form-control mb-2 mr-sm-2" type ='date' value = {this.state.date} name='date' onChange={this.handleChange}/>
           <br/>
         </form>
-        <button type='submit' className="btn btn-secondary btn-lg btn-block">Start your adventure!</button>
+        <button type='submit' className="btn btn-secondary btn-lg btn-block" onClick={this.onClick}>Start your adventure!</button>
        </div>
     )
   }

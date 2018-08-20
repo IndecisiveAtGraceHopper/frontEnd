@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {getUsersThunk, createUserPodThunk} from '../store'
-import axios from 'axios'
 
 class Search extends React.Component {
   constructor() {

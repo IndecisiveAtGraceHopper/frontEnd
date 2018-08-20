@@ -33,9 +33,6 @@ class Adventure extends Component {
   }
 
   render() {
-    return (
-      <PinBoard id={this.props.match.params.id}/>
-    )
     if (this.props.activities.length){
         return (
           <div id='adventure-page'>
@@ -60,7 +57,9 @@ class Adventure extends Component {
       return (<Poll adventureId={this.props.match.params.id} />)
     }
     else {
-      return (<h1> 5 out of 4 polls completed </h1>)
+      return (
+        <div className='page-body'><h1>Remind your friends to submit their polls!</h1></div>
+      )
     }
   }
 }
