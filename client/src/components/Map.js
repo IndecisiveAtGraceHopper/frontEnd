@@ -1,9 +1,9 @@
 import {connect} from 'react-redux'
 import React, { Component } from 'react'
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
-import {MAPBOXGL_ACCESS_TOKEN as accessToken} from './secrets'
+import {REACT_APP_MAPBOXGL_ACCESS_TOKEN as accessToken} from '../.env'
 import axios from 'axios'
-import key from './secrets'
+import {REACT_APP_GOOGLE_MAPS_KEY as key} from '../.env'
 import {setLocation} from '../store/poll'
 mapboxgl.accessToken = accessToken
 

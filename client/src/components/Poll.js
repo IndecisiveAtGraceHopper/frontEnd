@@ -2,7 +2,7 @@ import {connect} from 'react-redux'
 import React, { Component } from 'react'
 import {submitPollThunk} from '../store/poll'
 import axios from 'axios'
-import key from './secrets'
+import {REACT_APP_GOOGLE_MAPS_KEY as key} from '../.env'
 import {Map} from './index'
 import {updateAdventure} from '../store/user'
 
@@ -71,7 +71,7 @@ class Poll extends Component {
               <div id='map-outer'>
                 <div id='map-container'>
                   <Map interactive='true' coords={this.state.location} />
-                </div>  
+                </div>
               </div>
             </div>
             <div className='form-input'>
