@@ -53,7 +53,11 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  accessToken: {
+    type: Sequelize.STRING
   }
+
 },
 {
   hooks: {
