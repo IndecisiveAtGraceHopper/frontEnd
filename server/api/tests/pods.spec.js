@@ -2,56 +2,56 @@ const { expect } = require('chai')
 const request = require('supertest')
 const db = require('../../db')
 const app = require('../../app')
-const Note = db.model('note')
+const Pod = db.model('pod')
 
-describe('Note routes', () => {
+describe('Pod routes', () => {
     beforeEach(() => {
         return db.sync({force: true})
     })
 
-    describe('/api/notes', () => {
+    describe('/api/pods', () => {
         beforeEach(() => {
-            return Note.create({
-                notes: ""
+            return Pod.create({
+                name: 'Peas in a pod'
             })
         })
 
-        it('GET /api/notes', async () => {
+        it('GET /api/pods', async () => {
             const res = await request(app)
-                .get('/api/notes')
+                .get('/api/pods')
                 .expect(200)
             expect(typeof res.body).to.be.equal('array')
         })
 
-        it('GET /api/notes/:id', async () => {
+        it('GET /api/pods/:id', async () => {
             const res = await request(app)
-                .get('/api/notes/1')
+                .get('/api/pods/1')
                 .expect(200)
-            expect(res.body.text).to.be.equal("")
+            expect(res.body.name).to.be.equal("Peas in a pod")
             expect(res.body.id).to.be.equal(1)
         })
 
-        it('POST /api/adventure', async () => {
+        it('POST /api/pods', async () => {
             const res = await request(app)
-                .post('/api/notes', {
-                    notes: ''
+                .post('/api/pods', {
+                    name: 'Peas in a pod 2'
                 })
                 .expect(200)
-            expect(res.body.notes).to.be.equal('')
+            expect(res.body.name).to.be.equal('Peas in a pod 2')
         })
 
-        it('PUT /api/notes/:id', async () => {
+        it('PUT /api/pods/:id', async () => {
             const res = await request(app)
-                .put('/api/notes/2', {
-                    notes: ''
+                .put('/api/pods/2', {
+                    name: 'Spice Girls'
                 })
                 .expect(201)
-            expect(res.body.name).to.be.equal('')
+            expect(res.body.name).to.be.equal('Spice Girls')
         })
 
-        it('DELETE /api/notes/:id', async () => {
+        it('DELETE /api/pods/:id', async () => {
             const res = await request(app)
-                .delete('/api/notes/2')
+                .delete('/api/pods/2')
                 .expect(204)
         })
     })
