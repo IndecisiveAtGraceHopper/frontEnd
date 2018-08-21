@@ -1,5 +1,7 @@
 import axios from 'axios'
 import history from '../history'
+import {isLocalhost} from '../registerServiceWorker'
+const path = isLocalhost ? 'http://localhost:3001' : 'https://obscure-lowlands-38066.herokuapp.com'
 
 /**
  * ACTION TYPES
@@ -37,7 +39,7 @@ export const updateAdventure = id => ({type: UPDATE_ADVENTURE, id})
  */
 export const me = () => async dispatch => {
   try {
-    const res = await axios.get('https://obscure-lowlands-38066.herokuapp.com/auth/me')
+    const res = await axios.get(`${path}/auth/me`)
     dispatch(getUser(res.data || initialState.loggedInUser))
   } catch (err) {
     console.error(err)
@@ -47,7 +49,7 @@ export const me = () => async dispatch => {
 export const authSignUp = (userInfo) => async dispatch => {
   let res
   try {
-    res = await axios.post('https://obscure-lowlands-38066.herokuapp.com/auth/signup', userInfo)
+    res = await axios.post(`${path}/auth/signup`, userInfo)
   } catch (authError) {
     return dispatch(getUser({error: authError}))
   }
@@ -62,7 +64,7 @@ export const authSignUp = (userInfo) => async dispatch => {
 export const authLogin = (userInfo) => async dispatch => {
   let res
   try {
-    res = await axios.post('https://obscure-lowlands-38066.herokuapp.com/auth/login', userInfo)
+    res = await axios.post(`${path}/auth/login`, userInfo)
   } catch (authError) {
     return dispatch(getUser({error: authError}))
   }
@@ -76,7 +78,7 @@ export const authLogin = (userInfo) => async dispatch => {
 
 export const logOut = () => async dispatch => {
   try {
-    await axios.post('https://obscure-lowlands-38066.herokuapp.com/auth/logout')
+    await axios.post(`${path}/auth/logout`)
     dispatch(removeUser())
     history.push('/login')
   } catch (err) {
@@ -86,7 +88,7 @@ export const logOut = () => async dispatch => {
 
 export const createProfile = (profileInfo, userId) => async dispatch => {
   try {
-    const res = await axios.put(`https://obscure-lowlands-38066.herokuapp.com/auth/profile/${userId}`, profileInfo)
+    const res = await axios.put(`${path}/auth/profile/${userId}`, profileInfo)
     dispatch(getUser(res.data))
     history.push('/pods')
   }catch (err) {
@@ -96,7 +98,7 @@ export const createProfile = (profileInfo, userId) => async dispatch => {
 
 export const getUserAdventuresThunk = (id) => {
   return async (dispatch) => {
-    const user = await axios.get(`https://obscure-lowlands-38066.herokuapp.com/api/users/${id}`)
+    const user = await axios.get(`${path}/api/users/${id}`)
     let adventures = []
     const pods = user.data.pods
     pods.forEach(pod => {
@@ -109,7 +111,7 @@ export const getUserAdventuresThunk = (id) => {
 export const createAdventure = (adventure, history) => {
   return async (dispatch) => {
     try {
-      const {data} = await axios.post('https://obscure-lowlands-38066.herokuapp.com/api/adventures', adventure)
+      const {data} = await axios.post(`${path}/api/adventures`, adventure)
       dispatch(addAdventure(data))
       console.log('history', history)
       history.push(`/adventures/${data.id}`)

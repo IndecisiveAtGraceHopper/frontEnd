@@ -6,16 +6,14 @@ import GoogleLogin from './GoogleLogin'
 class Login extends React.Component {
   constructor(){
     super()
-    this.state={
+    this.state = {
       email: '',
       password: ''
     }
   }
 
   handleChange = (evt) => {
-    this.setState({
-       [evt.target.name]: evt.target.value
-    })
+    this.setState({[evt.target.name]: evt.target.value})
   }
 
   handleSubmit = (evt) => {
@@ -42,7 +40,7 @@ class Login extends React.Component {
             <div><input className="form-control" name="password" type="password" onChange={this.handleChange} /></div>
           </div>
           <div className='authElement'>
-            <button className='btn btn-primary'type="submit">Log In</button>
+            <button className='btn btn-primary' type="submit" onClick={this.handleSubmit}>Log In</button>
             {(this.props.user && this.props.user.error)&&<span>Wrong Username or Password</span>}
           </div>
         </form>
