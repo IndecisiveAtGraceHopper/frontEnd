@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
 import axios from 'axios'
 import {setLocation} from '../store/poll'
-mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_ACCESS_TOKEN
 import {isLocalhost} from '../registerServiceWorker'
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_ACCESS_TOKEN
 const path = isLocalhost ? 'http://localhost:3001' : 'https://obscure-lowlands-38066.herokuapp.com'
 
 class Map extends Component {
