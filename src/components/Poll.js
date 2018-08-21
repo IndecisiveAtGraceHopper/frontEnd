@@ -5,6 +5,8 @@ import axios from 'axios'
 // import {REACT_APP_GOOGLE_MAPS_KEY as key} from '../.env'
 import {Map} from './index'
 import {updateAdventure} from '../store/user'
+import {isLocalhost} from '../registerServiceWorker'
+const path = isLocalhost ? 'http://localhost:3001' : 'https://obscure-lowlands-38066.herokuapp.com'
 
 class Poll extends Component {
   constructor() {
@@ -35,7 +37,7 @@ class Poll extends Component {
   }
 
   async getGeocode (address) {
-    const location = await axios.get(`/api/geoLoc/geocode`, {address})
+    const location = await axios.get(`${path}/api/geoLoc/geocode`, {address})
     return location.data
   }
 
