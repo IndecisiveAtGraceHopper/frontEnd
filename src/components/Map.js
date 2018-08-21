@@ -128,12 +128,12 @@ class Map extends Component {
     }
 
     async getGeocode (address) {
-        const location = await axios.get(`${path}/api/geoLoc/geocode`, {address})
+        const location = await axios.post(`${path}/api/geoLoc/geocode`, address)
         return location.data
     }
 
     async getAddress (coords) {
-        const data = await axios.get(`${path}/api/geoLoc/address`, {coords})
+        const data = await axios.post(`${path}/api/geoLoc/address`, coords)
         const {address} = data
         return address
     }
