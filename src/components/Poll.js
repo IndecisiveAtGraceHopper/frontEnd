@@ -34,12 +34,9 @@ class Poll extends Component {
     await this.setState({[evt.target.name]: evt.target.value})
   }
 
-  async getGeocode (evt) {
-    const location= evt.split().join("+")
-    const {data} = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}`)
-    const latitude = data.results[0].geometry.location.lat
-    const longitude = data.results[0].geometry.location.lng
-    return {latitude, longitude}
+  async getGeocode (address) {
+    const location = await axios.get(`/api/geoLoc/geocode`, {address})
+    return location.data
   }
 
   async handleSubmit (evt) {
