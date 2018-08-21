@@ -37,7 +37,6 @@ class Adventure extends Component {
 
   render() {
     if (this.props.activities.length){
-      console.log('this.state.locations', this.state.locations)
         return (
           <div id='adventure-page'>
             <h3>Adventure</h3>
