@@ -2,7 +2,7 @@ import {connect} from 'react-redux'
 import React, { Component } from 'react'
 import {submitPollThunk} from '../store/poll'
 import axios from 'axios'
-const key = process.env.REACT_APP_GOOGLE_MAPS_KEY
+import {REACT_APP_GOOGLE_MAPS_KEY as key} from '../.env'
 import {Map} from './index'
 import {updateAdventure} from '../store/user'
 
