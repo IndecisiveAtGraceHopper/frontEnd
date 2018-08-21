@@ -1,11 +1,11 @@
 import {connect} from 'react-redux'
 import React, { Component } from 'react'
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
-// import {REACT_APP_MAPBOXGL_ACCESS_TOKEN as accessToken} from '../.env'
 import axios from 'axios'
-// import {REACT_APP_GOOGLE_MAPS_KEY as key} from '../.env'
 import {setLocation} from '../store/poll'
+import {isLocalhost} from '../registerServiceWorker'
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_ACCESS_TOKEN
+const path = isLocalhost ? 'http://localhost:3001' : 'https://obscure-lowlands-38066.herokuapp.com'
 
 class Map extends Component {
     constructor(props) {
