@@ -2,10 +2,9 @@ import {connect} from 'react-redux'
 import React, { Component } from 'react'
 import {submitPollThunk} from '../store/poll'
 import axios from 'axios'
-import {REACT_APP_GOOGLE_MAPS_KEY as key} from '../.env'
+// import {REACT_APP_GOOGLE_MAPS_KEY as key} from '../.env'
 import {Map} from './index'
 import {updateAdventure} from '../store/user'
-
 
 class Poll extends Component {
   constructor() {
@@ -37,7 +36,7 @@ class Poll extends Component {
 
   async getGeocode (evt) {
     const location= evt.split().join("+")
-    const {data} = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${key}`)
+    const {data} = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}`)
     const latitude = data.results[0].geometry.location.lat
     const longitude = data.results[0].geometry.location.lng
     return {latitude, longitude}
