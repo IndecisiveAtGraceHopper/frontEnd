@@ -9,7 +9,7 @@ const Navbar = (props) => {
   return (
     <div id='navbar' className='navbar navbar-default'>
       <div id='navbar-header'>
-        <Link to='/userhome'><h2 id='title'>indecisive</h2></Link>
+        <Link to='/'><h2 id='title'>indecisive</h2></Link>
       </div>
       {
         isLoggedIn ? (

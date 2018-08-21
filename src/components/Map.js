@@ -1,11 +1,11 @@
 import {connect} from 'react-redux'
 import React, { Component } from 'react'
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
-// import {REACT_APP_MAPBOXGL_ACCESS_TOKEN as accessToken} from '../.env'
 import axios from 'axios'
-// import {REACT_APP_GOOGLE_MAPS_KEY as key} from '../.env'
 import {setLocation} from '../store/poll'
+import {isLocalhost} from '../registerServiceWorker'
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_ACCESS_TOKEN
+const path = isLocalhost ? 'http://localhost:3001' : 'https://obscure-lowlands-38066.herokuapp.com'
 
 class Map extends Component {
     constructor(props) {
@@ -128,18 +128,14 @@ class Map extends Component {
     }
 
     async getGeocode (address) {
-        const location = address.split().join('+')
-        const {data} = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}`)
-        const latitude = data.results[0].geometry.location.lat
-        const longitude = data.results[0].geometry.location.lng
-        return {latitude, longitude}
+        const location = await axios.get(`${path}/api/geoLoc/geocode`, {address})
+        return location.data
     }
 
     async getAddress (coords) {
-        const lat = coords[1]
-        const lng = coords[0]
-        const res = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}`)
-        return res.data.results[0].formatted_address
+        const data = await axios.get(`${path}/api/geoLoc/address`, {coords})
+        const {address} = data
+        return address
     }
 
     render() {

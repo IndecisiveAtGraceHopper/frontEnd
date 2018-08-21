@@ -5,6 +5,8 @@ import axios from 'axios'
 // import {REACT_APP_GOOGLE_MAPS_KEY as key} from '../.env'
 import {Map} from './index'
 import {updateAdventure} from '../store/user'
+import {isLocalhost} from '../registerServiceWorker'
+const path = isLocalhost ? 'http://localhost:3001' : 'https://obscure-lowlands-38066.herokuapp.com'
 
 class Poll extends Component {
   constructor() {
@@ -34,12 +36,9 @@ class Poll extends Component {
     await this.setState({[evt.target.name]: evt.target.value})
   }
 
-  async getGeocode (evt) {
-    const location= evt.split().join("+")
-    const {data} = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}`)
-    const latitude = data.results[0].geometry.location.lat
-    const longitude = data.results[0].geometry.location.lng
-    return {latitude, longitude}
+  async getGeocode (address) {
+    const location = await axios.get(`${path}/api/geoLoc/geocode`, {address})
+    return location.data
   }
 
   async handleSubmit (evt) {
@@ -73,30 +72,46 @@ class Poll extends Component {
                 </div>
               </div>
             </div>
+
             <div className='form-input'>
-              <label htmlFor="priceRange">Price Range</label>
+              <label htmlFor="priceRange"/>
+              <h5 className= 'text-center'> How much money 💸 would you like to spend?</h5>
+              <p className="text-right" >🤑💵</p>
               <input type="range" name="priceRange" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
               <small id="priceRange" className="form-text text-muted" />
             </div>
             <div className='form-input'>
-              <label htmlFor="activityLevel">Level of Activity</label>
+              <label  htmlFor="activityLevel"/>
+              <h5 className="text-center"> How active 🚣‍🚴🏿 would you like to be? </h5>
+              <h5 className="text-left">🏃🏼‍</h5>
+              <h5 className="text-right">🏃🏼🏋️‍💃🏿</h5>
               <input type="range" name="activityLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
               <small id="activityLevel" className="form-text text-muted" />
             </div>
             <div className='form-input'>
-              <label htmlFor="artsyLevel">Artsiness</label>
+              <label htmlFor="artsyLevel" />
+              <h5 className= 'text-center'> How artsy would you like to be? 🎨</h5>
+              <p className="text-right">🖼🎭👩🏽‍🎨</p>
+              <p className="text-left">👩🏽‍🎨</p>
               <input type="range" name="artsyLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
               <small id="artsyLevel" className="form-text text-muted" />
             </div>
             <div className='form-input'>
-              <label htmlFor="hungerLevel">Hungry?</label>
+              <label htmlFor="hungerLevel"/>
+              <h5 className= 'text-center'> How hungry 🍝will you be? </h5>
+              <p className="text-right">🌮🍗🍱🍔</p>
+              <p className="text-left">🍪</p>
               <input type="range" name="hungerLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
               <small id="hungerLevel" className="form-text text-muted" />
             </div>
             <div className='form-input'>
-              <label htmlFor="drinkLevel">Alcohol?</label>
+              <label htmlFor="drinkLevel" />
+              <h5 className= 'text-center'> 🍾 How much would you like drink? </h5>
+              <p className="text-right">🍻🍹🍸🍷🥂🍸🥂🥤</p>
+              <p className="text-left">🍹</p>
               <input type="range" name="drinkLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
               <small id="drinkLevel" className="form-text text-muted" />
+
           </div>
            <span>
               <button type='submit' className="btn btn-primary btn-block">Submit</button>
