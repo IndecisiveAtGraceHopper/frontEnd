@@ -25,7 +25,8 @@ class SendText extends React.Component {
 render(){
   return (
     <div>
-      <h4>Send this site to a friend</h4>
+    <br/>
+      <h5 className="text-center">If your friends are not on indecisive, text an invite!</h5>
       <form onSubmit={this.handleSubmit}>
          <div className="form-group form-check">
             <label htmlFor="name" />
@@ -34,8 +35,9 @@ render(){
             <small id="name" className="form-text text-muted" />
         </div>
           <span>
-           <button type='submit'>Send Text</button>
+             <button className= "btn btn-primary btn-block " type='submit'>Send Text</button>
           </span>
+          <br/>
       </form>
     </div>
   )

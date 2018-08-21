@@ -39,6 +39,7 @@ class Adventure extends Component {
     if (this.props.activities.length){
       console.log('this.state.locations', this.state.locations)
         return (
+          <div className="container">
           <div id='adventure-page'>
             <h3>Adventure</h3>
             <div id='activities-container'>
@@ -54,6 +55,7 @@ class Adventure extends Component {
             <div id='pinboard-container'>
               <PinBoard />
             </div>
+          </div>
           </div>
         )
       }
