@@ -1,7 +1,7 @@
 import axios from 'axios'
 import history from '../history'
 import {isLocalhost} from '../registerServiceWorker'
-const path = isLocalhost ? 'http://localhost:3001' : 'https://obscure-lowlands-38066.herokuapp.com'
+const path = '' //isLocalhost ? 'http://localhost:3001' : 'https://obscure-lowlands-38066.herokuapp.com'
 
 /**
  * ACTION TYPES
@@ -39,7 +39,7 @@ export const updateAdventure = id => ({type: UPDATE_ADVENTURE, id})
  */
 export const me = () => async dispatch => {
   try {
-    const res = await axios.get(`${path}/auth/me`)
+    const res = await axios.get(`${path}/auth/me`)   
     dispatch(getUser(res.data || initialState.loggedInUser))
   } catch (err) {
     console.error(err)
@@ -70,6 +70,7 @@ export const authLogin = (userInfo) => async dispatch => {
   }
   try {
     dispatch(getUser(res.data))
+    console.log('res.data', res.data)
     history.push('/pods')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
