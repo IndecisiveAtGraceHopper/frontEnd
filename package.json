@@ -41,7 +41,7 @@
     "socket.io": "^2.1.1",
     "twilio": "^3.19.1"
   },
-  "proxy": "http://localhost:3001",
+  "proxy": "https://obscure-lowlands-38066.herokuapp.com",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
