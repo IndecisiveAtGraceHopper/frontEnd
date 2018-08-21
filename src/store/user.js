@@ -1,7 +1,8 @@
 import axios from 'axios'
 import history from '../history'
 import {isLocalhost} from '../registerServiceWorker'
-const path = '' //isLocalhost ? 'http://localhost:3001' : 'https://obscure-lowlands-38066.herokuapp.com'
+const path = isLocalhost ? 'http://localhost:3001' : 'https://obscure-lowlands-38066.herokuapp.com'
+axios.defaults.withCredentials = true
 
 /**
  * ACTION TYPES

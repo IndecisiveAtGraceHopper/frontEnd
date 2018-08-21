@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {isLocalhost} from '../registerServiceWorker'
-const path = "" // isLocalhost ? 'http://localhost:3001' : 'https://obscure-lowlands-38066.herokuapp.com'
+const path = isLocalhost ? 'http://localhost:3001' : 'https://obscure-lowlands-38066.herokuapp.com'
 
 /**
  * ACTION TYPES
