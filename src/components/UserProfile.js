@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {createProfile, me} from '../store'
 import {connect} from 'react-redux'
 
+
 class UserProfile extends Component {
   constructor(){
     super()
@@ -59,12 +60,25 @@ class UserProfile extends Component {
 
   render() {
     return (
+      <div className="container col-11">
+      <br/>
+       <div className="col-16 card bg-light mb-3 align-items-center">
+        <h5 className="card-header ">Setting up your profile</h5>
+          <div className="card-body">
+             <p className="card-text">
+              <br/>
+              Set up your profile so your friends can find you! <br/>
+              We will use your address to find activities near you<br/>
+              Invite your friends and start planning together! <br/>
+               </p>
+         </div>
+      </div>
       <div id='user-profile'>
-        <h3 className="font-weight-normal">Welcome, {this.state.user.firstName}</h3>
+        <h4 className="font-weight-normal text-center">Welcome {this.state.user.firstName}!</h4>
         <br></br>
         <form id='userProfile' onSubmit={this.handleSubmit}  className="form-group">
           <div className="form-group">
-            <img src={this.state.currentImage} alt='userprofile' className="rounded mx-auto d-block" width='200px' height='200px' />
+            <img src={this.state.currentImage} alt='userprofile' className="rounded mx-auto d-block" width='100px' height='100px' />
           </div>
           <div>
             <label htmlFor='email'>Email</label><br/>
@@ -101,6 +115,7 @@ class UserProfile extends Component {
             <button type='submit button' className="btn btn-dark btn-lg btn-block">Submit</button>
           </div>
         </form>
+      </div>
       </div>
     )
   }

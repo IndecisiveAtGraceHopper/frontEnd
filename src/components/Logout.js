@@ -9,7 +9,7 @@ class Logout extends Component {
   }
   render() {
     return (
-      <div className="landingPage" id="logout">
+      <div className="landingPage container col-11" id="logout">
         <button type="button" onClick={this.handleLogout}>Log Out</button>
       </div>
     )

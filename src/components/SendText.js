@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import {isLocalhost} from '../registerServiceWorker'
+const path = isLocalhost ? 'http://localhost:3001' : 'https://obscure-lowlands-38066.herokuapp.com'
 
 class SendText extends React.Component {
   constructor(){
@@ -11,7 +13,7 @@ class SendText extends React.Component {
 
   handleSubmit = async(evt) => {
     evt.preventDefault()
-    await axios.post(`/api/users/${this.props.match.params.id}/text`, ({phone: this.state.phone}))
+    await axios.post(`${path}/api/users/${this.props.match.params.id}/text`, ({phone: this.state.phone}))
   }
 
   handleChange = (evt) => {
@@ -23,7 +25,8 @@ class SendText extends React.Component {
 render(){
   return (
     <div>
-      <h4>Send this site to a friend</h4>
+    <br/>
+      <h5 className="text-center">If your friends are not on indecisive, text an invite!</h5>
       <form onSubmit={this.handleSubmit}>
          <div className="form-group form-check">
             <label htmlFor="name" />
@@ -32,8 +35,9 @@ render(){
             <small id="name" className="form-text text-muted" />
         </div>
           <span>
-           <button type='submit'>Send Text</button>
+             <button className= "btn btn-primary btn-block " type='submit'>Send Text</button>
           </span>
+          <br/>
       </form>
     </div>
   )
