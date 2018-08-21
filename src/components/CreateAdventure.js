@@ -24,9 +24,10 @@ class CreateAdventure extends Component {
   }
 
   render() {
-    if (this.props.user) {console.log('here', this.props.user)}
+   if (this.props.user) {console.log('here', this.props.user)}
     return(
-        <div>
+        <div className= "container">
+        <br/>
         <form onSubmit= {this.onClick} className="input-group mb-2 mr-sm-2">
           <label>Name:</label>
           <input className="form-control mb-2 mr-sm-2" value= {this.state.name} name='name' onChange={this.handleChange}/>
