@@ -126,7 +126,6 @@ class Map extends Component {
     }
 
     async getGeocode (address) {
-<<<<<<< HEAD
         const location = await axios.get(`/api/geoLoc/geocode`, {address})
         return location.data
     }
@@ -135,20 +134,6 @@ class Map extends Component {
         const data = await axios.get(`/api/geoLoc/address`, {coords})
         const {address} = data
         return address
-=======
-        const location = address.split().join('+')
-        const {data} = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}`)
-        const latitude = data.results[0].geometry.location.lat
-        const longitude = data.results[0].geometry.location.lng
-        return {latitude, longitude}
-    }
-
-    async getAddress (coords) {
-        const lat = coords[1]
-        const lng = coords[0]
-        const res = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}`)
-        return res.data.results[0].formatted_address
->>>>>>> 859286eb3b31152c5c1ed476f88438d5aed48201
     }
 
     render() {
