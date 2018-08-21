@@ -3,6 +3,9 @@ import {connect} from 'react-redux'
 import {createPodThunk} from '../store'
 import axios from 'axios'
 import UserPods from './User'
+import {isLocalhost} from '../registerServiceWorker'
+const path = isLocalhost ? 'http://localhost:3001' : 'https://obscure-lowlands-38066.herokuapp.com'
+
 
 /**
  * COMPONENT
@@ -19,7 +22,7 @@ class Pods extends Component {
   handleSubmit = async (evt) => {
     evt.preventDefault()
     const createdPod = await this.props.createNewPod({name:this.state.name})
-    await axios.post('/api/pods/userPod', ({podId: createdPod.id, userId: this.props.userId}))
+    await axios.post(`${path}/api/pods/userPod`, ({podId: createdPod.id, userId: this.props.userId}))
     window.location = `/pods/${createdPod.id}`
   }
 

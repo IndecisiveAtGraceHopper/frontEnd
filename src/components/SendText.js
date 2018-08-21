@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import {isLocalhost} from '../registerServiceWorker'
+const path = isLocalhost ? 'http://localhost:3001' : 'https://obscure-lowlands-38066.herokuapp.com'
 
 class SendText extends React.Component {
   constructor(){
@@ -11,7 +13,7 @@ class SendText extends React.Component {
 
   handleSubmit = async(evt) => {
     evt.preventDefault()
-    await axios.post(`/api/users/${this.props.match.params.id}/text`, ({phone: this.state.phone}))
+    await axios.post(`${path}/api/users/${this.props.match.params.id}/text`, ({phone: this.state.phone}))
   }
 
   handleChange = (evt) => {

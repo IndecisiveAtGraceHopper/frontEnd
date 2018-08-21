@@ -4,6 +4,8 @@ import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
 import axios from 'axios'
 import {setLocation} from '../store/poll'
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_ACCESS_TOKEN
+import {isLocalhost} from '../registerServiceWorker'
+const path = isLocalhost ? 'http://localhost:3001' : 'https://obscure-lowlands-38066.herokuapp.com'
 
 class Map extends Component {
     constructor(props) {
@@ -126,12 +128,12 @@ class Map extends Component {
     }
 
     async getGeocode (address) {
-        const location = await axios.get(`/api/geoLoc/geocode`, {address})
+        const location = await axios.get(`${path}/api/geoLoc/geocode`, {address})
         return location.data
     }
 
     async getAddress (coords) {
-        const data = await axios.get(`/api/geoLoc/address`, {coords})
+        const data = await axios.get(`${path}/api/geoLoc/address`, {coords})
         const {address} = data
         return address
     }
