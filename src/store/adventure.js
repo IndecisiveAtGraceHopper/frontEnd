@@ -1,4 +1,6 @@
 import axios from 'axios'
+import {isLocalhost} from '../registerServiceWorker'
+const path = isLocalhost ? 'http://localhost:3001' : 'https://obscure-lowlands-38066.herokuapp.com'
 
 /**
  * ACTION TYPES
@@ -24,7 +26,7 @@ export const selectAdventure = adventure => ({type: SELECT_ADVENTURE, adventure}
 export const createAdventure = (adventure, history) => {
   return async (dispatch) => {
     try {
-      const {data} = await axios.post('https://obscure-lowlands-38066.herokuapp.com/api/adventures', adventure)
+      const {data} = await axios.post(`${path}/api/adventures`, adventure)
       dispatch(selectAdventure(data))
       history.push(`/adventures/${data.id}`)
     } catch (err) {
@@ -36,7 +38,7 @@ export const createAdventure = (adventure, history) => {
 export const getAdventure = id => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`https://obscure-lowlands-38066.herokuapp.com/api/adventures/${id}`)
+      const {data} = await axios.get(`${path}/api/adventures/${id}`)
       dispatch(selectAdventure(data))
     } catch (err) {
       console.log(err)

@@ -1,4 +1,6 @@
 import axios from 'axios'
+import {isLocalhost} from '../registerServiceWorker'
+const path = isLocalhost ? 'http://localhost:3001' : 'https://obscure-lowlands-38066.herokuapp.com'
 
 /**
  * ACTION TYPES
@@ -11,7 +13,7 @@ const SET_LOCATION = 'SET_LOCATION'
  */
 
 const initialState = {
-  poll:{},
+  poll: {},
   location: ''
 }
 
@@ -29,7 +31,7 @@ export const setLocation = address => ({type: SET_LOCATION, address})
 export const submitPollThunk = (poll) => {
     return async (dispatch) => {
       try {
-        const {data} = await axios.post('https://obscure-lowlands-38066.herokuapp.com/api/users/poll', poll)
+        const {data} = await axios.post(`${path}/api/users/poll`, poll)
         const action = setPoll(data)
         dispatch(action)
       } catch (err) {
@@ -41,7 +43,7 @@ export const submitPollThunk = (poll) => {
 export const getPoll = (adventureId, userId)=> {
   return async (dispatch) => {
     try {
-      const {data} = await axios.get(`https://obscure-lowlands-38066.herokuapp.com/api/adventures/${adventureId}/poll/${userId}`)
+      const {data} = await axios.get(`${path}/api/adventures/${adventureId}/poll/${userId}`)
       dispatch(setPoll(data))
 
     } catch (err){
