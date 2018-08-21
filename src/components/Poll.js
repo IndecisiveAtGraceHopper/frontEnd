@@ -68,7 +68,7 @@ class Poll extends Component {
               {/*<button onClick={this.onClick}>Find Me</button>*/}
               <div id='map-outer'>
                 <div id='map-container'>
-                  <Map interactive='true' coords={this.state.location} />
+                  {this.state.location !=== 'enter a location' &&<Map interactive='true' coords={this.state.location} />}
                 </div>
               </div>
             </div>
