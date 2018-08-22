@@ -36,7 +36,6 @@ class Adventure extends Component {
   }
 
   render() {
-    console.log('this.state.locations', this.state.locations)
     if (this.props.activities.length){
         return (
           <div className="container">
