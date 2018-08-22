@@ -27,7 +27,7 @@ render(){
   return (
     <div>
     <br/>
-      <h5 className="text-center">If your friends are not on indecisive, text an invite!</h5>
+      <h5 className="text-center">Invite your friends to join you! </h5>
       <form onSubmit={this.handleSubmit}>
          <div className="form-group form-check">
             <label htmlFor="name" />
