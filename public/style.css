@@ -160,3 +160,14 @@ button {
     overflow-x: scroll;
     white-space: nowrap;
 }
+
+#avatar-choices {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#single-avatar {
+    padding: 0px;
+    margin: 0px;
+}
