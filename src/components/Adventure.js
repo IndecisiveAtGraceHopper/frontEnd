@@ -36,7 +36,6 @@ class Adventure extends Component {
   }
 
   render() {
-    console.log(this.props.adventure)
     if (this.props.activities.length){
         return (
           <div className="container">
@@ -73,8 +72,7 @@ class Adventure extends Component {
     }
   }
 }
-const mapState= (state, {match})=> {
-  console.log('state', state.user.adventures)
+const mapState = (state, {match}) => {
   return {
     activities: state.activity,
     userId: state.user.id,

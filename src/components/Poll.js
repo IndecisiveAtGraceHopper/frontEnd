@@ -6,6 +6,7 @@ import {Map} from './index'
 import {updateAdventure} from '../store/user'
 import {isLocalhost} from '../registerServiceWorker'
 const path = isLocalhost ? 'http://localhost:3001' : 'https://pacific-bayou-90411.herokuapp.com'
+axios.defaults.withCredentials = true
 
 class Poll extends Component {
   constructor() {
@@ -36,7 +37,7 @@ class Poll extends Component {
   }
 
   async getGeocode (address) {
-    const location = await axios.post(`${path}/api/geoLoc/geocode`, address)
+    const location = await axios.post(`${path}/api/geoLoc/geocode`, {address})
     return location.data
   }
 
@@ -56,7 +57,7 @@ class Poll extends Component {
 
   render() {
     return (
-      <div className="container" id='poll-page'>
+      <div className="container col-11">
         <h2 className='poll-header'>Enter Your Preferences:</h2>
         <form onSubmit={this.handleSubmit}>
           <div id="map-and-poll" className="form-group form-check">
