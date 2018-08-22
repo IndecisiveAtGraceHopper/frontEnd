@@ -50,7 +50,7 @@ class Pod extends Component {
             </ul>
           </div>
           <div >
-            <div >
+            <div>
               <h2 className="text-center">Members</h2>
               <br/>
               {
@@ -63,26 +63,23 @@ class Pod extends Component {
                   </div>
                 ))
               }
-              <div id='search-members' className="text-center">
+              <div className="text-center">
                 <Search podId={podId}/>
               </div>
             </div>
             <div>
+            <br/>
               <h2 className="text-center">Adventures</h2>
-              <br/>
-              <h4 className="text-center">Upcoming</h4>
 
+              <h4 className="text-left">Upcoming</h4>
               {
-                futureAdventures.map(adventure => <div key={adventure.id}><Link to={`/adventures/${adventure.id}`}>{adventure.name}</Link></div>)
-              }
-              <br/>
-              <h4 className="text-center">Past</h4>
-              <br/>
-
-              {
-                pastAdventures.map(adventure => <div key={adventure.id}><Link to={`/adventures/${adventure.id}`}>{adventure.name}</Link></div>)
+                futureAdventures.map(adventure => <div key={adventure.id}><Link to={`/adventures/${adventure.id}`}><h5 className="text-left">{adventure.name}</h5></Link></div>)
               }
 
+              <h4 className="text-right">Past</h4>
+              {
+                pastAdventures.map(adventure => <div key={adventure.id}><Link to={`/adventures/${adventure.id}`}><h5 className="text-right">{adventure.name}</h5></Link></div>)
+              }
             </div>
           </div>
         </div>
