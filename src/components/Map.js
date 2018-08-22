@@ -4,7 +4,13 @@ import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
 import axios from 'axios'
 import {setLocation} from '../store/poll'
 import {isLocalhost} from '../registerServiceWorker'
-mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_ACCESS_TOKEN
+
+// if running locally--comment out if building for deploy. this is ok because it's a pk
+mapboxgl.access_token = 'pk.eyJ1IjoiYWxtb25kbWlsazk2IiwiYSI6ImNqbDJ2Y2pkYjBvNnUzcG4zZWY2bnBvbHYifQ.CNmqV1Pu_Xvv0P7V_9DvMg'
+console.log('mapboxgl.access_token', mapboxgl.access_token)
+// if deploying--comment out if running locally
+// mapboxgl.access_token = process.env.REACT_APP_MAPBOXGL_ACCESS_TOKEN
+
 const path = isLocalhost ? 'http://localhost:3001' : 'https://obscure-lowlands-38066.herokuapp.com'
 
 class Map extends Component {
@@ -128,7 +134,7 @@ class Map extends Component {
     }
 
     async getGeocode (address) {
-        const location = await axios.post(`${path}/api/geoLoc/geocode`, address)
+        const location = await axios.post(`${path}/api/geoLoc/geocode`, {address})
         return location.data
     }
 
