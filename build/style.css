@@ -2,6 +2,12 @@ body{
   background: url("https://blogs.ntu.edu.sg/openimagecollections/files/2015/07/Subtle-Patterns.png");
 }
 
+#avatar {
+    padding:1px;
+   border:1px solid #021a40;
+   background-color:#ff0;
+}
+
 #poll-page, #adventure-page {
     display: flex;
     flex-direction: column;
@@ -75,37 +81,12 @@ button {
     margin-bottom: 10px;
 }
 
-#pod-header-contents {
-    text-align: center;
-    list-style: none;
-}
-
 .page-body {
     padding: 20px;
 }
 
 #user-adventures {
     text-align: center;
-}
-
-#pod-content {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    justify-content: space-between;
-    padding: 10px;
-    margin: 10px;
-}
-
-#pod-members, #pod-adventures {
-    display: flex;
-    flex-direction: column;
-    align-content: flex-start;
-    justify-content: flex-start;
-    padding: 10px;
-    margin: 10px;
-    max-width: 147px;
 }
 
 #poll-page, #mapbox-map, #map-and-poll {
@@ -149,4 +130,28 @@ button {
     border-radius: 50%;
     background: #4CAF50;
     cursor: pointer;
+}
+
+#pod-members, #pod-adventures {
+    padding: 20px;
+}
+
+#pod-member-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#adventure-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#found-user-card {
+    padding: 10px;
+}
+
+#add-to-pod-button {
+    margin: 0px;
 }
