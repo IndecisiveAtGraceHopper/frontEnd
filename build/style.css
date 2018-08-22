@@ -139,7 +139,7 @@ button {
 #pod-member-cards {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
 }
 
 #adventure-cards {
@@ -153,5 +153,21 @@ button {
 }
 
 #add-to-pod-button {
+    margin: 0px;
+}
+
+.testimonial-group {
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+#avatar-choices {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#single-avatar {
+    padding: 0px;
     margin: 0px;
 }
