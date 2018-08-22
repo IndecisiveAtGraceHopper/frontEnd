@@ -40,7 +40,7 @@ class Adventures extends Component {
                  </p>
               </div>
             </div>
-            <i><h3 style={{"fontFamily":"Sawarabi Mincho", "fontSize":"22px"}}>Your Adventures:</h3></i>
+            <h3 style={{"fontSize":"22px"}}>Your Adventures:</h3>
             <h3 style={{"fontSize":"16px"}}>Upcoming Adventures</h3>
                 <div id='future-adventures'>
                     {

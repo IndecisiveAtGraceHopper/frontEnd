@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {getUserPodsThunk} from '../store'
 import {Link} from 'react-router-dom'
 
-class Pod extends Component {
+class UserPods extends Component {
   constructor() {
     super()
     this.state = {
@@ -20,7 +20,7 @@ class Pod extends Component {
       if(this.props.pods){
         return (
           <div>
-            <h3 className="text-center font-weight-normal">Current pods:</h3>
+            <h3 style={{"fontSize":"22px"}} className="text-center font-weight-normal">Your Pods:</h3>
              <div>
               {
                 this.props.pods.map(pod => (
@@ -62,4 +62,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(Pod)
+export default connect(mapStateToProps,mapDispatchToProps)(UserPods)
