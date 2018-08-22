@@ -15,8 +15,7 @@ class UserProfile extends Component {
         email: '',
         address: '',
         image: ''
-      },
-      currentImage: ''
+      }
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -43,10 +42,10 @@ class UserProfile extends Component {
     if (this.props.user.image) {
       await this.setState({user: {...this.state.user, image: this.props.user.image}})
     }
-    await this.setState({currentImage: this.state.user.image})
   }
   handleClick(evt) {
     this.setState({user: {...this.state.user, image: evt}})
+
   }
 
   handleChange(evt) {
@@ -56,9 +55,6 @@ class UserProfile extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
-    if (this.state.user.image.length > 3) {
-      this.setState({currentImage: this.state.user.image})
-    }
     if (this.state.user.firstName && this.state.user.lastName && this.state.user.phone && this.state.user.email && this.state.user.address && this.state.user.image) {
       this.props.updateProfile({firstName: this.state.user.firstName, lastName: this.state.user.lastName, phone: this.state.user.phone, email: this.state.user.email, address: this.state.user.address, image: this.state.user.image}, this.props.user.id)
     }
@@ -72,7 +68,7 @@ class UserProfile extends Component {
           <div className="instructions col-16 card bg-light mb-3 align-items-center">
             <h5 className="card-header ">Setting up your profile</h5>
             <div className="card-body">
-              <p className="card-text"><br/>
+              <p className="card-text">
                 Set up your profile so your friends can find you! <br/>
                 We will use your address to find activities near you<br/>
                 Invite your friends and start planning together! <br/>
@@ -84,7 +80,7 @@ class UserProfile extends Component {
             <br/>
             <form id='userProfile' onSubmit={this.handleSubmit}  className="form-group">
               <div className="form-group">
-                <img src={this.state.currentImage} alt='userprofile' className="rounded mx-auto d-block" width='100px' height='100px' />
+                <img src={this.state.user.image} alt='userprofile' className="rounded mx-auto d-block" width='100px' height='100px' />
               </div>
               <div>
                 <label htmlFor='email'>Email</label><br/>
