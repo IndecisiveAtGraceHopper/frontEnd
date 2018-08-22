@@ -29,7 +29,7 @@ class Adventures extends Component {
         return (
             <div id='user-adventures' className="container col-11">
             <br/>
-            <div className="col-16 card bg-light mb-3 align-items-center">
+            <div className="instructions col-16 card bg-light mb-3 align-items-center">
              <h5 className="card-header">Initiating an adventure for your pod</h5>
               <div className="card-body">
                <p className="card-text">
@@ -38,19 +38,20 @@ class Adventures extends Component {
                 Each pod member will be texted a link to the poll! <br/>
                 Completed polls will be used to generate 3 activities!<br/>
                  </p>
+              </div>
             </div>
-           </div>
-                <h3>Upcoming Adventures</h3>
+            <h3 style={{"fontSize":"22px"}}>Your Adventures:</h3>
+            <h3 style={{"fontSize":"16px"}}>Upcoming Adventures</h3>
                 <div id='future-adventures'>
-                {
-                    futureAdventures.map(adventure => (
-                        <div id="adventure" key={adventure.id}>
-                            <h5><Link to={`/adventures/${adventure.id}`}>{adventure.name}</Link></h5>
-                        </div>
-                    ))
-                }
+                    {
+                        futureAdventures.map(adventure => (
+                            <div id="adventure" key={adventure.id}>
+                                <h5><Link to={`/adventures/${adventure.id}`}>{adventure.name}</Link></h5>
+                            </div>
+                        ))
+                    }
                 </div>
-                <h3>Past Adventures</h3>
+                <h3 style={{"fontSize":"16px"}}>Past Adventures</h3>
                 <div id='past-adventures'>
                 {
                     pastAdventures.map(adventure => (

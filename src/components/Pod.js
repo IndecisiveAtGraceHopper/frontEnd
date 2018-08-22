@@ -42,13 +42,13 @@ class Pod extends Component {
     const podId = this.props.match.params.id
 	  if(this.props.users) {
       return (
-        <div className="container col-11" id='single-pod-page'>
+        <div id='single-pod-page'>
           <div id='pod-header'>
             <h2 id='pod-title' className="font-weight-normal shadow p-3 mb-0 bg-clear rounded text-center">{this.props.pod.name}</h2>
           </div>
           <div id='pod-members'>
             <h2 className='text-center font-weight-normal col-20'>Members</h2>
-            <div id='pod-member-cards'>
+            <div id='pod-member-cards' className='container testimonial-group'>            
             {
               this.props.users.map(user => (
                 <div className="col-sm-1" id="user" key={user.id}>

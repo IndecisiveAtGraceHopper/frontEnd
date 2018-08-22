@@ -25,9 +25,11 @@ class Login extends React.Component {
   render() {
     return (
       <div className="authForm container col-11" id="loginPage">
-        <GoogleLogin className='authElement'/>
+        {/* <GoogleLogin className='authElement'/> */}
         <form onSubmit={this.handleSubmit} className='authElement'>
           <div>
+          <br/>
+          <br/>
             <label htmlFor="email">
               <div><h3>Email</h3></div>
             </label>
@@ -35,12 +37,13 @@ class Login extends React.Component {
           </div>
           <div>
             <label htmlFor="password">
+            <br/>
               <div><h3>Password</h3></div>
             </label>
             <div><input className="form-control" name="password" type="password" onChange={this.handleChange} /></div>
           </div>
           <div className='authElement'>
-            <button className='btn btn-primary' type="submit" onClick={this.handleSubmit}>Log In</button>
+            <button className='btn btn-primary btn-lg btn-block' type="submit" onClick={this.handleSubmit}>Log In</button>
             {(this.props.user && this.props.user.error)&&<span>Wrong Username or Password</span>}
           </div>
         </form>

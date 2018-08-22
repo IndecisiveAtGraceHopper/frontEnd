@@ -58,7 +58,9 @@ class Poll extends Component {
   render() {
     return (
       <div className="container col-11">
-        <h2 className='poll-header'>Tell us what you like!</h2>
+      <br/>
+      <br/>
+        <h2 className='poll-header text-center'>Select your preferences!</h2>
         <form onSubmit={this.handleSubmit}>
           <div id="map-and-poll" className="form-group form-check">
             <div>
@@ -66,23 +68,23 @@ class Poll extends Component {
               <input type="text" name="location" onChange={this.handleChange} className="form-control" id="nameInput" aria-describedby="name" value={this.state.location} />
               <small id="location" className="form-text text-muted" />
               {/*<button onClick={this.onClick}>Find Me</button>*/}
+              <br/>
               <div id='map-outer'>
                 <div id='map-container'>
                   {this.state.location !== 'enter a location' &&<Map interactive='true' coords={this.state.location} />}
                 </div>
               </div>
             </div>
-
             <div className='form-input'>
               <label htmlFor="priceRange"/>
-              <h5 className= 'text-center'> How much <span> 💸 </span>money <span> 🤑💵 </span> would you like to spend?</h5>
+              <h5 className= 'text-center'> <span> 💸 </span> How much <span> 🤑💵 </span> would you like to spend?</h5>
               <br/>
               <input type="range" name="priceRange" onChange={this.handleChange} min="0" max="100" defaultValue="50" className="slider form-control-range" id="formControlRange myRange" />
               <small id="priceRange" className="form-text text-muted" />
             </div>
             <div className='form-input'>
               <label  htmlFor="activityLevel"/>
-              <h5 className="text-center"> How active <span> 🏃🏼‍🚣‍🚴🏿 🏃🏼🏋️‍💃🏿 </span>would you like to be? </h5>
+              <h5 className="text-center"> How active <span> 🏃🏼‍🚣‍🚴🏿🏋️‍💃🏿 </span>would you like to be? </h5>
               <br/>
               <input type="range" name="activityLevel" onChange={this.handleChange} min="0" max="100" defaultValue="50" className="slider form-control-range" id="formControlRange myRange" />
               <small id="activityLevel" className="form-text text-muted" />

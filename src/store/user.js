@@ -40,7 +40,7 @@ export const updateAdventure = id => ({type: UPDATE_ADVENTURE, id})
  */
 export const me = () => async dispatch => {
   try {
-    const res = await axios.get(`${path}/auth/me`)   
+    const res = await axios.get(`${path}/auth/me`)
     dispatch(getUser(res.data || initialState.loggedInUser))
   } catch (err) {
     console.error(err)
@@ -78,8 +78,10 @@ export const authLogin = (userInfo) => async dispatch => {
 }
 
 export const logOut = () => async dispatch => {
+ console.log("WHERE ARE YOU")
   try {
     await axios.post(`${path}/auth/logout`)
+    console.log("HELLOOOOO")
     dispatch(removeUser())
     history.push('/login')
   } catch (err) {
