@@ -40,7 +40,9 @@ class Adventure extends Component {
         return (
           <div className="container">
           <div id='adventure-page'>
-            <h3>Adventure</h3>
+            <h3 className="text-center">Adventure</h3>
+            <br/>
+            <br/>
             <div id='activities-container'>
               {this.props.activities.map((activity) =>
                 <Activity activity={activity} isCoord={true} key={activity.id}/>
