@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import {isLocalhost} from '../registerServiceWorker'
-const path = isLocalhost ? 'http://localhost:3001' : 'https://obscure-lowlands-38066.herokuapp.com'
+const path = isLocalhost ? 'http://localhost:3001' : 'https://pacific-bayou-90411.herokuapp.com'
 
 class SendText extends React.Component {
   constructor(){
