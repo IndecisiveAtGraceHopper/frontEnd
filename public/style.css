@@ -1,3 +1,7 @@
+body{
+  background: url("https://blogs.ntu.edu.sg/openimagecollections/files/2015/07/Subtle-Patterns.png");
+}
+
 #poll-page, #adventure-page {
     display: flex;
     flex-direction: column;
