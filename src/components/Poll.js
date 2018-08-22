@@ -57,7 +57,7 @@ class Poll extends Component {
 
   render() {
     return (
-      <div className="container" id='poll-page'>
+      <div className="container col-11">
         <h2 className='poll-header'>Enter Your Preferences:</h2>
         <form onSubmit={this.handleSubmit}>
           <div id="map-and-poll" className="form-group form-check">
