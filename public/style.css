@@ -137,8 +137,12 @@ button {
     cursor: pointer;
 }
 
+#pod-members, #pod-adventures {
+    padding: 20px;
+}
+
 #pod-member-cards {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     flex-wrap: wrap;
 }

@@ -49,12 +49,31 @@ class Pod extends Component {
               <button className="btn btn-block btn-lg btn-success" onClick={this.onClick}>Create An Adventure</button>
             </div>
           </div>
+          <div id='pod-adventures'>
+            <h2 className='text-center'>Adventures</h2>
+            <div className= "col-20" id='upcoming-adventures'>
+              <h4 className='text-center'>Upcoming</h4>
+              <ul id='upcoming-cards'>
+                {
+                  futureAdventures.map(adventure => <li key={adventure.id}><Link to={`/adventures/${adventure.id}`}><h5 className="text-center">{adventure.name}</h5></Link></li>)
+                }
+              </ul>
+            </div>
+            <div className="col-20" id='past-adventures'>
+              <h4 className="text-center">Past</h4>
+              <div id='upcoming-cards'>
+              {
+                pastAdventures.map(adventure => <div key={adventure.id}><Link to={`/adventures/${adventure.id}`}><h5 className="text-center">{adventure.name}</h5></Link></div>)
+              }
+              </div>
+            </div>
+          </div>
           <div id='pod-members'>
             <h2 className='text-center'>Members</h2>
             <div id='pod-member-cards'>
             {
               this.props.users.map(user => (
-                <div className="col-sm-6" id="user" key={user.id}>
+                <div className="col-sm-1" id="user" key={user.id}>
                   <h5 className= "text-center font-weight-normal">{user.fullName}</h5>
                   <div className="card-body">
                     <img src={user.image} alt='profile' className="rounded mx-auto d-block" width='40px' height='40px'/>
@@ -67,25 +86,7 @@ class Pod extends Component {
               <Search podId={podId}/>
             </div>
           </div>
-          <div id='pod-adventures'>
-            <h2 className='text-center'>Adventures</h2>
-            <div className= "col-20" id='upcoming-adventures'>
-              <h4 className='text-center'>Upcoming</h4>
-              <div id='upcoming-cards'>
-                {
-                  futureAdventures.map(adventure => <div key={adventure.id}><Link to={`/adventures/${adventure.id}`}><h5 className="text-center">{adventure.name}</h5></Link></div>)
-                }
-              </div>
-            </div>
-            <div className="col-20" id='past-adventures'>
-              <h4 className="text-center">Past</h4>
-              <div id='upcoming-cards'>
-              {
-                pastAdventures.map(adventure => <div key={adventure.id}><Link to={`/adventures/${adventure.id}`}><h5 className="text-center">{adventure.name}</h5></Link></div>)
-              }
-              </div>
-            </div>
-          </div>
+
         </div>
       )
     }
