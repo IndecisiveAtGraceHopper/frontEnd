@@ -81,11 +81,6 @@ button {
     margin-bottom: 10px;
 }
 
-#pod-header-contents {
-    text-align: center;
-    list-style: none;
-}
-
 .page-body {
     padding: 20px;
 }
@@ -144,5 +139,11 @@ button {
 #pod-member-cards {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#adventure-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
