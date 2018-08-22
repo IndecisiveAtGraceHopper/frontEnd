@@ -56,7 +56,7 @@ class UserProfile extends Component {
       this.setState({currentImage: this.state.user.image})
     }
     if (this.state.user.firstName && this.state.user.lastName && this.state.user.phone && this.state.user.email && this.state.user.address && this.state.user.image) {
-      this.props.updateProfile({firstName: this.state.user.firstName, lastName: this.state.user.lastName, phone: this.state.user.phone, email: this.state.user.email, address: this.state.user.address, avatarId: this.state.user.image}, this.props.user.id)
+      this.props.updateProfile({firstName: this.state.user.firstName, lastName: this.state.user.lastName, phone: this.state.user.phone, email: this.state.user.email, address: this.state.user.address, image: this.state.user.image}, this.props.user.id)
     }
   }
 
@@ -119,7 +119,7 @@ class UserProfile extends Component {
 
 
                         <td>
-    <input key={avatar.id}  name="image" type="radio" value={this.state.user.image} checked={this.state.user.image === avatar.image} onChange={this.handlChange}  />
+    <input key={avatar.id}  name="image" type="radio" value={this.state.user.image} checked={this.state.user.image} onChange={this.handlChange}  />
     <img src={avatar.image} /></td>
 
 
