@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 import {submitPollThunk} from '../store/poll'
 import axios from 'axios'
 import {Map} from './index'
-import {updateAdventure} from '../store/user'
 import {isLocalhost} from '../registerServiceWorker'
+import {getUserAdventuresThunk} from '../store/user'
 const path = isLocalhost ? 'http://localhost:3001' : 'https://pacific-bayou-90411.herokuapp.com'
 axios.defaults.withCredentials = true
 
@@ -33,7 +33,7 @@ class Poll extends Component {
   }
 
   async handleChange (evt) {
-    await this.setState({[evt.target.name]: evt.target.value})
+    await this.setState({[evt.target.name]: evt.target.value/25})
   }
 
   async getGeocode (address) {
@@ -46,6 +46,7 @@ class Poll extends Component {
     const {priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel} = this.state
     const {latitude, longitude} = await this.getGeocode(this.state.location)
     await this.props.submitPollThunk({latitude,longitude, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel, adventureId: +this.props.adventureId, userId:this.props.userId})
+    await this.props.getAdventures(this.props.userId)
   }
   // can only test on https
   // onClick =(evt)=> {
@@ -78,35 +79,35 @@ class Poll extends Component {
               <label htmlFor="priceRange"/>
               <h5 className= 'text-center'> <span> 💸 </span> How much <span> 🤑💵 </span> would you like to spend?</h5>
               <br/>
-              <input type="range" name="priceRange" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="slider form-control-range" id="formControlRange myRange" />
+              <input type="range" name="priceRange" onChange={this.handleChange} min="0" max="100" defaultValue="50" className="slider form-control-range" id="formControlRange myRange" />
               <small id="priceRange" className="form-text text-muted" />
             </div>
             <div className='form-input'>
               <label  htmlFor="activityLevel"/>
               <h5 className="text-center"> How active <span> 🏃🏼‍🚣‍🚴🏿🏋️‍💃🏿 </span>would you like to be? </h5>
               <br/>
-              <input type="range" name="activityLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="slider form-control-range" id="formControlRange myRange" />
+              <input type="range" name="activityLevel" onChange={this.handleChange} min="0" max="100" defaultValue="50" className="slider form-control-range" id="formControlRange myRange" />
               <small id="activityLevel" className="form-text text-muted" />
             </div>
             <div className='form-input'>
               <label htmlFor="artsyLevel" />
               <h5 className= 'text-center'> How artsy would you like to be? <span> 🖼🎭👩🏽‍🎨🎨</span></h5>
               <br/>
-              <input type="range" name="artsyLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="slider form-control-range" id="formControlRange myRange" />
+              <input type="range" name="artsyLevel" onChange={this.handleChange} min="0" max="100" defaultValue="50" className="slider form-control-range" id="formControlRange myRange" />
               <small id="artsyLevel" className="form-text text-muted" />
             </div>
             <div className='form-input'>
               <label htmlFor="hungerLevel"/>
               <h5 className= 'text-center'> <span>🍔🍝</span>How hungry <span>🌮🍗</span> will you be? </h5>
               <br/>
-              <input type="range" name="hungerLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="slider form-control-range" id="formControlRange myRange" />
+              <input type="range" name="hungerLevel" onChange={this.handleChange} min="0" max="100" defaultValue="50" className="slider form-control-range" id="formControlRange myRange" />
               <small id="hungerLevel" className="form-text text-muted" />
             </div>
             <div className='form-input'>
               <label htmlFor="drinkLevel" />
               <h5 className= 'text-center'> <span>🍾🍻🍹</span> How much would you like drink? <span>🍷🥂🍸</span> </h5>
               <br/>
-              <input type="range" name="drinkLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="slider form-control-range" id="formControlRange myRange" />
+              <input type="range" name="drinkLevel" onChange={this.handleChange} min="0" max="100" defaultValue="50" className="slider form-control-range" id="formControlRange myRange" />
               <small id="drinkLevel" className="form-text text-muted" />
           </div>
            <span>
@@ -130,7 +131,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
   return {
     submitPollThunk: poll => dispatch(submitPollThunk(poll)),
-    updateThisAdventure: id => dispatch(updateAdventure(id))
+    getAdventures: (id)=> dispatch(getUserAdventuresThunk(id))
   }
 }
 
