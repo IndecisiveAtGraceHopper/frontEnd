@@ -16,8 +16,7 @@ class UserProfile extends Component {
         address: '',
         image: ''
       },
-      currentImage: '',
-      active: false
+      currentImage: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -47,8 +46,6 @@ class UserProfile extends Component {
     await this.setState({currentImage: this.state.user.image})
   }
   handleClick(evt) {
-    const currentState = this.state.active;
-    this.setState({ active: !currentState });
     this.setState({user: {...this.state.user, image: evt}})
   }
 
@@ -68,7 +65,6 @@ class UserProfile extends Component {
   }
 
   render() {
-    console.log("STATE", this.state.active)
     if (this.props.avatars[0]) {
       return (
         <div className="container col-11">
@@ -115,19 +111,25 @@ class UserProfile extends Component {
                 <input className="form-control mx-sm-3" name='address' type='string' onChange={this.handleChange} value={this.state.user.address} />
                 {!this.state.user.address ? <p>Address cannot be null</p> : null}
               </div>
+              <br />
+              <br />
               <div>
                 <label htmlFor='image'>Choose an Avatar</label>
               </div>
+              <div id='avatar-choices' className='container testimonial-group'>
               {
                 this.props.avatars.map(avatar => {
                   let boundHandleClick=this.handleClick.bind(this, avatar.image)
                   return (
-                    <div className={this.state.active ? 'avatar': null} key={avatar.id} value={avatar.image} onClick={boundHandleClick}>
-                      <img src={avatar.image} />
+                    <div  className="col-sm-1"  key={avatar.id} value={avatar.image} onClick={boundHandleClick}>
+                      <div id='single-avatar' className="card-body">
+                        <img src={avatar.image} width="100px" height="100px" />
+                      </div>
                     </div>
                   )
                 })
               }
+              </div>
               <div>
                 <button type='submit button' className="btn btn-dark btn-lg btn-block">Submit</button>
               </div>
