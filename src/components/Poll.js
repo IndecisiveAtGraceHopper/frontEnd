@@ -58,7 +58,7 @@ class Poll extends Component {
   render() {
     return (
       <div className="container col-11">
-        <h2 className='poll-header'>Enter Your Preferences:</h2>
+        <h2 className='poll-header'>Tell us what you like!</h2>
         <form onSubmit={this.handleSubmit}>
           <div id="map-and-poll" className="form-group form-check">
             <div>
@@ -75,43 +75,38 @@ class Poll extends Component {
 
             <div className='form-input'>
               <label htmlFor="priceRange"/>
-              <h5 className= 'text-center'> How much money 💸 would you like to spend?</h5>
-              <p className="text-right" >🤑💵</p>
-              <input type="range" name="priceRange" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
+              <h5 className= 'text-center'> How much <span> 💸 </span>money <span> 🤑💵 </span> would you like to spend?</h5>
+              <br/>
+              <input type="range" name="priceRange" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="slider form-control-range" id="formControlRange myRange" />
               <small id="priceRange" className="form-text text-muted" />
             </div>
             <div className='form-input'>
               <label  htmlFor="activityLevel"/>
-              <h5 className="text-center"> How active 🚣‍🚴🏿 would you like to be? </h5>
-              <h5 className="text-left">🏃🏼‍</h5>
-              <h5 className="text-right">🏃🏼🏋️‍💃🏿</h5>
-              <input type="range" name="activityLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
+              <h5 className="text-center"> How active <span> 🏃🏼‍🚣‍🚴🏿 🏃🏼🏋️‍💃🏿 </span>would you like to be? </h5>
+              <br/>
+              <input type="range" name="activityLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="slider form-control-range" id="formControlRange myRange" />
               <small id="activityLevel" className="form-text text-muted" />
             </div>
             <div className='form-input'>
               <label htmlFor="artsyLevel" />
-              <h5 className= 'text-center'> How artsy would you like to be? 🎨</h5>
-              <p className="text-right">🖼🎭👩🏽‍🎨</p>
-              <p className="text-left">👩🏽‍🎨</p>
-              <input type="range" name="artsyLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
+              <h5 className= 'text-center'> How artsy would you like to be? <span> 🖼🎭👩🏽‍🎨🎨</span></h5>
+              <br/>
+              <input type="range" name="artsyLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="slider form-control-range" id="formControlRange myRange" />
               <small id="artsyLevel" className="form-text text-muted" />
             </div>
             <div className='form-input'>
               <label htmlFor="hungerLevel"/>
-              <h5 className= 'text-center'> How hungry 🍝will you be? </h5>
-              <p className="text-right">🌮🍗🍱🍔</p>
-              <p className="text-left">🍪</p>
-              <input type="range" name="hungerLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
+              <h5 className= 'text-center'> <span>🍔🍝</span>How hungry <span>🌮🍗</span> will you be? </h5>
+              <br/>
+              <input type="range" name="hungerLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="slider form-control-range" id="formControlRange myRange" />
               <small id="hungerLevel" className="form-text text-muted" />
             </div>
             <div className='form-input'>
               <label htmlFor="drinkLevel" />
-              <h5 className= 'text-center'> 🍾 How much would you like drink? </h5>
-              <p className="text-right">🍻🍹🍸🍷🥂🍸🥂🥤</p>
-              <p className="text-left">🍹</p>
-              <input type="range" name="drinkLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="form-control-range" id="formControlRange" />
+              <h5 className= 'text-center'> <span>🍾🍻🍹</span> How much would you like drink? <span>🍷🥂🍸</span> </h5>
+              <br/>
+              <input type="range" name="drinkLevel" onChange={this.handleChange} min="0" max="4" defaultValue="2" className="slider form-control-range" id="formControlRange myRange" />
               <small id="drinkLevel" className="form-text text-muted" />
-
           </div>
            <span>
               <button type='submit' className="btn btn-primary btn-block">Submit</button>
