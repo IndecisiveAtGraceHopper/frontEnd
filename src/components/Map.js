@@ -61,7 +61,7 @@ class Map extends Component {
             await this.setState({coords, zoom})
         })
         //listener type may need to be 'touchend' for app, needs to be 'mouseup' for web
-        this.map.on('mouseup' || 'touchend', async () => {
+        this.map.on('touchend', async () => {
             const address = await this.getAddress(this.state.coords)
             await this.props.setLoc(address)
         })
@@ -140,8 +140,8 @@ class Map extends Component {
     }
 
     async getAddress (coords) {
-        const data = await axios.post(`${path}/api/geoLoc/address`, coords)
-        const {address} = data
+        const data = await axios.post(`${path}/api/geoLoc/address`, {coords})
+        const {address} = data.data
         return address
     }
 
