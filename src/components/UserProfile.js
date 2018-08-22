@@ -13,7 +13,7 @@ class UserProfile extends Component {
         phone: '',
         email: '',
         address: '',
-        image: null
+        image: ''
       },
       currentImage: ''
     }
@@ -119,7 +119,7 @@ class UserProfile extends Component {
 
 
                         <td>
-    <input key={avatar.id}  name="avatarId" type="radio" value={avatar.id} checked={this.state.user.image === avatar.id} onChange={this.handleChange}  />
+    <input key={avatar.id}  name="image" type="radio" value={this.state.user.image} checked={this.state.user.image === avatar.image} onChange={this.handlChange}  />
     <img src={avatar.image} /></td>
 
 
