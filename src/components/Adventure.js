@@ -36,6 +36,7 @@ class Adventure extends Component {
   }
 
   render() {
+    console.log(this.props.adventure)
     if (this.props.activities.length){
         return (
           <div className="container">
@@ -61,9 +62,8 @@ class Adventure extends Component {
     else if (!Object.keys(this.props.poll).length){
       return (<Poll adventureId={this.props.match.params.id} />)
     }
-    else if (this.props.adventure) {
+    else if (this.props.adventure.length) {
       const {adventure} = this.props
-      console.log('adventure', adventure)
       return (<h1> {`${adventure[0].counter} out of ${adventure[0].totalCount} of your polls are in`} </h1>)
       }
     else {
@@ -74,6 +74,7 @@ class Adventure extends Component {
   }
 }
 const mapState= (state, {match})=> {
+  console.log('state', state.user.adventures)
   return {
     activities: state.activity,
     userId: state.user.id,
