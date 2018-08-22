@@ -54,15 +54,15 @@ class Pods extends Component {
       <UserPods id={this.props.userId} />
       </div>
         <br/>
-        <form className="form-inline container col-10" onSubmit={this.handleSubmit}>
+        <form className="form-group" onSubmit={this.handleSubmit}>
            <div className="form-group mb-2">
           <div className="form-group mx-sm-3 mb-2">
             <label htmlFor="name"></label>
             <input type="text" name="name" onChange={this.handleChange}
-            className="form-control" id="name" aria-describedby="name" placeholder="ex: The besties" />
+            className="form-control" id="name" aria-describedby="name" placeholder="Choose a name for your group of friends, ex: The besties" />
            </div>
            </div>
-          <button className="btn btn-secondary btn-lg mb-2" type='submit'>Create a New Pod</button>
+          <button className="btn btn-secondary btn-lg btn-block mb-2" type='submit'>Create a New Pod</button>
 
         </form>
       </div>
