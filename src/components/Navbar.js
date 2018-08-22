@@ -7,25 +7,25 @@ import {logOut} from '../store'
 const Navbar = (props) => {
   const {isLoggedIn, handleLogout} = props
   return (
-    <div id='navbar' className='navbar navbar-default'>
+    <div id='navbar' className='navbar navbar-default' style={{"fontSize":"15px"}}>
       <div id='navbar-header'>
-        <Link to='/'><h2 id='title'>indecisive</h2></Link>
+        <Link to='/'><h2 id='title' style={{"fontFamily":"Sarawabi Mincho", "fontSize":"36px"}}>indecisive</h2></Link>
       </div>
       {
         isLoggedIn ? (
           <div className='nav-items'>
             <ul id='logged-out-navbar' className='nav navbar-nav'>
-              <li><Link to='/profile'>Profile</Link></li>
-              <li><Link to='/adventures'>Adventures</Link></li>
-              <li><Link to='/pods'>Pods</Link></li>
-              <li><button id='logout-button' className="btn btn-primary btn-sm" onClick={handleLogout}>Log Out</button></li>
+              <li className="nav-link"><Link to='/profile'>Profile</Link></li>
+              <li className="nav-link"><Link to='/adventures'>Adventures</Link></li>
+              <li className="nav-link"><Link to='/pods'>Pods</Link></li>
+              <li className="nav-link"><button id='logout-button' className="btn btn-primary btn-sm" onClick={handleLogout} style={{"fontSize":"12px"}}>Log Out</button></li>
             </ul>
           </div>
         ) : (
           <div className='nav-items'>
             <ul id='logged-in-navbar' className='nav navbar-nav'>
-              <li><Link to='/login'>Log In</Link></li>
-              <li><Link to='/signup'>Sign Up</Link></li>
+              <li className="nav-link"><Link to='/login'>Log In</Link></li>
+              <li className="nav-link"><Link to='/signup'>Sign Up</Link></li>
             </ul>
           </div>
         )

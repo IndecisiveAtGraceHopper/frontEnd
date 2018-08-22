@@ -1,5 +1,13 @@
 body{
   background: url("https://blogs.ntu.edu.sg/openimagecollections/files/2015/07/Subtle-Patterns.png");
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 14px;
+  text-emphasis: none;
+  text-decoration: none;
+}
+
+.instructions {
+    font-size: 12px;
 }
 
 #avatar {
@@ -171,3 +179,4 @@ button {
     padding: 0px;
     margin: 0px;
 }
+

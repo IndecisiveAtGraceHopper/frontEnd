@@ -65,7 +65,7 @@ class UserProfile extends Component {
       return (
         <div className="container col-11">
           <br/>
-          <div className="col-16 card bg-light mb-3 align-items-center">
+          <div className="instructions col-16 card bg-light mb-3 align-items-center">
             <h5 className="card-header ">Setting up your profile</h5>
             <div className="card-body">
               <p className="card-text">
@@ -76,7 +76,7 @@ class UserProfile extends Component {
             </div>
           </div>
           <div id='user-profile'>
-            <h4 className="font-weight-normal text-center">Welcome {this.state.user.firstName}!</h4>
+            <i><h4 style={{"fontFamily":"Sawarabi Mincho", "fontSize":"22px"}} className="font-weight-normal text-center">Welcome, {this.state.user.firstName}!</h4></i>
             <br/>
             <form id='userProfile' onSubmit={this.handleSubmit}  className="form-group">
               <div className="form-group">
