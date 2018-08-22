@@ -2,7 +2,6 @@ import {connect} from 'react-redux'
 import React, { Component } from 'react'
 import {submitPollThunk} from '../store/poll'
 import axios from 'axios'
-// import {REACT_APP_GOOGLE_MAPS_KEY as key} from '../.env'
 import {Map} from './index'
 import {updateAdventure} from '../store/user'
 import {isLocalhost} from '../registerServiceWorker'
@@ -46,7 +45,7 @@ class Poll extends Component {
     const {priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel} = this.state
     const {latitude, longitude} = await this.getGeocode(this.state.location)
     this.props.submitPollThunk({latitude,longitude, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel, adventureId: +this.props.adventureId, userId:this.props.userId})
-    this.props.updateThisAdventure(this.props.adventureId)
+   await this.props.updateThisAdventure(this.props.adventureId)
   }
   // can only test on https
   // onClick =(evt)=> {
@@ -68,7 +67,7 @@ class Poll extends Component {
               {/*<button onClick={this.onClick}>Find Me</button>*/}
               <div id='map-outer'>
                 <div id='map-container'>
-                  {this.state.location !=== 'enter a location' &&<Map interactive='true' coords={this.state.location} />}
+                  {this.state.location !== 'enter a location' &&<Map interactive='true' coords={this.state.location} />}
                 </div>
               </div>
             </div>
