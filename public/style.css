@@ -147,3 +147,7 @@ button {
     flex-direction: row;
     justify-content: space-between;
 }
+
+#found-user-card {
+    padding: 10px;
+}

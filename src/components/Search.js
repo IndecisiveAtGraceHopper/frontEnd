@@ -63,20 +63,19 @@ class Search extends React.Component {
           <h4>No user found by that name</h4>
         ) : null}
         {this.state.userFound ? (
-          <h4 className="font-weight-normal">
-            <br/> Here are the users with that name:{
+          <div id='found-users'>
+          <h4 className="font-weight-normal">Here are the users with that name:</h4>
             <ul>
-              <br/>
               {
                 this.state.usersFound.map((user,index) =>
-                  <div key={index}>
-                    <div>{user.image}{user.fullName}
-                    </div>
+                  <div key={index} id='found-user-card'>
+                    <h5>{user.fullName}</h5>
                     <button className="btn btn-dark btn-lg" value={user.id} onClick={this.handleClick}>Add to Pod</button>
                   </div>
                 )
-            }</ul>
-          }</h4>
+              }
+            </ul>
+          </div>
         ) : null}
       </div>
     )
