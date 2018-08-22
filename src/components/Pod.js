@@ -70,21 +70,15 @@ class Pod extends Component {
             <div>
             <br/>
               <h2 className="text-center">Adventures</h2>
-              <div className= "col-20">
+
               <h4 className="text-left">Upcoming</h4>
               {
                 futureAdventures.map(adventure => <div key={adventure.id}><Link to={`/adventures/${adventure.id}`}><h5 className="text-left">{adventure.name}</h5></Link></div>)
               }
-            </div>
-            <div className="col-20">
               <h4 className="text-right">Past</h4>
               {
                 pastAdventures.map(adventure => <div key={adventure.id}><Link to={`/adventures/${adventure.id}`}><h5 className="text-right">{adventure.name}</h5></Link></div>)
               }
-            </div>
-
-
-
             </div>
           </div>
         </div>

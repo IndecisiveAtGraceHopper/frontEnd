@@ -19,17 +19,17 @@ class Activity extends Component {
         const {activity} = this.props
         console.log('activity', activity)
         return (
-          <div>
-            <h3>{activity.name}</h3>
-            <h4>+</h4>
-            <h4>{activity.upVotes}</h4>
-            <h4>-</h4>
-            <h4>{activity.downVotes}</h4>
+          <div className= "container col-11">
+            <h4 className="text-center shadow-lg p-3 mb-0 bg-clear rounded">{activity.name}</h4>
             {!activity.selected && (
               <div>
-                <button onClick ={this.handleUpVote}><span role='img' aria-label='thumbs-up'>👍</span></button>
-                <button onClick = {this.handleDownVote}><span role='img' aria-label='thumbs-up'>👎</span></button>
+              <h3>
+              <div className="row align-items-center justify-content-center">
+                <button onClick ={this.handleUpVote}><span role='img' aria-label='thumbs-up'> {activity.upVotes} 👍</span></button>
                 {this.props.isCoord && <button onClick = {this.handleSelect}>Select</button>}
+                <button onClick = {this.handleDownVote}><span role='img' aria-label='thumbs-up'>👎{activity.downVotes}</span></button>
+              </div>
+              </h3>
               </div>)
             }
           </div>
