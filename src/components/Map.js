@@ -12,7 +12,7 @@ axios.defaults.withCredentials = true
 // if deploying--comment out if running locally
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_ACCESS_TOKEN || 'pk.eyJ1IjoiYWxtb25kbWlsazk2IiwiYSI6ImNqbDRoNTM2cDJiemszcHBncXIwZnJzcHEifQ.qXlbVY2ViTMpeH8S_BqhCg'
 
-const path = isLocalhost ? 'http://localhost:3001' : 'https://obscure-lowlands-38066.herokuapp.com'
+const path = isLocalhost ? 'http://localhost:3001' : 'https://pacific-bayou-90411.herokuapp.com'
 
 class Map extends Component {
     constructor(props) {
