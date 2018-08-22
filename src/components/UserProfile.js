@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {createProfile, me, getAvatars} from '../store'
 import {connect} from 'react-redux'
 import axios from 'axios'
+axios.defaults.withCredentials = true
 
 class UserProfile extends Component {
   constructor(){
