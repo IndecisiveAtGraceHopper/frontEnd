@@ -46,7 +46,7 @@ class Poll extends Component {
     const {priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel} = this.state
     const {latitude, longitude} = await this.getGeocode(this.state.location)
     this.props.submitPollThunk({latitude,longitude, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel, adventureId: +this.props.adventureId, userId:this.props.userId})
-   await this.props.updateThisAdventure(this.props.adventureId)
+    window.location.reload()
   }
   // can only test on https
   // onClick =(evt)=> {
