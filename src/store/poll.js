@@ -35,6 +35,7 @@ export const submitPollThunk = (poll) => {
         const {data} = await axios.post(`${path}/api/users/poll`, poll)
         const action = setPoll(data)
         dispatch(action)
+        window.location.reload()
       } catch (err) {
         console.log(err)
       }
