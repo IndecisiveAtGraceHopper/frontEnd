@@ -29,7 +29,7 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <div className="authForm" id="signupPage">
+      <div className="authForm container col-11" id="signupPage">
         <GoogleLogin className='authElement' />
         <form onSubmit={this.handleSubmit} className='authElement'>
           <div>
