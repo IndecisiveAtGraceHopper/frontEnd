@@ -16,7 +16,8 @@ class UserProfile extends Component {
         address: '',
         image: ''
       },
-      currentImage: ''
+      currentImage: '',
+      active: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -46,6 +47,8 @@ class UserProfile extends Component {
     await this.setState({currentImage: this.state.user.image})
   }
   handleClick(evt) {
+    const currentState = this.state.active;
+    this.setState({ active: !currentState });
     this.setState({user: {...this.state.user, image: evt}})
   }
 
@@ -65,7 +68,7 @@ class UserProfile extends Component {
   }
 
   render() {
-
+console.log("STATE", this.state.active)
 if (this.props.avatars[0]){
 
     return (
@@ -121,8 +124,11 @@ if (this.props.avatars[0]){
           {
             this.props.avatars.map(avatar => {
               let boundHandleClick=this.handleClick.bind(this, avatar.image)
-            return <div key={avatar.id} value={avatar.image} onClick={boundHandleClick}>
-            <img src={avatar.image} /></div>}
+
+            return <div className={this.state.active ? 'avatar': null} key={avatar.id} value={avatar.image} onClick={boundHandleClick}>
+         <img src={avatar.image} />
+
+            </div>}
 
 
   )
