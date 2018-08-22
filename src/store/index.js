@@ -6,9 +6,10 @@ import activity from './activity'
 import searchUsers from './searchUsers'
 import pod from './pod'
 import adventure from './adventure'
+import avatar from './avatar'
 
 
-const reducer = combineReducers({user, poll, activity, searchUsers, pod, adventure})
+const reducer = combineReducers({user, poll, activity, searchUsers, pod, adventure, avatar})
 const middleware =
   applyMiddleware(thunkMiddleware)
 
@@ -20,5 +21,6 @@ export * from './poll'
 export * from './searchUsers'
 export * from './pod'
 export * from './adventure'
+export * from './avatar'
 
 
