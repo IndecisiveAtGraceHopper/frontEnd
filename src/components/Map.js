@@ -4,6 +4,7 @@ import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
 import axios from 'axios'
 import {setLocation} from '../store/poll'
 import {isLocalhost} from '../registerServiceWorker'
+axios.defaults.withCredentials = true
 
 // if running locally--comment out if building for deploy. this is ok because it's a pk
 // mapboxgl.access_token = 'pk.eyJ1IjoiYWxtb25kbWlsazk2IiwiYSI6ImNqbDJ2Y2pkYjBvNnUzcG4zZWY2bnBvbHYifQ.CNmqV1Pu_Xvv0P7V_9DvMg'

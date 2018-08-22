@@ -12,10 +12,10 @@ import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunkMiddleware from 'redux-thunk'
-import history from '../history'
 import {createStore} from 'redux'
 const middlewares = [thunkMiddleware]
 const mockStore = configureMockStore(middlewares)
+axios.defaults.withCredentials = true
 
 describe('Reducer for Activity', () => {
   it('returns the initial state by default', () => {

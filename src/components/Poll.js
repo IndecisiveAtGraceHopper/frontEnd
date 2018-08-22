@@ -6,6 +6,7 @@ import {Map} from './index'
 import {updateAdventure} from '../store/user'
 import {isLocalhost} from '../registerServiceWorker'
 const path = isLocalhost ? 'http://localhost:3001' : 'https://pacific-bayou-90411.herokuapp.com'
+axios.defaults.withCredentials = true
 
 class Poll extends Component {
   constructor() {

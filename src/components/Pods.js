@@ -6,6 +6,7 @@ import UserPods from './User'
 import {isLocalhost} from '../registerServiceWorker'
 import Text from './SendText'
 const path = isLocalhost ? 'http://localhost:3001' : 'https://pacific-bayou-90411.herokuapp.com'
+axios.defaults.withCredentials = true
 
 
 
