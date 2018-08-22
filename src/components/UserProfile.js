@@ -4,8 +4,8 @@ import {connect} from 'react-redux'
 import axios from 'axios'
 
 class UserProfile extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       user: {
         firstName: '',
@@ -45,9 +45,7 @@ class UserProfile extends Component {
     await this.setState({currentImage: this.state.user.image})
   }
   handleClick(evt) {
-    evt.preventDefault()
-    console.log("ONCLICK", evt.target.value)
-    this.setState({image: evt.target.value})
+    this.setState({user: {...this.state.user, image: evt}})
   }
 
   handleChange(evt) {
@@ -66,7 +64,9 @@ class UserProfile extends Component {
   }
 
   render() {
-console.log("STATE", this.state.user.image)
+
+if (this.props.avatars[0]){
+
     return (
       <div className="container col-11">
       <br/>
@@ -118,8 +118,10 @@ console.log("STATE", this.state.user.image)
           </div>
 
           {
-            this.props.avatars.map(avatar => <div key={avatar.id}>
-            <img src={avatar.image} value={avatar.image} onClick={this.handleClick} /></div>
+            this.props.avatars.map(avatar => {
+              let boundHandleClick=this.handleClick.bind(this, avatar.image)
+            return <div key={avatar.id} value={avatar.image} onClick={boundHandleClick}>
+            <img src={avatar.image} /></div>}
 
 
   )
@@ -133,7 +135,10 @@ console.log("STATE", this.state.user.image)
       </div>
       </div>
     )
+  }else{
+    return<h2>loading</h2>
   }
+}
 }
 
 const mapStateToProps = (state) => {
