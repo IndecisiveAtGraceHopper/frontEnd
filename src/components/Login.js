@@ -25,7 +25,7 @@ class Login extends React.Component {
   render() {
     return (
       <div className="authForm container col-11" id="loginPage">
-        <GoogleLogin className='authElement'/>
+        {/* <GoogleLogin className='authElement'/> */}
         <form onSubmit={this.handleSubmit} className='authElement'>
           <div>
             <label htmlFor="email">
