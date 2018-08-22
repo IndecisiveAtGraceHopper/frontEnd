@@ -37,7 +37,7 @@ class Poll extends Component {
   }
 
   async getGeocode (address) {
-    const location = await axios.post(`${path}/api/geoLoc/geocode`, address)
+    const location = await axios.post(`${path}/api/geoLoc/geocode`, {address})
     return location.data
   }
 

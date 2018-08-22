@@ -10,7 +10,7 @@ axios.defaults.withCredentials = true
 // mapboxgl.access_token = 'pk.eyJ1IjoiYWxtb25kbWlsazk2IiwiYSI6ImNqbDJ2Y2pkYjBvNnUzcG4zZWY2bnBvbHYifQ.CNmqV1Pu_Xvv0P7V_9DvMg'
 // console.log('mapboxgl.access_token', mapboxgl.access_token)
 // if deploying--comment out if running locally
-mapboxgl.access_token = process.env.REACT_APP_MAPBOXGL_ACCESS_TOKEN
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_ACCESS_TOKEN || 'pk.eyJ1IjoiYWxtb25kbWlsazk2IiwiYSI6ImNqbDRoNTM2cDJiemszcHBncXIwZnJzcHEifQ.qXlbVY2ViTMpeH8S_BqhCg'
 
 const path = isLocalhost ? 'http://localhost:3001' : 'https://obscure-lowlands-38066.herokuapp.com'
 
@@ -61,7 +61,7 @@ class Map extends Component {
             await this.setState({coords, zoom})
         })
         //listener type may need to be 'touchend' for app, needs to be 'mouseup' for web
-        this.map.on('mouseup' || 'touchend', async () => {
+        this.map.on('touchend', async () => {
             const address = await this.getAddress(this.state.coords)
             await this.props.setLoc(address)
         })
@@ -140,8 +140,8 @@ class Map extends Component {
     }
 
     async getAddress (coords) {
-        const data = await axios.post(`${path}/api/geoLoc/address`, coords)
-        const {address} = data
+        const data = await axios.post(`${path}/api/geoLoc/address`, {coords})
+        const {address} = data.data
         return address
     }
 
