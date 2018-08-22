@@ -5,7 +5,7 @@ import axios from 'axios'
 import {setLocation} from '../store/poll'
 import {isLocalhost} from '../registerServiceWorker'
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_ACCESS_TOKEN
-const path = isLocalhost ? 'http://localhost:3001' : 'https://obscure-lowlands-38066.herokuapp.com'
+const path = isLocalhost ? 'http://localhost:3001' : 'https://pacific-bayou-90411.herokuapp.com'
 
 class Map extends Component {
     constructor(props) {
