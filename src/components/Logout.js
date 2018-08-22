@@ -6,6 +6,7 @@ class Logout extends Component {
   handleLogout = (evt) => {
     evt.preventDefault()
     this.props.logout()
+    //window.location.reload()
   }
   render() {
     return (
