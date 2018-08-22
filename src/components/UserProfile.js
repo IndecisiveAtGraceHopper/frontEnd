@@ -19,6 +19,7 @@ class UserProfile extends Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleClick  = this.handleClick.bind(this)
   }
 
   async componentDidMount(){
@@ -43,7 +44,11 @@ class UserProfile extends Component {
     }
     await this.setState({currentImage: this.state.user.image})
   }
-
+  handleClick(evt) {
+    evt.preventDefault()
+    console.log("ONCLICK", evt.target.value)
+    this.setState({image: evt.target.value})
+  }
 
   handleChange(evt) {
     evt.preventDefault()
@@ -61,8 +66,7 @@ class UserProfile extends Component {
   }
 
   render() {
-    console.log("PROFILE", this.props.avatars)
-    console.log("STATE", this.state.user.image)
+console.log("STATE", this.state.user.image)
     return (
       <div className="container col-11">
       <br/>
@@ -111,21 +115,16 @@ class UserProfile extends Component {
           </div>
           <div>
             <label htmlFor='image'>Choose an Avatar</label>
-
           </div>
-          <tbody><tr>
+
           {
-  this.props.avatars.map(avatar =>
-
-
-                        <td>
-    <input key={avatar.id}  name="image" type="radio" value={this.state.user.image} checked={this.state.user.image} onChange={this.handlChange}  />
-    <img src={avatar.image} /></td>
+            this.props.avatars.map(avatar => <div key={avatar.id}>
+            <img src={avatar.image} value={avatar.image} onClick={this.handleClick} /></div>
 
 
   )
 }
-</tr></tbody>
+
           <div>
             <button type='submit button' className="btn btn-dark btn-lg btn-block">Submit</button>
           </div>
