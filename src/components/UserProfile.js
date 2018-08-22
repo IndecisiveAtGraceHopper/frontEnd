@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import {createProfile, me} from '../store'
+import {createProfile, me, getAvatars} from '../store'
 import {connect} from 'react-redux'
-
+import axios from 'axios'
 
 class UserProfile extends Component {
   constructor(){
@@ -13,7 +13,7 @@ class UserProfile extends Component {
         phone: '',
         email: '',
         address: '',
-        image: ''
+        image: null
       },
       currentImage: ''
     }
@@ -22,6 +22,7 @@ class UserProfile extends Component {
   }
 
   async componentDidMount(){
+    this.props.getAvatars()
     if (this.props.user.firstName) {
       await this.setState({user: {...this.state.user, firstName: this.props.user.firstName}})
     }
@@ -43,6 +44,7 @@ class UserProfile extends Component {
     await this.setState({currentImage: this.state.user.image})
   }
 
+
   handleChange(evt) {
     evt.preventDefault()
     this.setState({user: {...this.state.user, [evt.target.name]: evt.target.value}})
@@ -54,11 +56,13 @@ class UserProfile extends Component {
       this.setState({currentImage: this.state.user.image})
     }
     if (this.state.user.firstName && this.state.user.lastName && this.state.user.phone && this.state.user.email && this.state.user.address && this.state.user.image) {
-      this.props.updateProfile({firstName: this.state.user.firstName, lastName: this.state.user.lastName, phone: this.state.user.phone, email: this.state.user.email, address: this.state.user.address, image: this.state.user.image}, this.props.user.id)
+      this.props.updateProfile({firstName: this.state.user.firstName, lastName: this.state.user.lastName, phone: this.state.user.phone, email: this.state.user.email, address: this.state.user.address, avatarId: this.state.user.image}, this.props.user.id)
     }
   }
 
   render() {
+    console.log("PROFILE", this.props.avatars)
+    console.log("STATE", this.state.user.image)
     return (
       <div className="container col-11">
       <br/>
@@ -106,15 +110,27 @@ class UserProfile extends Component {
             {!this.state.user.address ? <p>Address cannot be null</p> : null}
           </div>
           <div>
-            <label htmlFor='image'>Profile Photo URL</label><br/>
-            <input className="form-control mx-sm-3" name='image' type='string' onChange={this.handleChange} value={this.state.user.image} />
-            {!this.state.user.image ? <p>Photo URL cannot be null</p> : null}
-          </div>
+            <label htmlFor='image'>Choose an Avatar</label>
 
+          </div>
+          <tbody><tr>
+          {
+  this.props.avatars.map(avatar =>
+
+
+                        <td>
+    <input key={avatar.id}  name="avatarId" type="radio" value={avatar.id} checked={this.state.user.image === avatar.id} onChange={this.handleChange}  />
+    <img src={avatar.image} /></td>
+
+
+  )
+}
+</tr></tbody>
           <div>
             <button type='submit button' className="btn btn-dark btn-lg btn-block">Submit</button>
           </div>
         </form>
+
       </div>
       </div>
     )
@@ -123,14 +139,16 @@ class UserProfile extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    avatars: state.avatar
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     updateProfile: (profileInfo, userId) => dispatch(createProfile(profileInfo, userId)),
-    getUser: () => dispatch(me())
+    getUser: () => dispatch(me()),
+    getAvatars: () => dispatch(getAvatars())
   }
 }
 
