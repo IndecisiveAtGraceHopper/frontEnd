@@ -72,7 +72,7 @@ class UserProfile extends Component {
           <div className="col-16 card bg-light mb-3 align-items-center">
             <h5 className="card-header ">Setting up your profile</h5>
             <div className="card-body">
-              <p className="card-text"><br/>
+              <p className="card-text">
                 Set up your profile so your friends can find you! <br/>
                 We will use your address to find activities near you<br/>
                 Invite your friends and start planning together! <br/>
