@@ -5,8 +5,8 @@ import axios from 'axios'
 axios.defaults.withCredentials = true
 
 class UserProfile extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       user: {
         firstName: '',
@@ -14,12 +14,13 @@ class UserProfile extends Component {
         phone: '',
         email: '',
         address: '',
-        image: null
+        image: ''
       },
       currentImage: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleClick  = this.handleClick.bind(this)
   }
 
   async componentDidMount(){
@@ -44,7 +45,9 @@ class UserProfile extends Component {
     }
     await this.setState({currentImage: this.state.user.image})
   }
-
+  handleClick(evt) {
+    this.setState({user: {...this.state.user, image: evt}})
+  }
 
   handleChange(evt) {
     evt.preventDefault()
@@ -57,13 +60,14 @@ class UserProfile extends Component {
       this.setState({currentImage: this.state.user.image})
     }
     if (this.state.user.firstName && this.state.user.lastName && this.state.user.phone && this.state.user.email && this.state.user.address && this.state.user.image) {
-      this.props.updateProfile({firstName: this.state.user.firstName, lastName: this.state.user.lastName, phone: this.state.user.phone, email: this.state.user.email, address: this.state.user.address, avatarId: this.state.user.image}, this.props.user.id)
+      this.props.updateProfile({firstName: this.state.user.firstName, lastName: this.state.user.lastName, phone: this.state.user.phone, email: this.state.user.email, address: this.state.user.address, image: this.state.user.image}, this.props.user.id)
     }
   }
 
   render() {
-    console.log("PROFILE", this.props.avatars)
-    console.log("STATE", this.state.user.image)
+
+if (this.props.avatars[0]){
+
     return (
       <div className="container col-11">
       <br/>
@@ -112,21 +116,18 @@ class UserProfile extends Component {
           </div>
           <div>
             <label htmlFor='image'>Choose an Avatar</label>
-
           </div>
-          <tbody><tr>
+
           {
-  this.props.avatars.map(avatar =>
-
-
-                        <td>
-    <input key={avatar.id}  name="avatarId" type="radio" value={avatar.id} checked={this.state.user.image === avatar.id} onChange={this.handleChange}  />
-    <img src={avatar.image} /></td>
+            this.props.avatars.map(avatar => {
+              let boundHandleClick=this.handleClick.bind(this, avatar.image)
+            return <div key={avatar.id} value={avatar.image} onClick={boundHandleClick}>
+            <img src={avatar.image} /></div>}
 
 
   )
 }
-</tr></tbody>
+
           <div>
             <button type='submit button' className="btn btn-dark btn-lg btn-block">Submit</button>
           </div>
@@ -135,7 +136,10 @@ class UserProfile extends Component {
       </div>
       </div>
     )
+  }else{
+    return<h2>loading</h2>
   }
+}
 }
 
 const mapStateToProps = (state) => {
