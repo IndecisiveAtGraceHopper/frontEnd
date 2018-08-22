@@ -76,7 +76,7 @@ class UserProfile extends Component {
             </div>
           </div>
           <div id='user-profile'>
-            <i><h4 style={{"fontFamily":"Sawarabi Mincho", "fontSize":"22px"}} className="font-weight-normal text-center">Welcome, {this.state.user.firstName}!</h4></i>
+            <h4 style={{ "fontSize":"22px"}} className="font-weight-normal text-center">Welcome {this.state.user.firstName}!</h4>
             <br/>
             <form id='userProfile' onSubmit={this.handleSubmit}  className="form-group">
               <div className="form-group">

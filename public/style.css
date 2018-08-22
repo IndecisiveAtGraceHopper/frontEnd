@@ -180,3 +180,8 @@ button {
     margin: 0px;
 }
 
+#all-user-adventures {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
