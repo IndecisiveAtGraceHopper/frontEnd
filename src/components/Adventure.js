@@ -20,7 +20,8 @@ class Adventure extends Component {
       notes: [],
       userId: '',
       showMap: false,
-      locations: []
+      locations: [],
+      render: false
     }
   }
 
@@ -32,11 +33,18 @@ class Adventure extends Component {
     const locations = activities.map(activity => {
       return {coords: activity.address, title: activity.name}
     })
-    this.setState({locations})
+    this.setState({locations, render: true})
+
   }
 
   render() {
-    if (this.props.activities.length){
+    console.log(this.props)
+    if (!this.state.render){
+      return (
+              <div className='page-body'><h1>Loading</h1></div>
+              )
+    }
+    else if (this.props.activities.length) {
         return (
           <div className="container">
           <div id='adventure-page'>
@@ -58,20 +66,20 @@ class Adventure extends Component {
           </div>
         )
       }
-    else if (!Object.keys(this.props.poll).length){
-      return (<Poll adventureId={this.props.match.params.id} />)
-    }
-    else if (this.props.adventure.length) {
+    else if (Object.keys(this.props.poll).length && this.props.adventure.length){
       const {adventure} = this.props
       return (<h1> {`${adventure[0].counter} out of ${adventure[0].totalCount} of your polls are in`} </h1>)
-      }
+    }
+    else if (!Object.keys(this.props.poll).length) {
+      return (<Poll adventureId= {this.props.match.params.id}/>)
+    }
     else {
-      return (
-        <div className='page-body'><h1>Loading</h1></div>
-      )
+      return <h1>loading</h1>
     }
   }
 }
+
+
 const mapState = (state, {match}) => {
   return {
     activities: state.activity,
