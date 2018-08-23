@@ -80,9 +80,22 @@ body{
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: flex-start;
-    padding: 10px;
-    margin: 10px;
+    padding: 7px;
+    margin: 7px;
 }
+
+.shadowBox {
+   background: #DDFAD3;
+   outline: #DDFAD3;
+
+
+}
+
+.shadowBoxActivity{
+    background:#B3F5CC;
+    outline:#B3F5CC;
+}
+
 
 button {
     margin-top: 10px;
@@ -153,7 +166,7 @@ button {
 #adventure-cards {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 #found-user-card {
@@ -165,7 +178,7 @@ button {
 }
 
 .testimonial-group {
-    overflow-x: scroll;
+    overflow-x: scroll !important;
     white-space: nowrap;
 }
 

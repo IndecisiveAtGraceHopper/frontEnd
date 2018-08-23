@@ -59,8 +59,7 @@ class Poll extends Component {
     return (
       <div className="container col-11">
       <br/>
-      <br/>
-        <h2 className='poll-header text-center'>Select your preferences!</h2>
+        <h2 className='poll-header text-center font-weight-normal shadow p-3 mb-0 bg-clear rounded shadowBox'>select your preferences</h2>
         <form onSubmit={this.handleSubmit}>
           <div id="map-and-poll" className="form-group form-check">
             <div>
@@ -75,6 +74,8 @@ class Poll extends Component {
                 </div>
               </div>
             </div>
+            <br/>
+            <div className="font-weight-normal shadow p-3 mb-0 bg-clear rounded shadowBox">
             <div className='form-input'>
               <label htmlFor="priceRange"/>
               <h5 className= 'text-center'> <span> 💸 </span> How much <span> 🤑💵 </span> would you like to spend?</h5>
@@ -114,7 +115,10 @@ class Poll extends Component {
               <button type='submit' className="btn btn-primary btn-block">Submit</button>
            </span>
          </div>
+         </div>
         </form>
+          <br/>
+          <br/>
       </div>
     );
   }

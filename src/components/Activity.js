@@ -20,11 +20,11 @@ class Activity extends Component {
         console.log('activity', activity)
         return (
           <div className= "container col-11">
-            <h4 className="text-center shadow-lg p-3 mb-0 bg-clear rounded">{activity.name}</h4>
+            <h4 className="text-center shadow-lg p-3 mb-0 bg-clear rounded shadowBoxActivity">{activity.name}</h4>
             {!activity.selected && (
               <div>
               <h3>
-              <div className="row align-items-center justify-content-center">
+              <div className="row align-items-center justify-content-center ">
                 <button onClick ={this.handleUpVote}><span role='img' aria-label='thumbs-up'> {activity.upVotes} 👍</span></button>
                 {this.props.isCoord && <button onClick = {this.handleSelect}>Select</button>}
                 <button onClick = {this.handleDownVote}><span role='img' aria-label='thumbs-up'>👎{activity.downVotes}</span></button>

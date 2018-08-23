@@ -31,7 +31,8 @@ render(){
   return (
     <div>
     <br/>
-      <h5 className="text-center">Invite your friends to join you! </h5>
+     <div className=" p-3 mb-0 bg-clear">
+      <h5 className="text-center"> Can't find your friends? Text them an invite! </h5>
       <form onSubmit={this.handleSubmit}>
          <div className="form-group form-check">
             <label htmlFor="name" />
@@ -44,7 +45,9 @@ render(){
           </span>
           <br/>
       </form>
+      </div>
     </div>
+
   )
 }
 
