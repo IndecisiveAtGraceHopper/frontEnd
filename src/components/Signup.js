@@ -29,29 +29,31 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <div className="authForm container col-11" id="signupPage">
-        {/*<GoogleLogin className='authElement' />*/}
-        <br/>
-        <br/>
-        <form onSubmit={this.handleSubmit} className='authElement'>
-          <div>
-            <label htmlFor="email">
-              <div><h3>Email</h3></div>
-            </label>
-            <div><input className="form-control" name="email" type="text" onChange={this.handleChange} /></div>
-          </div>
-          <div>
-          <br/>
-            <label htmlFor="password">
-              <div><h3>Password</h3></div>
-            </label>
-            <div><input className="form-control" name="password" type="password" onChange={this.handleChange} /></div>
-          </div>
+      <div>
+       <br/>
+       <br/>
+        <div className="authForm container col-11 font-weight-normal shadow p-3 mb-0 bg-clear rounded shadowBoxActivity" id="signupPage">
+          {/*<GoogleLogin className='authElement' />*/}
+          <form onSubmit={this.handleSubmit} className='authElement'>
+            <div>
+              <label htmlFor="email">
+                <div><h3>Email</h3></div>
+              </label>
+              <div><input className="form-control" name="email" type="text" onChange={this.handleChange} /></div>
+            </div>
+            <div>
+            <br/>
+              <label htmlFor="password">
+                <div><h3>Password</h3></div>
+              </label>
+              <div><input className="form-control" name="password" type="password" onChange={this.handleChange} /></div>
+            </div>
+            <div className='authElement'>
+            </div>
+          </form>
           <div className='authElement'>
+            <button className='btn btn-primary btn-lg btn-block' type="submit" onClick={this.handleSubmit}>Sign Up</button>
           </div>
-        </form>
-        <div className='authElement'>
-          <button className='btn btn-primary btn-lg btn-block' type="submit" onClick={this.handleSubmit}>Sign Up</button>
         </div>
       </div>
     )
