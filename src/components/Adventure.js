@@ -34,25 +34,23 @@ class Adventure extends Component {
       return {coords: activity.address, title: activity.name}
     })
     this.setState({locations, render: true})
-
   }
 
   render() {
-    console.log(this.props)
-    if (!this.state.render){
+    if (!this.state.render) {
       return (
-              <div className='page-body'><h1>Loading</h1></div>
-              )
+        <div className='page-body'><h1>Loading</h1></div>
+      )
     }
     else if (this.props.activities.length) {
-        return (
-          <div className="container">
+      return (
+        <div className="container">
           <div id='adventure-page'>
             <h2 className="text-center shadow-lg p-3 mb-0 bg-clear rounded shadowBox">adventure</h2>
             <br/>
             <div id='activities-container'>
               {this.props.activities.map((activity) =>
-                <Activity activity={activity} isCoord={true} key={activity.id}/>
+                <Activity activity={activity} isCoord={this.props.userId===activity.coordinator} key={activity.id}/>
               )}
             </div>
             <div id='adventure-map-container'>
@@ -64,9 +62,9 @@ class Adventure extends Component {
               <PinBoard />
             </div>
           </div>
-          </div>
-        )
-      }
+        </div>
+      )
+    }
     else if (Object.keys(this.props.poll).length && this.props.adventure.length){
       const {adventure} = this.props
       return (
@@ -74,7 +72,7 @@ class Adventure extends Component {
            <br/>
            <br/>
             <div  className="font-weight-normal shadow-lg p-3 mb-0 bg-clear rounded shadowBox">
-              <h1> {`${adventure[0].counter} out of ${adventure[0].totalCount} of your polls are in`} </h1>
+              <h1>{adventure[0].counter} out of ${adventure[0].totalCount} of your polls are in</h1>
             </div>
         </div>
         )
