@@ -15,8 +15,8 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_ACCESS_TOKEN || 'pk.eyJ1Ij
 const path = isLocalhost ? 'http://localhost:3001' : 'https://pacific-bayou-90411.herokuapp.com'
 
 class Map extends Component {
-    constructor(props) {
-        super()
+    constructor (props) {
+        super ()
         this.state = {
             coords: props.coords,
             zoom: 14.5,
@@ -29,7 +29,7 @@ class Map extends Component {
         this.getAddress = this.getAddress.bind(this)
     }
 
-    componentDidMount() {
+    componentDidMount () {
         if (this.state.interactive) {
             this.createInteractiveMap()
         } else if (this.state.coords.length > 1) {
@@ -39,7 +39,7 @@ class Map extends Component {
         }
     }
 
-    async createInteractiveMap() {
+    async createInteractiveMap () {
         const geocode = await this.getGeocode(this.state.coords)
         const coords = [geocode.longitude, geocode.latitude]
         await this.setState({coords})
@@ -60,14 +60,14 @@ class Map extends Component {
             staticMarker.setLngLat(coords)
             await this.setState({coords, zoom})
         })
-        //listener type may need to be 'touchend' for app, needs to be 'mouseup' for web
+        // listener type may need to be 'touchend' for app, needs to be 'mouseup' for web
         this.map.on('touchend', async () => {
             const address = await this.getAddress(this.state.coords)
             await this.props.setLoc(address)
         })
     }
 
-    async createMultiPointMap() {
+    async createMultiPointMap () {
         const coordPromises = this.state.coords.map(async (coord) => {
             const geocode = await this.getGeocode(coord.coords)
             return {coords: [geocode.longitude, geocode.latitude], title: coord.title}
@@ -113,10 +113,10 @@ class Map extends Component {
         this.map.fitBounds([[minLong - 0.005, minLat - 0.005],[maxLong + 0.005, maxLat + 0.005]])
     }
 
-    async createSinglePointMap() {
-        const geocode = await this.getGeocode(this.state.coords.coords)
+    async createSinglePointMap () {
+        const geocode = await this.getGeocode(this.state.coords[0].coords)
         const coords = [geocode.longitude, geocode.latitude]
-        const title = this.state.coords.title
+        const title = this.state.coords[0].title
         const mapOptions = {
             container: this.mapContainer,
             style: 'mapbox://styles/mapbox/streets-v10',
@@ -145,7 +145,7 @@ class Map extends Component {
         return address
     }
 
-    render() {
+    render () {
         const style = {
             position: 'absolute',
             top: 0,
