@@ -30,7 +30,7 @@ class Activity extends Component {
           {!activity.selected && (
             <div>
               <h3>
-              <div className="row align-items-center justify-content-center">
+              <div className="row align-items-center justify-content-center ">
                 <button onClick ={this.handleUpVote}><span role='img' aria-label='thumbs-up'> {activity.upVotes} 👍</span></button>
                 {this.props.isCoord && <button onClick = {this.handleSelect}>Select</button>}
                 <button onClick = {this.handleDownVote}><span role='img' aria-label='thumbs-up'>👎{activity.downVotes}</span></button>

@@ -20,7 +20,8 @@ class UserPods extends Component {
       if(this.props.pods){
         return (
           <div>
-            <h3 style={{"fontSize":"22px"}} className="text-center font-weight-normal">Your Pods:</h3>
+            <h3 style={{"fontSize":"22px"}} className="text-center font-weight-normal">your pods</h3>
+            <br/>
              <div>
               {
                 this.props.pods.map(pod => (

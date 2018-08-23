@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {getUsersThunk, createUserPodThunk} from '../store'
+import Text from './SendText'
 
 class Search extends React.Component {
   constructor() {
@@ -30,6 +31,7 @@ class Search extends React.Component {
 
     event.preventDefault()
     this.props.createUserPodThunk(event.target.value, this.props.podId)
+    this.setState({userFound:false})
   }
 
   handleSubmit (event) {
@@ -60,11 +62,12 @@ class Search extends React.Component {
           </div>
         </form>
         {this.state.noUserFound ? (
-          <h4>No user found by that name</h4>
+
+          <h4><br/>No users found by that name!</h4>
         ) : null}
         {this.state.userFound ? (
           <div id='found-users'>
-          <h4 className="font-weight-normal">Here are the users with that name:</h4>
+          <h4 className="font-weight-normal"></h4>
             <div>
               {
                 this.state.usersFound.map((user,index) =>
@@ -74,6 +77,7 @@ class Search extends React.Component {
                   </div>
                 )
               }
+              <div><Text/></div>
             </div>
           </div>
         ) : null}

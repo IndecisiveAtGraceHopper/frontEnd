@@ -65,50 +65,45 @@ class UserProfile extends Component {
       return (
         <div className="container col-11">
           <br/>
-          <div className="instructions col-16 card bg-light mb-3 align-items-center">
+          {/*<div className="instructions col-16 card bg-light mb-3 align-items-center">
             <h5 className="card-header ">Setting up your profile</h5>
             <div className="card-body">
               <p className="card-text">
-                Set up your profile so your friends can find you! <br/>
-                We will use your address to find activities near you<br/>
-                Invite your friends and start planning together! <br/>
+                Set up your profile so your can start planning adventures!
               </p>
             </div>
-          </div>
-          <div id='user-profile'>
+          </div>*/}
+          <div id='user-profile' className="font-weight-normal shadow-lg p-3 mb-0 bg-clear rounded shadowBox">
             <h4 style={{ "fontSize":"22px"}} className="font-weight-normal text-center">Welcome {this.state.user.firstName}!</h4>
-            <br/>
             <form id='userProfile' onSubmit={this.handleSubmit}  className="form-group">
               <div className="form-group">
-                <img src={this.state.user.image} alt='userprofile' className="rounded mx-auto d-block" width='100px' height='100px' />
+                <img src={this.state.user.image} alt='userprofile' className="rounded mx-auto d-block" width='70px' height='70px' />
               </div>
               <div>
                 <label htmlFor='email'>Email</label><br/>
-                <input className="form-control mx-sm-3" name='email' type='string' onChange={this.handleChange} value={this.state.user.email} />
-                {!this.state.user.email ? <p>Email cannot be null</p> : null}
+                <input className="form-control mx-sm-3" name='email' type='string' onChange={this.handleChange} value={this.state.user.email} placeholder="You must enter your email"/>
+                {!this.state.user.email ? <p></p> : null}
               </div>
               <div>
                 <label htmlFor='firstName'>First Name</label><br/>
-                <input className="form-control mx-sm-3" name='firstName' type='string' onChange={this.handleChange} value={this.state.user.firstName} />
-                {!this.state.user.firstName ? <p>You must enter your first name </p> : null}
+                <input className="form-control mx-sm-3" name='firstName' type='string' onChange={this.handleChange} value={this.state.user.firstName} placeholder="What is your name?"/>
+                {!this.state.user.firstName ? <p></p> : null}
               </div>
               <div>
                 <label htmlFor='lastName'>Last Name</label><br/>
-                <input className="form-control mx-sm-3" name='lastName' type='string' onChange={this.handleChange} value={this.state.user.lastName} />
-                {!this.state.user.lastName ? <p>You must enter your last name</p> : null}
+                <input className="form-control mx-sm-3" name='lastName' type='string' onChange={this.handleChange} value={this.state.user.lastName} placeholder="Your last name will help your friends know it is you"/>
+                {!this.state.user.lastName ? <p></p> : null}
               </div>
               <div>
                 <label htmlFor='phone'>Phone Number</label><br/>
-                <input className="form-control mx-sm-3" name='phone' type='string' onChange={this.handleChange} value={this.state.user.phone} />
-                {!this.state.user.phone ? <p>Phone number cannot be null</p> : null}
+                <input className="form-control mx-sm-3" name='phone' type='string' onChange={this.handleChange} value={this.state.user.phone} placeholder="Add your cell to receive messages about your adventures"/>
+                {!this.state.user.phone ? <p></p> : null}
               </div>
               <div>
                 <label htmlFor='address'>Address</label><br/>
-                <input className="form-control mx-sm-3" name='address' type='string' onChange={this.handleChange} value={this.state.user.address} />
-                {!this.state.user.address ? <p>Address cannot be null</p> : null}
+                <input className="form-control mx-sm-3" name='address' type='string' onChange={this.handleChange} value={this.state.user.address} placeholder="Enter an address for events near you"/>
+                {!this.state.user.address ? <p></p> : null}
               </div>
-              <br />
-              <br />
               <div>
                 <label htmlFor='image'>Choose an Avatar</label>
               </div>
@@ -119,7 +114,7 @@ class UserProfile extends Component {
                   return (
                     <div  className="col-sm-1"  key={avatar.id} value={avatar.image} onClick={boundHandleClick}>
                       <div id='single-avatar' className="card-body">
-                        <img src={avatar.image} width="100px" height="100px" />
+                        <img src={avatar.image} width="50px" height="50px" />
                       </div>
                     </div>
                   )
@@ -127,10 +122,11 @@ class UserProfile extends Component {
               }
               </div>
               <div>
-                <button type='submit button' className="btn btn-dark btn-lg btn-block">Submit</button>
+                <button type='submit button' className="btn btn-primary btn-lg btn-block">Submit</button>
               </div>
             </form>
           </div>
+          <br/>
         </div>
       )
     } else {
