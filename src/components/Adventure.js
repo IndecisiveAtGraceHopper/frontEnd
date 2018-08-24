@@ -12,13 +12,6 @@ class Adventure extends Component {
   constructor() {
     super()
     this.state = {
-      date: '',
-      time: '',
-      podId: '',
-      pollId: '',
-      name: '',
-      notes: [],
-      userId: '',
       showMap: false,
       locations: [],
       render: false
@@ -34,26 +27,23 @@ class Adventure extends Component {
       return {coords: activity.address, title: activity.name}
     })
     this.setState({locations, render: true})
-
   }
 
   render() {
-    console.log(this.props)
-    if (!this.state.render){
+    if (!this.state.render) {
       return (
-              <div className='page-body'><h1>Loading</h1></div>
-              )
+        <div className='page-body'><h1>Loading</h1></div>
+      )
     }
     else if (this.props.activities.length) {
-        return (
-          <div className="container">
+      return (
+        <div className="container">
           <div id='adventure-page'>
-            <h3 className="text-center">Adventure</h3>
-            <br/>
+            <h2 className="text-center shadow-lg p-3 mb-0 rounded shadowBox">{this.props.adventure[0].name}</h2>
             <br/>
             <div id='activities-container'>
               {this.props.activities.map((activity) =>
-                <Activity activity={activity} isCoord={true} key={activity.id}/>
+                <Activity activity={activity} isCoord={this.props.userId===activity.coordinator} key={activity.id}/>
               )}
             </div>
             <div id='adventure-map-container'>
@@ -65,12 +55,20 @@ class Adventure extends Component {
               <PinBoard />
             </div>
           </div>
-          </div>
-        )
-      }
+        </div>
+      )
+    }
     else if (Object.keys(this.props.poll).length && this.props.adventure.length){
       const {adventure} = this.props
-      return (<h1> {`${adventure[0].counter} out of ${adventure[0].totalCount} of your polls are in`} </h1>)
+      return (
+         <div className="container col-11 text-center">
+           <br/>
+           <br/>
+            <div  className="font-weight-normal shadow-lg p-3 mb-0 bg-clear rounded shadowBox">
+              <h1>{adventure[0].counter} out of {adventure[0].totalCount} of your polls are in</h1>
+            </div>
+        </div>
+        )
     }
     else if (!Object.keys(this.props.poll).length) {
       return (<Poll adventureId= {this.props.match.params.id}/>)

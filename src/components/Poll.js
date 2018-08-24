@@ -33,7 +33,8 @@ class Poll extends Component {
   }
 
   async handleChange (evt) {
-    await this.setState({[evt.target.name]: evt.target.value/25})
+    if (evt.target.name === 'location') await this.setState({location: evt.target.value})
+    else await this.setState({[evt.target.name]: evt.target.value/25})
   }
 
   async getGeocode (address) {
@@ -43,11 +44,14 @@ class Poll extends Component {
 
   async handleSubmit (evt) {
     evt.preventDefault()
-    const {priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel} = this.state
-    const {latitude, longitude} = await this.getGeocode(this.state.location)
-    await this.props.submitPollThunk({latitude,longitude, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel, adventureId: +this.props.adventureId, userId:this.props.userId})
-    await this.props.getAdventures(this.props.userId)
+    if (evt.detail === 1) {
+      const {priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel} = this.state
+      const {latitude, longitude} = await this.getGeocode(this.state.location)
+      await this.props.submitPollThunk({latitude,longitude, priceRange, activityLevel, artsyLevel, hungerLevel, drinkLevel, adventureId: +this.props.adventureId, userId:this.props.userId})
+      await this.props.getAdventures(this.props.userId)
+    }
   }
+
   // can only test on https
   // onClick =(evt)=> {
   //   if (navigator.geolocation) {
@@ -59,9 +63,8 @@ class Poll extends Component {
     return (
       <div className="container col-11">
       <br/>
-      <br/>
-        <h2 className='poll-header text-center'>Select your preferences!</h2>
-        <form onSubmit={this.handleSubmit}>
+        <h2 className='poll-header text-center font-weight-normal shadow p-3 mb-0 bg-clear rounded shadowBox'>select your preferences</h2>
+        <form>
           <div id="map-and-poll" className="form-group form-check">
             <div>
               <label htmlFor="location" />
@@ -71,10 +74,12 @@ class Poll extends Component {
               <br/>
               <div id='map-outer'>
                 <div id='map-container'>
-                  {this.state.location !== 'enter a location' &&<Map interactive='true' coords={this.state.location} />}
+                  {this.state.location !== 'enter a location' && <Map interactive='true' coords={this.state.location}/>}
                 </div>
               </div>
             </div>
+            <br/>
+            <div className="font-weight-normal shadow p-3 mb-0 bg-clear rounded shadowBox">
             <div className='form-input'>
               <label htmlFor="priceRange"/>
               <h5 className= 'text-center'> <span> 💸 </span> How much <span> 🤑💵 </span> would you like to spend?</h5>
@@ -111,10 +116,13 @@ class Poll extends Component {
               <small id="drinkLevel" className="form-text text-muted" />
           </div>
            <span>
-              <button type='submit' className="btn btn-primary btn-block">Submit</button>
+              <button type='submit' onClick={this.handleSubmit} className="btn btn-primary btn-block">Submit</button>
            </span>
          </div>
+         </div>
         </form>
+          <br/>
+          <br/>
       </div>
     );
   }
