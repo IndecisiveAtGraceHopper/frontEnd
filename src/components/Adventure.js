@@ -36,6 +36,7 @@ class Adventure extends Component {
       )
     }
     else if (this.props.activities.length) {
+      console.log('activity', this.props.adventure)
       return (
         <div className="container">
           <div id='adventure-page'>
@@ -43,7 +44,7 @@ class Adventure extends Component {
             <br/>
             <div id='activities-container'>
               {this.props.activities.map((activity) =>
-                <Activity activity={activity} isCoord={this.props.userId===activity.coordinator} key={activity.id}/>
+                <Activity activity={activity} isCoord={this.props.userId===this.props.adventure[0].coordinator} key={activity.id}/>
               )}
             </div>
             <div id='adventure-map-container'>
