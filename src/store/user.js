@@ -78,10 +78,8 @@ export const authLogin = (userInfo) => async dispatch => {
 }
 
 export const logOut = () => async dispatch => {
- console.log("WHERE ARE YOU")
   try {
     await axios.post(`${path}/auth/logout`)
-    console.log("HELLOOOOO")
     dispatch(removeUser())
     history.push('/login')
   } catch (err) {

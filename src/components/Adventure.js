@@ -12,13 +12,6 @@ class Adventure extends Component {
   constructor() {
     super()
     this.state = {
-      date: '',
-      time: '',
-      podId: '',
-      pollId: '',
-      name: '',
-      notes: [],
-      userId: '',
       showMap: false,
       locations: [],
       render: false
@@ -46,7 +39,7 @@ class Adventure extends Component {
       return (
         <div className="container">
           <div id='adventure-page'>
-            <h2 className="text-center shadow-lg p-3 mb-0 bg-clear rounded shadowBox">adventure</h2>
+            <h2 className="text-center shadow-lg p-3 mb-0 rounded shadowBox">{this.props.adventure[0].name}</h2>
             <br/>
             <div id='activities-container'>
               {this.props.activities.map((activity) =>
@@ -72,7 +65,7 @@ class Adventure extends Component {
            <br/>
            <br/>
             <div  className="font-weight-normal shadow-lg p-3 mb-0 bg-clear rounded shadowBox">
-              <h1>{adventure[0].counter} out of ${adventure[0].totalCount} of your polls are in</h1>
+              <h1>{adventure[0].counter} out of {adventure[0].totalCount} of your polls are in</h1>
             </div>
         </div>
         )
