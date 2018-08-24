@@ -31,7 +31,7 @@ render(){
   return (
     <div>
       <br/>
-      <div className="shadowBox shadow p-3 mb-0">
+      <div className="shadowBoxActivity shadow p-3 mb-0">
       <h5 className="text-center"> Can't find your friends? Text them an invite! </h5>
       <form onSubmit={this.handleSubmit}>
         <div className="form-group form-check">
