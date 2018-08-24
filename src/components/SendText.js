@@ -30,18 +30,18 @@ componentDidMount(){
 render(){
   return (
     <div>
-    <br/>
-     <div className=" p-3 mb-0 bg-clear">
+      <br/>
+      <div className=" p-3 mb-0 bg-clear">
       <h5 className="text-center"> Can't find your friends? Text them an invite! </h5>
       <form onSubmit={this.handleSubmit}>
-         <div className="form-group form-check">
-            <label htmlFor="name" />
-            <input type="text" name="phone"  onChange={this.handleChange}
-            className="form-control" placeholder="Enter text number" />
-            <small id="name" className="form-text text-muted" />
+        <div className="form-group form-check">
+          <label htmlFor="name" />
+          <input type="text" name="phone"  onChange={this.handleChange}
+          className="form-control" placeholder="Enter text number" />
+          <small id="name" className="form-text text-muted" />
         </div>
           <span>
-             <button className= "btn btn-primary btn-block " type='submit'>Send Text</button>
+            <button className= "btn btn-primary btn-block " type='submit'>Send Text</button>
           </span>
           <br/>
       </form>

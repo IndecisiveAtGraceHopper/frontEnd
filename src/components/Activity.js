@@ -26,7 +26,7 @@ class Activity extends Component {
       const {activity} = this.props
       return (
         <div className= "container col-11">
-          <h4 className="text-center shadow-lg p-3 mb-0 bg-clear rounded">{activity.name}</h4>
+          <h4 className="shadowBox text-center shadow-lg p-3 mb-0 rounded">{activity.name}</h4>
           {!activity.selected && (
             <div>
               <h3>

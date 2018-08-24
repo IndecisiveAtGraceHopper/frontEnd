@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {SendText} from './index'
 
 class Home extends React.Component {
 
@@ -9,8 +9,8 @@ class Home extends React.Component {
 render(){
   return (
     <div className="container col-11">
-      <br/><br/><br/>
-       <br/>
+      <br/>
+      <br/>
       <div className="col-16 card bg-light mb-3 align-items-center text-center">
         <div className="card-body">
           <h2 className="card-header">Welcome!</h2>
@@ -21,6 +21,7 @@ render(){
             </h4>
         </div>
       </div>
+      <SendText />
     </div>
   )
 }

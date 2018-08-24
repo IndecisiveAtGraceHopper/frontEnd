@@ -87,8 +87,6 @@ body{
 .shadowBox {
    background: #DDFAD3;
    outline: #DDFAD3;
-
-
 }
 
 .shadowBoxActivity{
@@ -153,10 +151,6 @@ button {
     cursor: pointer;
 }
 
-#pod-members, #pod-adventures {
-    padding: 20px;
-}
-
 #pod-member-cards {
     display: flex;
     flex-direction: row;
@@ -197,4 +191,13 @@ button {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+}
+
+#single-pod-page {
+    padding-bottom: 20px;
+}
+
+#new-pod-form {
+    padding: 0px;
+    margin: 0px;
 }

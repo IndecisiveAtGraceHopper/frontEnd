@@ -67,13 +67,11 @@ class Pod extends Component {
             </div>
           </div>
           <br/>
-          <div className="font-weight-normal shadow p-3 mb-0 rounded text-center shadowBox">
-            <br/>
+          <div id='pod-adventures' className="shadowBox font-weight-normal shadow p-3 mb-0 rounded text-center">
             <h2 className='text-center font-weight-normal'>adventures</h2>
             <div id='adventure-cards'>
               <div className="col-20" id='past-adventures'>
-                <br/>
-                <h3 className="text-left font-weight-normal">past</h3>
+                <h3 className="text-center font-weight-normal">past</h3>
                 <div id='upcoming-cards'>
                   {
                     pastAdventures.map(adventure => <div key={adventure.id}><Link to={`/adventures/${adventure.id}`}><h5 className="text-center">{adventure.name}</h5></Link></div>)
@@ -81,7 +79,6 @@ class Pod extends Component {
                 </div>
               </div>
               <div id='upcoming-adventures'>
-                <br/>
                 <h3 className='text-center font-weight-normal'>upcoming</h3>
                 <div id='upcoming-cards'>
                   {
@@ -91,7 +88,6 @@ class Pod extends Component {
               </div>
             </div>
             <button className="btn btn-block btn-lg btn-primary" onClick={this.onClick}>Create An Adventure</button>
-            <br/>
           </div>
         </div>
       )
