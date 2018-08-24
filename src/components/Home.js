@@ -16,7 +16,7 @@ render(){
           <h2 className="card-header">Welcome!</h2>
           <br/>
             <h4 className="card-text text-center">
-              Indecisive helps you and your friends uncover new adventures based on your interests!
+              Indecisive helps you and your friends uncover new adventures based on your interests.
               Invite your friends, set a date and Indecisive will take care of the rest!
             </h4>
         </div>
